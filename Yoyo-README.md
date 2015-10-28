@@ -57,7 +57,7 @@ Remove any content
     git rm -rf .
 
 
-Got back to master
+Go back to master
 
     git checkout master
 
