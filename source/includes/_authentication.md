@@ -8,16 +8,28 @@ curl "api_endpoint_here"
   -H "Authorization: blahblahblah"
 ```
 
-```go
-  
-    Write some go code here..
+```objective_c
+@interface Person : NSObject {
+  @public
+  NSString *name;
+  @private
+  int age;
+}
 
+@property(copy) NSString *name;
+@property(readonly) int age;
+
+-(id)initWithAge:(int)age;
+@end
 ```
 
-```python
-import yoyowallet
+```java
+public class java {
+    public static void main(String[] args) {
+        System.out.println("Hello World");
+    }
+}
 
-api = yoyowallet.authorize('blahblahblah')
 ```
 
 

@@ -2,23 +2,18 @@
 
 ## Get All Accounts
 
-```go
-  
-    Write some go code here..
-
-```
-
-```python
-import yoyowallet
-
-api = yoyowallet.authorize('blahblahblah')
-api.kittens.get()
-```
-
 ```shell
 curl "https://api.yoyowallet/v1/accounts"
   -H "Authorization: blahblahblah"
 ```
+
+```objective_c
+```
+
+```java
+```
+
+
 
 > The above command returns JSON structured like this:
 
@@ -60,24 +55,17 @@ Remember — a happy kitten is an authenticated kitten!
 
 ## Get a Specific Kitten
 
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
 ```shell
 curl "http://example.com/api/kittens/2"
   -H "Authorization: meowmeowmeow"
 ```
+
+```objective_c
+```
+
+```java
+```
+
 
 > The above command returns JSON structured like this:
 
