@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>API Reference</title>
+    <title>Yoyo Wallet API Reference</title>
 
     <link href="stylesheets/screen.css" rel="stylesheet" type="text/css" media="screen" />
     <link href="stylesheets/print.css" rel="stylesheet" type="text/css" media="print" />
@@ -13,7 +13,7 @@
 
       <script>
         $(function() {
-          setupLanguages(["shell","ruby","python"]);
+          setupLanguages(["shell","iOS SDK","Android SDK"]);
         });
       </script>
   </head>
@@ -29,8 +29,8 @@
       <img src="images/logo.png" />
         <div class="lang-selector">
               <a href="#" data-language-name="shell">shell</a>
-              <a href="#" data-language-name="ruby">ruby</a>
-              <a href="#" data-language-name="python">python</a>
+              <a href="#" data-language-name="iOS SDK">iOS SDK</a>
+              <a href="#" data-language-name="Android SDK">Android SDK</a>
         </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
@@ -39,68 +39,65 @@
       <div id="toc">
       </div>
         <ul class="toc-footer">
-            <li><a href='#'>Sign Up for a Developer Key</a></li>
             <li><a href='http://github.com/tripit/slate'>Documentation Powered by Slate</a></li>
         </ul>
     </div>
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-        <h1 id="introduction">Introduction</h1>
+        
+          <h1 id="introduction">Introduction</h1>
 
-<p>Welcome to the Yoyo Wallet API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.</p>
-
-<p>We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
+<p>Welcome to the Yoyo Wallet API! </p>
 
 <p>This example API documentation page was created with <a href="http://github.com/tripit/slate">Slate</a>. Feel free to edit it and use it as a base for your own API&rsquo;s documentation.</p>
 
-<h1 id="authentication">Authentication</h1>
+          <h1 id="authentication">Authentication</h1>
 
 <blockquote>
 <p>To authorize, use this code:</p>
 </blockquote>
-<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre>
-<pre class="highlight python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre>
 <pre class="highlight shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
 curl <span class="s2">"api_endpoint_here"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
+  -H <span class="s2">"Authorization: blahblahblah"</span>
+</code></pre>
+<pre class="highlight go"><code><span class="x">
+    </span><span class="n">Write</span><span class="x"> </span><span class="n">some</span><span class="x"> </span><span class="k">go</span><span class="x"> </span><span class="n">code</span><span class="x"> </span><span class="n">here</span><span class="o">..</span><span class="x">
+
+</span></code></pre>
+<pre class="highlight python"><code><span class="kn">import</span> <span class="nn">yoyowallet</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="n">yoyowallet</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'blahblahblah'</span><span class="p">)</span>
 </code></pre>
 
 <blockquote>
-<p>Make sure to replace <code class="prettyprint">meowmeowmeow</code> with your API key.</p>
+<p>Make sure to replace <code class="prettyprint">blahblahblah</code> with your API key.</p>
 </blockquote>
 
-<p>Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our <a href="http://example.com/developers">developer portal</a>.</p>
+<p>Yoyo Wallet uses API keys to allow access to the API. </p>
 
-<p>Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
+<p>Yoyo Wallet expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
 
-<p><code class="prettyprint">Authorization: meowmeowmeow</code></p>
+<p><code class="prettyprint">Authorization: blahblahblah</code></p>
 
 <aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
+You must replace <code>blahblahblah</code> with your personal API key.
 </aside>
 
-<h1 id="kittens">Kittens</h1>
+          <h1 id="accounts">Accounts</h1>
 
-<h2 id="get-all-kittens">Get All Kittens</h2>
-<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
+<h2 id="get-all-accounts">Get All Accounts</h2>
+<pre class="highlight go"><code><span class="x">
+    </span><span class="n">Write</span><span class="x"> </span><span class="n">some</span><span class="x"> </span><span class="k">go</span><span class="x"> </span><span class="n">code</span><span class="x"> </span><span class="n">here</span><span class="o">..</span><span class="x">
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span>
-</code></pre>
-<pre class="highlight python"><code><span class="kn">import</span> <span class="nn">kittn</span>
+</span></code></pre>
+<pre class="highlight python"><code><span class="kn">import</span> <span class="nn">yoyowallet</span>
 
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
+<span class="n">api</span> <span class="o">=</span> <span class="n">yoyowallet</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'blahblahblah'</span><span class="p">)</span>
 <span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
 </code></pre>
-<pre class="highlight shell"><code>curl <span class="s2">"http://example.com/api/kittens"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
+<pre class="highlight shell"><code>curl <span class="s2">"https://api.yoyowallet/v1/accounts"</span>
+  -H <span class="s2">"Authorization: blahblahblah"</span>
 </code></pre>
 
 <blockquote>
@@ -128,7 +125,7 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">GET http://example.com/api/kittens</code></p>
+<p><code class="prettyprint">GET https://api.yoyowallet/v1/accounts</code></p>
 
 <h3 id="query-parameters">Query Parameters</h3>
 
@@ -204,11 +201,35 @@ Remember — a happy kitten is an authenticated kitten!
 </tr>
 </tbody></table>
 
+<h2 id="bank-accounts">Bank Accounts</h2>
+
+<h2 id="invitations">Invitations</h2>
+
+<h2 id="product-groups">Product Groups</h2>
+
+<h2 id="transaction-keys">Transaction Keys</h2>
+
+<h2 id="vouchers">Vouchers</h2>
+
+          <h1 id="consumers">Consumers</h1>
+
+<h2 id="cards">Cards</h2>
+
+<h2 id="transactions">Transactions</h2>
+
+<h2 id="vouchers">Vouchers</h2>
+
+<h2 id="passcodes">Passcodes</h2>
+
+          <h1 id="sessions">Sessions</h1>
+
+          <h1 id="transactions">Transactions</h1>
+
+          <h1 id="users">Users</h1>
+
           <h1 id="errors">Errors</h1>
 
-<aside class="notice">This error section is stored in a separate file in `includes/_errors.md`. Slate allows you to optionally separate out your docs into many files&hellip;just save them to the `includes` folder and add them to the top of your `index.md`&rsquo;s frontmatter. Files are included in the order listed.</aside>
-
-<p>The Kittn API uses the following error codes:</p>
+<p>The Yoyo Wallet API uses the following error codes:</p>
 
 <table><thead>
 <tr>
@@ -218,47 +239,39 @@ Remember — a happy kitten is an authenticated kitten!
 </thead><tbody>
 <tr>
 <td>400</td>
-<td>Bad Request &ndash; Your request sucks</td>
+<td>Bad Request - A required parameter is missing, or the submitted data is invalid</td>
 </tr>
 <tr>
 <td>401</td>
-<td>Unauthorized &ndash; Your API key is wrong</td>
+<td>Unauthorized - No valid API key provided (ie you can’t be authenticated)</td>
 </tr>
 <tr>
 <td>403</td>
-<td>Forbidden &ndash; The kitten requested is hidden for administrators only</td>
+<td>Forbidden - Request is not authorised (eg you don’t have permission to perform this action).</td>
 </tr>
 <tr>
 <td>404</td>
-<td>Not Found &ndash; The specified kitten could not be found</td>
+<td>Not Found - Could not find the resource requested</td>
 </tr>
 <tr>
 <td>405</td>
-<td>Method Not Allowed &ndash; You tried to access a kitten with an invalid method</td>
+<td>Method Not Allowed &ndash; Request with an invalid method</td>
 </tr>
 <tr>
-<td>406</td>
-<td>Not Acceptable &ndash; You requested a format that isn&rsquo;t json</td>
-</tr>
-<tr>
-<td>410</td>
-<td>Gone &ndash; The kitten requested has been removed from our servers</td>
-</tr>
-<tr>
-<td>418</td>
-<td>I&rsquo;m a teapot</td>
+<td>415</td>
+<td>Unsupported media type - Request has invalid content-type header</td>
 </tr>
 <tr>
 <td>429</td>
-<td>Too Many Requests &ndash; You&rsquo;re requesting too many kittens! Slow down!</td>
+<td>Too many requests - Rate limiting</td>
 </tr>
 <tr>
 <td>500</td>
-<td>Internal Server Error &ndash; We had a problem with our server. Try again later.</td>
+<td>Server error - Unanticipated server error</td>
 </tr>
 <tr>
 <td>503</td>
-<td>Service Unavailable &ndash; We&rsquo;re temporarially offline for maintanance. Please try again later.</td>
+<td>Service unavailable - If the service is down for maintenance</td>
 </tr>
 </tbody></table>
 
@@ -266,8 +279,8 @@ Remember — a happy kitten is an authenticated kitten!
       <div class="dark-box">
           <div class="lang-selector">
                 <a href="#" data-language-name="shell">shell</a>
-                <a href="#" data-language-name="ruby">ruby</a>
-                <a href="#" data-language-name="python">python</a>
+                <a href="#" data-language-name="iOS SDK">iOS SDK</a>
+                <a href="#" data-language-name="Android SDK">Android SDK</a>
           </div>
       </div>
     </div>
