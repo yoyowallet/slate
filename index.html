@@ -48,53 +48,154 @@
         
           <h1 id="introduction">Introduction</h1>
 
-<p>Welcome to the Yoyo Wallet API! </p>
+<p>Welcome to the Yoyo Wallet platform! </p>
 
-<p>This example API documentation page was created with <a href="http://github.com/tripit/slate">Slate</a>. Feel free to edit it and use it as a base for your own API&rsquo;s documentation.</p>
+<p>The platform opens up the functionality of Yoyo Wallet to application developers.</p>
+
+<p>The main feaures of the platform are:</p>
+
+<ul>
+<li>Identity</li>
+<li>Payment</li>
+<li>Loyalty</li>
+<li>Vouchers</li>
+<li>Analytics</li>
+</ul>
+
+<h2 id="accessing-the-platform">Accessing the platform</h2>
+
+<p>There are two different ways you can access the Yoyo Wallet platform.</p>
+
+<ul>
+<li>via an SDK</li>
+<li>via the RESTful API</li>
+</ul>
+
+<p>Before doing anything with the Yoyo Wallet platform you&rsquo;ll need an account.</p>
+
+<h2 id="getting-a-yoyo-wallet-account">Getting a Yoyo Wallet account</h2>
+
+<p>If you&rsquo;re interested in developing an application on the Yoyo Wallet platform, please <a href="http://yoyowallet.com/contact-us/">contact us</a></p>
+
+<p>Once you&rsquo;re registered with a Yoyo Wallet account you&rsquo;ll get the following information.</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>account_id</td>
+<td>This is your unique account identifer</td>
+</tr>
+<tr>
+<td>access_key</td>
+<td>This is your access key</td>
+</tr>
+<tr>
+<td>secret_key</td>
+<td>This is your secret key (keep it somewhere safe&hellip;)</td>
+</tr>
+</tbody></table>
+
+<p>We&rsquo;ll also create an administrative user so you can login to our <a href="https://dashboard.test.yoyowallet.net">dashboard</a> and manage your account.</p>
+
+<h2 id="sdks">SDKs</h2>
+
+<p>We have developed iOS and Android SDKs that make it easy to interact with the most useful endpoints on our platform.  These SDKs are focused on making it easy to build an application on top of the Yoyo Wallet platform.</p>
+
+<p>In fact we&rsquo;re using the SDK ourselves to build the next version of Yoyo Wallet as we speak. </p>
+
+<h3 id="ios-sdk">iOS SDK</h3>
+
+<p>The iOS SDK can be downloaded here: <a href="http:">http://</a></p>
+
+<h3 id="android-sdk">Android SDK</h3>
+
+<p>The Android SDK can be downloaded here: <a href="http:">http://</a></p>
+
+<h2 id="restful-api-ui">RESTful API UI</h2>
+
+<p>If you&rsquo;re a web developer you may prefer to code directly against our RESTful API.  To make life easier for you web devs, we&rsquo;ve also put a nice browser front end on the API for you to explore.</p>
+
+<p>The sandbox version can be found here: <a href="http://api.test.yoyowallet.net/apidocs/">http://api.test.yoyowallet.net/apidocs/</a></p>
+
+<p>The Yoyo developers like to eat their own dogfood, so the API is also used by our admin dashboards as well as the mobile SDKs.
+Therefore there are quite a LOT of endpoints in here.</p>
+
+<p>We&rsquo;ll be documenting the most important ones to get you on your way to developing the next killer application on top of the Yoyo Wallet platform.</p>
+
+<h3 id="authentication-challenge">Authentication challenge</h3>
+
+<p>When you use the RESTful UI for the first time you will see the authentication challenge dialog box.  This is because you are trying to make an authenticated request to the API.</p>
+
+<p><img src="images/auth-challenge.png" alt="Authentication challenge" style="width: 400px;"/></p>
+
+<ul>
+<li>user name = <strong>$access_key</strong></li>
+<li>password = <strong>$secret_key</strong></li>
+</ul>
+
+<p>From now on the browser will take care of adding the appropriate authentication header to your requests.</p>
+
+<p>If you don&rsquo;t have an <strong>$access_key</strong> or <strong>$secret_key</strong> yet, read on..</p>
+
+          <h1 id="platform-users">Platform Users</h1>
+
+<p>The Yoyo Wallet platform is accessed by two different types of users.  </p>
+
+<ul>
+<li>Consumers</li>
+<li>Dashboard users</li>
+</ul>
+
+<p>To interact with the API as a consumer or dashboard user you require a valid <a href="#sessions">session</a>.</p>
+
+<h2 id="consumers">Consumers</h2>
+
+<p>Consumers are the people using the Yoyo Wallet powered applications.  They are <em>your</em> customers.</p>
+
+<p>Once a consumer has registered with the Yoyo Wallet platform they are able to reuse their Yoyo Wallet account on any application using the platform.  They won&rsquo;t have to register again, or add their credit card again.  It&rsquo;ll just be there ready and waiting for them when they login.</p>
+
+<h2 id="dashboard-users">Dashboard users</h2>
+
+<p>Dashboard users are you, or your employees.  These users have access to the dashboard to browse and/or administer information specific to your Yoyo Wallet account.</p>
+
+<p>Dashboard users are authenticated with an email address and a password.</p>
 
           <h1 id="authentication">Authentication</h1>
+
+<p>Every request to the API must be an authenticated request.  When you join the Yoyo Wallet platform you will be given an access_key and a secret_key.  These keys are used to authenticate your requests to the platform.</p>
+
+<p>Requests to the platform API are authenticated using basic auth.</p>
+
+<p>To authenticate a request, send an “AUTHORIZATION” header of form:</p>
+
+<p>Basic base64($access_key:$secret_key)</p>
+
+<p><code class="prettyprint">Authorization: &lt;base64 encrypted $access_key:$secret_key&gt;</code></p>
+
+<aside class="notice">
+You must replace <code>$access_key_$secret_key</code> with your real API credentials.
+</aside>
 
 <blockquote>
 <p>To authorize, use this code:</p>
 </blockquote>
 <pre class="highlight shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
-curl <span class="s2">"api_endpoint_here"</span>
-  -H <span class="s2">"Authorization: blahblahblah"</span>
+
+curl <span class="s1">'https://api.test.yoyowallet.net/v1/accounts/a'</span> 
+  -u <span class="nv">$access_key</span>:<span class="nv">$secret</span>
 </code></pre>
-<pre class="highlight objective_c"><code><span class="k">@interface</span> <span class="nc">Person</span> <span class="p">:</span> <span class="nc">NSObject</span> <span class="p">{</span>
-  <span class="k">@public</span>
-  <span class="n">NSString</span> <span class="o">*</span><span class="n">name</span><span class="p">;</span>
-  <span class="k">@private</span>
-  <span class="kt">int</span> <span class="n">age</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="k">@property</span><span class="p">(</span><span class="n">copy</span><span class="p">)</span> <span class="n">NSString</span> <span class="o">*</span><span class="n">name</span><span class="p">;</span>
-<span class="k">@property</span><span class="p">(</span><span class="n">readonly</span><span class="p">)</span> <span class="kt">int</span> <span class="n">age</span><span class="p">;</span>
-
-<span class="k">-</span><span class="p">(</span><span class="n">id</span><span class="p">)</span><span class="nf">initWithAge</span><span class="p">:(</span><span class="kt">int</span><span class="p">)</span><span class="nv">age</span><span class="p">;</span>
-<span class="k">@end</span>
+<pre class="highlight objective_c"><code>    <span class="n">iOS</span> <span class="n">SDK</span> <span class="n">Code</span> <span class="n">TBD</span>
 </code></pre>
-<pre class="highlight java"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">java</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="n">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Hello World"</span><span class="o">);</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-
+<pre class="highlight java"><code>    <span class="n">Android</span> <span class="n">SDK</span> <span class="n">Code</span> <span class="n">TBD</span>
 </code></pre>
 
 <blockquote>
-<p>Make sure to replace <code class="prettyprint">blahblahblah</code> with your API key.</p>
+<p>Make sure to replace <code class="prettyprint">$access_key</code> and <code class="prettyprint">$secret_key</code> with your real API credentials.</p>
 </blockquote>
-
-<p>Yoyo Wallet uses API keys to allow access to the API. </p>
-
-<p>Yoyo Wallet expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
-
-<p><code class="prettyprint">Authorization: blahblahblah</code></p>
-
-<aside class="notice">
-You must replace <code>blahblahblah</code> with your personal API key.
-</aside>
 
           <h1 id="accounts">Accounts</h1>
 
@@ -220,9 +321,17 @@ Remember — a happy kitten is an authenticated kitten!
 
           <h1 id="sessions">Sessions</h1>
 
-          <h1 id="transactions">Transactions</h1>
+<p>Most interactions with the API require a valid session.  Sessions are passed to the API in an HTTP header called &lsquo;HTTP_YOYO_TOKEN&rsquo;</p>
 
-          <h1 id="users">Users</h1>
+<p>If you make a request without a valid access token your request will be rejected.</p>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"No session found with token xxx"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+          <h1 id="transactions">Transactions</h1>
 
           <h1 id="errors">Errors</h1>
 
