@@ -11,12 +11,12 @@ toc_footers:
 
 includes:
   - introduction
+  - users
   - authentication
   - accounts
   - consumers
   - sessions
   - transactions
-  - users
   - errors
 
 search: true
