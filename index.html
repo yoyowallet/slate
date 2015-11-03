@@ -48,7 +48,7 @@
         
           <h1 id="introduction">Introduction</h1>
 
-<p>Welcome to the Yoyo Wallet platform! </p>
+<p>Welcome to the Yoyo Wallet platform. </p>
 
 <p>The platform opens up the functionality of Yoyo Wallet to application developers.</p>
 
@@ -139,18 +139,17 @@ Therefore there are quite a LOT of endpoints in here.</p>
 
 <p>From now on the browser will take care of adding the appropriate authentication header to your requests.</p>
 
-<p>If you don&rsquo;t have an <strong>$access_key</strong> or <strong>$secret_key</strong> yet, read on..</p>
+<p>If you don&rsquo;t have an <strong>$access_key</strong> or <strong>$secret_key</strong> yet, see <a href="#getting-a-yoyo-wallet-account">getting a Yoyo Wallet account</a></p>
 
           <h1 id="platform-users">Platform Users</h1>
 
-<p>The Yoyo Wallet platform is accessed by two different types of users.  </p>
+<p>The Yoyo Wallet platform is accessed by three different types of users.  </p>
 
 <ul>
-<li>Consumers</li>
+<li>Consumers with mobile devices</li>
 <li>Dashboard users</li>
+<li>EPOS devices</li>
 </ul>
-
-<p>To interact with the API as a consumer or dashboard user you require a valid <a href="#sessions">session</a>.</p>
 
 <h2 id="consumers">Consumers</h2>
 
@@ -160,9 +159,15 @@ Therefore there are quite a LOT of endpoints in here.</p>
 
 <h2 id="dashboard-users">Dashboard users</h2>
 
-<p>Dashboard users are you, or your employees.  These users have access to the dashboard to browse and/or administer information specific to your Yoyo Wallet account.</p>
+<p>Dashboard users are you, and your employees.  These users have access to the dashboard to browse and/or administer information specific to your Yoyo Wallet platform account.</p>
 
-<p>Dashboard users are authenticated with an email address and a password.</p>
+<p>Dashboard users are authenticated via a traditional web login.</p>
+
+<h2 id="epos-devices">EPOS devices</h2>
+
+<p>Retailers supporting Yoyo Wallet will need have a Yoyo compatible EPOS (electronic point of sale) device configured to communicate with the platform.</p>
+
+<p>Our Yoyo Accept application is also available for smaller independent retailers if they do not have a compatible EPOS device.</p>
 
           <h1 id="authentication">Authentication</h1>
 
@@ -185,7 +190,7 @@ You must replace <code>$access_key_$secret_key</code> with your real API credent
 </blockquote>
 <pre class="highlight shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
 
-curl <span class="s1">'https://api.test.yoyowallet.net/v1/accounts/a'</span> 
+curl <span class="s1">'https://api.test.yoyowallet.net/v1/accounts/$account_id'</span> 
   -u <span class="nv">$access_key</span>:<span class="nv">$secret</span>
 </code></pre>
 <pre class="highlight objective_c"><code>    <span class="n">iOS</span> <span class="n">SDK</span> <span class="n">Code</span> <span class="n">TBD</span>
@@ -197,95 +202,57 @@ curl <span class="s1">'https://api.test.yoyowallet.net/v1/accounts/a'</span>
 <p>Make sure to replace <code class="prettyprint">$access_key</code> and <code class="prettyprint">$secret_key</code> with your real API credentials.</p>
 </blockquote>
 
-          <h1 id="accounts">Accounts</h1>
+          <h1 id="consumer-api">Consumer API</h1>
 
-<h2 id="get-all-accounts">Get All Accounts</h2>
-<pre class="highlight shell"><code>curl <span class="s2">"https://api.yoyowallet/v1/accounts"</span>
-  -H <span class="s2">"Authorization: blahblahblah"</span>
-</code></pre>
-<pre class="highlight objective_c"><code></code></pre>
-<pre class="highlight java"><code></code></pre>
+<h2 id="authentication">Authentication</h2>
 
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">[</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fluffums"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"calico"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Isis"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="w">
-</span></code></pre>
+<p>As a mobile app developer your app users will need to have a Yoyo Wallet consumer account.  </p>
 
-<p>This endpoint retrieves all kittens.</p>
+<p>Consumer registration and authentication follow the same process.  This is a two factor authentication process to verify you are the owner of the mobile phone.</p>
 
-<h3 id="http-request">HTTP Request</h3>
+<h3 id="1-request-a-passcode">1. Request a passcode</h3>
 
-<p><code class="prettyprint">GET https://api.yoyowallet/v1/accounts</code></p>
-
-<h3 id="query-parameters">Query Parameters</h3>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Default</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>include_cats</td>
-<td>false</td>
-<td>If set to true, the result will also include cats.</td>
-</tr>
-<tr>
-<td>available</td>
-<td>true</td>
-<td>If set to false, the result will include kittens that have already been adopted.</td>
-</tr>
-</tbody></table>
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-
-<h2 id="get-a-specific-kitten">Get a Specific Kitten</h2>
-<pre class="highlight shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre>
-<pre class="highlight objective_c"><code></code></pre>
-<pre class="highlight java"><code></code></pre>
+<p>First you must request a passcode.  The passcode is a unique 5 digit number that will be sent to your mobile device.</p>
 
 <blockquote>
-<p>The above command returns JSON structured like this:</p>
+<p>You POST a request to the API containing the consumers phone number and email address.</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Isis"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
+    </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tommy.tester@example.com"</span><span class="p">,</span><span class="w"> 
+    </span><span class="nt">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"441234567890"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.test.yoyowallet.net/v1/consumer-passcodes'</span> 
+  -u <span class="nv">$access_key</span>:<span class="nv">$secret_key</span> 
+  -H <span class="s1">'Content-Type: application/json'</span> 
+  -H <span class="s1">'Accept: application/json'</span> 
+  --data-binary <span class="nv">$'</span><span class="o">{</span><span class="s2">"email"</span>: <span class="s2">"tommy.tester@example.com"</span>, <span class="s2">"phone"</span>: <span class="s2">"441234567890"</span><span class="o">}</span><span class="s1">'
+</span></code></pre>
+<pre class="highlight objective_c"><code>    <span class="n">iOS</span> <span class="n">SDK</span> <span class="n">Code</span> <span class="n">TBD</span>
+</code></pre>
+<pre class="highlight java"><code>    <span class="n">Android</span> <span class="n">SDK</span> <span class="n">Code</span> <span class="n">TBD</span>
+</code></pre>
 
-<p>This endpoint retrieves a specific kitten.</p>
+<blockquote>
+<p>The above command returns JSON structured like this. The &ldquo;id&rdquo; field is your passcode &ldquo;id&rdquo;:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+   </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dc05a248-8172-11e5-aa5b-0abe262b2ce9"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"441234567890"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"account_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$account_id"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tommy.tester@example.com"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"expires_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-11-02 15:33:22.227997813 +0000 UTC"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
+ </span><span class="p">}</span><span class="w">
+</span></code></pre>
 
-<aside class="warning">If you&rsquo;re not using an administrator API key, note that some kittens will return 403 Forbidden if they are hidden for admins only.</aside>
+<p><code class="prettyprint">POST https://api.test.yoyowallet/v1/consumer-passcodes</code></p>
 
-<h3 id="http-request">HTTP Request</h3>
+<p>This request will either create a new consumer account on the Yoyo Wallet platform, or allow an existing consumer to authenticate.</p>
 
-<p><code class="prettyprint">GET http://example.com/kittens/&lt;ID&gt;</code></p>
-
-<h3 id="url-parameters">URL Parameters</h3>
+<h4 id="request-data">Request Data</h4>
 
 <table><thead>
 <tr>
@@ -294,34 +261,149 @@ Remember — a happy kitten is an authenticated kitten!
 </tr>
 </thead><tbody>
 <tr>
-<td>ID</td>
-<td>The ID of the kitten to retrieve</td>
+<td>email</td>
+<td>Consumer&rsquo;s email address (optional)</td>
+</tr>
+<tr>
+<td>phone</td>
+<td>Consumer&rsquo;s mobile phone number</td>
 </tr>
 </tbody></table>
 
-<h2 id="bank-accounts">Bank Accounts</h2>
+<p>If the request contains a valid email address and phone number an SMS message will be sent the the user to help authenticate them.</p>
 
-<h2 id="invitations">Invitations</h2>
+<p>The response returned contains a &ldquo;id&rdquo; field.  This is the identifier of your &ldquo;passcode&rdquo; which will be used in your 2 factor authentication request.</p>
 
-<h2 id="product-groups">Product Groups</h2>
+<h4 id="response-data">Response Data</h4>
 
-<h2 id="transaction-keys">Transaction Keys</h2>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>passcode id</td>
+</tr>
+<tr>
+<td>phone</td>
+<td>Consumer&rsquo;s mobile phone number</td>
+</tr>
+<tr>
+<td>account_id</td>
+<td>This is your Yoyo Wallet account Id</td>
+</tr>
+<tr>
+<td>email</td>
+<td>Consumer&rsquo;s email address</td>
+</tr>
+<tr>
+<td>expires_at</td>
+<td>This is the time the passcode will expire. Normally passcodes are valid for 30 minutes.</td>
+</tr>
+</tbody></table>
 
-<h2 id="vouchers">Vouchers</h2>
+<h3 id="2-create-consumer-session-verify-passcode">2. Create consumer session (verify passcode)</h3>
 
-          <h1 id="consumers">Consumers</h1>
+<p>Once you have received an SMS message with your passcode you can perform the second API call to create a consumer session.</p>
 
-<h2 id="cards">Cards</h2>
+<blockquote>
+<p>You POST a request to the API verifying the passcode and generating a session token.</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"device_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"e73e3d3b-a95d-4d3c-b9ee-de5492540582+a0b11fa0-57f9-43fc-a541-f868994cf7bb"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"device_timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1446368400</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"passcode_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"18442"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"passcode_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dc05a248-8172-11e5-aa5b-0abe262b2ce9"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.test.yoyowallet.net/v1/consumer-sessions'</span> 
+  -u <span class="nv">$access_key</span>:<span class="nv">$secret_key</span> 
+  -H <span class="s1">'Content-Type: application/json'</span> 
+  -H <span class="s1">'Accept: application/json'</span> 
+  --data-binary <span class="nv">$'</span><span class="o">{</span><span class="s2">"device_id"</span>: <span class="s2">"e73e3d3b-a95d-4d3c-b9ee-de5492540582+a0b11fa0-57f9-43fc-a541-f868994cf7bb"</span>,
+  <span class="s2">"device_timestamp"</span>: 1446368400,
+  <span class="s2">"passcode_code"</span>: <span class="s2">"18442"</span>,
+  <span class="s2">"passcode_id"</span>: <span class="s2">"dc05a248-8172-11e5-aa5b-0abe262b2ce9"</span><span class="o">}</span><span class="s1">'
+</span></code></pre>
+<pre class="highlight objective_c"><code>    <span class="n">iOS</span> <span class="n">SDK</span> <span class="n">Code</span> <span class="n">TBD</span>
+</code></pre>
+<pre class="highlight java"><code>    <span class="n">Android</span> <span class="n">SDK</span> <span class="n">Code</span> <span class="n">TBD</span>
+</code></pre>
 
-<h2 id="transactions">Transactions</h2>
+<blockquote>
+<p>The above command returns JSON structured like this. The &ldquo;id&rdquo; field is your passcode &ldquo;id&rdquo;:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="w">
+  </span><span class="s2">"data"</span><span class="err">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+   </span><span class="nt">"consumer_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9ae50d73-3bb4-4b55-b258-f93f4f027fb9"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"otp_seed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"N2U3MmQ4Y2Q3YmE4NGQ4MDg2OTAzYzNhZGMzYmIxMGUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"296be3889bdf40d9bb9570ff4bf2660f"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"barcode_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"144648288416"</span><span class="w">
+  </span><span class="p">}</span><span class="err">,</span><span class="w">
+  </span><span class="s2">"metadata"</span><span class="err">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
+ </span><span class="err">}</span><span class="w">
+</span></code></pre>
 
-<h2 id="vouchers">Vouchers</h2>
+<p><code class="prettyprint">POST https://api.test.yoyowallet/v1/consumer-sessions</code></p>
 
-<h2 id="passcodes">Passcodes</h2>
+<h4 id="request-data">Request Data</h4>
 
-          <h1 id="sessions">Sessions</h1>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>device_id</td>
+<td>unique identfier for your mobile device</td>
+</tr>
+<tr>
+<td>device_timestamp</td>
+<td>current time on your device as a unix timestamp</td>
+</tr>
+<tr>
+<td>passcode_code</td>
+<td>the value from the SMS message sent to your device</td>
+</tr>
+<tr>
+<td>passcode_id</td>
+<td>the id of the passcode response in the previous request</td>
+</tr>
+</tbody></table>
 
-<p>Most interactions with the API require a valid session.  Sessions are passed to the API in an HTTP header called &lsquo;HTTP_YOYO_TOKEN&rsquo;</p>
+<h4 id="response-data">Response Data</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>consumer_id</td>
+<td>unique identfier for the consumer</td>
+</tr>
+<tr>
+<td>otp_seed</td>
+<td>seed value needed to calculate the one-time-password</td>
+</tr>
+<tr>
+<td>token</td>
+<td>the session token to represent the consumer</td>
+</tr>
+<tr>
+<td>barcode_token</td>
+<td>embedded in a barcode to identify a session.</td>
+</tr>
+</tbody></table>
+
+<h3 id="3-using-the-consumer-39-s-session-token">3. Using the consumer&rsquo;s session token</h3>
+
+<p>Once you have a valid sesion token you will need to include it in all subsequent requests to interact as that consumer.
+Sessions tokens are passed to the API in an HTTP header called &lsquo;HTTP_YOYO_TOKEN&rsquo;</p>
 
 <p>If you make a request without a valid access token your request will be rejected.</p>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
@@ -331,7 +413,146 @@ Remember — a happy kitten is an authenticated kitten!
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-          <h1 id="transactions">Transactions</h1>
+<h2 id="managing-your-wallet">Managing your wallet</h2>
+
+<h3 id="add-a-card">Add a card</h3>
+
+<blockquote>
+<p>You POST a request to the API containing the consumers phone number and email address.</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"bin"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123456"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123456789012345678"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"exp_month"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"exp_year"</span><span class="p">:</span><span class="w"> </span><span class="mi">2018</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"cvv"</span><span class="p">:</span><span class="w"> </span><span class="mi">999</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"postcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"N1 7ER"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.test.yoyowallet.net/v1/consumers/{$consumer_id}/cards/'</span> 
+  -u <span class="nv">$access_key</span>:<span class="nv">$secret_key</span> 
+  -H <span class="s1">'Content-Type: application/json'</span> 
+  -H <span class="s1">'Accept: application/json'</span> 
+  --data-binary <span class="nv">$'</span><span class="o">{</span> <span class="s2">"bin"</span>: <span class="s2">"123456"</span>, <span class="s2">"number"</span>: <span class="s2">"123456789012345678"</span>, <span class="s2">"exp_month"</span>: 12, <span class="s2">"exp_year"</span>: 2018, <span class="s2">"cvv"</span>: 999, <span class="s2">"postcode"</span>: <span class="s2">"N1 7ER"</span> <span class="o">}</span><span class="s1">'
+</span></code></pre>
+<pre class="highlight objective_c"><code>    <span class="n">iOS</span> <span class="n">SDK</span> <span class="n">Code</span> <span class="n">TBD</span>
+</code></pre>
+<pre class="highlight java"><code>    <span class="n">Android</span> <span class="n">SDK</span> <span class="n">Code</span> <span class="n">TBD</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this. The &ldquo;id&rdquo; field is your passcode &ldquo;id&rdquo;:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"14ab0c2f-b998-4845-815c-ee6328a73ab3"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"brand"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Visa"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"exp_month"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"exp_year"</span><span class="p">:</span><span class="w"> </span><span class="mi">2018</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"is_default"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"last4"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5678"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"postcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"N1 7ER"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p><code class="prettyprint">POST https://api.test.yoyowallet.net/v1/consumers/{$consumer_id}/cards/</code></p>
+
+<h4 id="request-data">Request Data</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>bin</td>
+<td>Bank identification number (first 6 digits of card number)</td>
+</tr>
+<tr>
+<td>number</td>
+<td>credit card number</td>
+</tr>
+<tr>
+<td>exp_month</td>
+<td>expiry month MM</td>
+</tr>
+<tr>
+<td>exp_year</td>
+<td>expiry year CCYY</td>
+</tr>
+<tr>
+<td>cvv</td>
+<td>3 digit card verification value</td>
+</tr>
+<tr>
+<td>postcode</td>
+<td>post code that card is registered at</td>
+</tr>
+</tbody></table>
+
+<p>If the card is successfully added to the consumers wallet you will receive a response like below.</p>
+
+<h4 id="response-data">Response Data</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>unique identifier for card</td>
+</tr>
+<tr>
+<td>active</td>
+<td>card is active</td>
+</tr>
+<tr>
+<td>brand</td>
+<td>type of card eg. Visa, Mastercard, Amex etc.</td>
+</tr>
+<tr>
+<td>exp_month</td>
+<td>expiry month MM</td>
+</tr>
+<tr>
+<td>exp_year</td>
+<td>expiry year CCYY</td>
+</tr>
+<tr>
+<td>is_default</td>
+<td>card is default one to use in wallet</td>
+</tr>
+<tr>
+<td>last4</td>
+<td>last 4 digits of card number</td>
+</tr>
+<tr>
+<td>postcode</td>
+<td>post code that card is registered at</td>
+</tr>
+</tbody></table>
+
+<h3 id="view-your-wallet">View your wallet</h3>
+
+<h2 id="transactions">Transactions</h2>
+
+<h2 id="vouchers">Vouchers</h2>
+
+<h2 id="passcodes">Passcodes</h2>
+
+          <h1 id="dashboard-api">Dashboard API</h1>
+
+<p>Documentation not currently available.</p>
+
+          <h1 id="epos-api">EPOS API</h1>
+
+<p>Documentation not currently available.</p>
 
           <h1 id="errors">Errors</h1>
 
