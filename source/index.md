@@ -13,10 +13,9 @@ includes:
   - introduction
   - users
   - authentication
-  - accounts
   - consumers
-  - sessions
-  - transactions
+  - dashboard
+  - epos
   - errors
 
 search: true

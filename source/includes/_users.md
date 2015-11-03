@@ -1,11 +1,10 @@
 # Platform Users
 
-The Yoyo Wallet platform is accessed by two different types of users.  
+The Yoyo Wallet platform is accessed by three different types of users.  
 
-- Consumers
+- Consumers with mobile devices
 - Dashboard users
-
-To interact with the API as a consumer or dashboard user you require a valid [session](#sessions).
+- EPOS devices
 
 ## Consumers
 
@@ -15,6 +14,12 @@ Once a consumer has registered with the Yoyo Wallet platform they are able to re
 
 ## Dashboard users
 
-Dashboard users are you, or your employees.  These users have access to the dashboard to browse and/or administer information specific to your Yoyo Wallet account.
+Dashboard users are you, and your employees.  These users have access to the dashboard to browse and/or administer information specific to your Yoyo Wallet platform account.
 
-Dashboard users are authenticated with an email address and a password.
+Dashboard users are authenticated via a traditional web login.
+
+## EPOS devices
+
+Retailers supporting Yoyo Wallet will need have a Yoyo compatible EPOS (electronic point of sale) device configured to communicate with the platform.
+
+Our Yoyo Accept application is also available for smaller independent retailers if they do not have a compatible EPOS device.

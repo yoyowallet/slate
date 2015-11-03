@@ -1,6 +1,6 @@
 # Introduction
 
-Welcome to the Yoyo Wallet platform! 
+Welcome to the Yoyo Wallet platform. 
 
 The platform opens up the functionality of Yoyo Wallet to application developers.
 
@@ -71,4 +71,4 @@ When you use the RESTful UI for the first time you will see the authentication c
 
 From now on the browser will take care of adding the appropriate authentication header to your requests.
 
-If you don't have an **$access_key** or **$secret_key** yet, read on..
+If you don't have an **$access_key** or **$secret_key** yet, see [getting a Yoyo Wallet account](#getting-a-yoyo-wallet-account)

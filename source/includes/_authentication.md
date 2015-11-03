@@ -19,7 +19,7 @@ You must replace <code>$access_key_$secret_key</code> with your real API credent
 ```shell
 # With shell, you can just pass the correct header with each request
 
-curl 'https://api.test.yoyowallet.net/v1/accounts/a' 
+curl 'https://api.test.yoyowallet.net/v1/accounts/$account_id' 
   -u $access_key:$secret
 ```
 
