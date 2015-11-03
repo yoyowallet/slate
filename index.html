@@ -148,7 +148,7 @@ Therefore there are quite a LOT of endpoints in here.</p>
 <ul>
 <li>Consumers with mobile devices</li>
 <li>Dashboard users</li>
-<li>EPOS devices</li>
+<li>Transaction devices</li>
 </ul>
 
 <h2 id="consumers">Consumers</h2>
@@ -163,11 +163,9 @@ Therefore there are quite a LOT of endpoints in here.</p>
 
 <p>Dashboard users are authenticated via a traditional web login.</p>
 
-<h2 id="epos-devices">EPOS devices</h2>
+<h2 id="transaction-devices">Transaction devices</h2>
 
-<p>Retailers supporting Yoyo Wallet will need have a Yoyo compatible EPOS (electronic point of sale) device configured to communicate with the platform.</p>
-
-<p>Our Yoyo Accept application is also available for smaller independent retailers if they do not have a compatible EPOS device.</p>
+<p>Retailers supporting Yoyo Wallet will need have a Yoyo compatible EPOS (electronic point of sale) device or a mobile device integrated with the Transaction API such as Yoyo Accept.</p>
 
           <h1 id="authentication">Authentication</h1>
 
@@ -413,12 +411,12 @@ Sessions tokens are passed to the API in an HTTP header called &lsquo;HTTP_YOYO_
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<h2 id="managing-your-wallet">Managing your wallet</h2>
+<h2 id="wallet">Wallet</h2>
 
-<h3 id="add-a-card">Add a card</h3>
+<h3 id="adding-a-card">Adding a card</h3>
 
 <blockquote>
-<p>You POST a request to the API containing the consumers phone number and email address.</p>
+<p>You POST a request to the API containing the consumers card details.</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"bin"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123456"</span><span class="p">,</span><span class="w">
@@ -445,7 +443,7 @@ Note - in our playground environment we are connected to the Stripe sandbox, so 
 </aside>
 
 <blockquote>
-<p>The above command returns JSON structured like this. The &ldquo;id&rdquo; field is your passcode &ldquo;id&rdquo;:</p>
+<p>The above command returns JSON structured like this. The &ldquo;id&rdquo; field is your card &ldquo;id&rdquo;:</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -542,19 +540,101 @@ Note - in our playground environment we are connected to the Stripe sandbox, so 
 </tr>
 </tbody></table>
 
-<h3 id="view-your-wallet">View your wallet</h3>
+<h3 id="removing-a-card">Removing a card</h3>
+
+<p>To delete a card from your wallet, simply send a DELETE request identifying your card, using the consumer&rsquo;s session token.</p>
+
+<blockquote>
+<p>You DELETE a request to the API to remove a card</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.test.yoyowallet.net/v1/consumers/{$consumer_id}/cards/'</span> 
+  -X <span class="s2">"DELETE"</span>
+  -u <span class="nv">$access_key</span>:<span class="nv">$secret_key</span> 
+  -H <span class="s1">'HTTP_YOYO_TOKEN: {$token}'</span>
+</code></pre>
+<pre class="highlight objective_c"><code>    <span class="n">iOS</span> <span class="n">SDK</span> <span class="n">Code</span> <span class="n">TBD</span>
+</code></pre>
+<pre class="highlight java"><code>    <span class="n">Android</span> <span class="n">SDK</span> <span class="n">Code</span> <span class="n">TBD</span>
+</code></pre>
+
+<p><code class="prettyprint">DELETE https://api.test.yoyowallet.net/v1/consumers/{$consumer_id}/cards/{$card_id}</code></p>
+
+<h3 id="viewing-cards">Viewing cards</h3>
+
+<blockquote>
+<p>You GET a request to the API to retrieve your wallet details.</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.test.yoyowallet.net/v1/consumers/{$consumer_id}/cards/'</span> 
+  -u <span class="nv">$access_key</span>:<span class="nv">$secret_key</span> 
+  -H <span class="s1">'Accept: application/json'</span>
+  -H <span class="s1">'HTTP_YOYO_TOKEN: {$token}'</span> 
+</code></pre>
+<pre class="highlight objective_c"><code>    <span class="n">iOS</span> <span class="n">SDK</span> <span class="n">Code</span> <span class="n">TBD</span>
+</code></pre>
+<pre class="highlight java"><code>    <span class="n">Android</span> <span class="n">SDK</span> <span class="n">Code</span> <span class="n">TBD</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this. The &ldquo;id&rdquo; field is your passcode &ldquo;id&rdquo;:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"14ab0c2f-b998-4845-815c-ee6328a73ab3"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"brand"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Visa"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"exp_month"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"exp_year"</span><span class="p">:</span><span class="w"> </span><span class="mi">2018</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"is_default"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"last4"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5678"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"postcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"N1 7ER"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"85960a0f-0ac2-480d-9188-7d5389b5a82c"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"brand"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Amex"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"exp_month"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"exp_year"</span><span class="p">:</span><span class="w"> </span><span class="mi">2017</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"is_default"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"last4"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1234"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"postcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"N1 7ER"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nt">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p><code class="prettyprint">GET https://api.test.yoyowallet.net/v1/consumers/{$consumer_id}/cards/</code></p>
+
+<h4 id="request-data">Request Data</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>consumer_id</td>
+<td>unique identifer of the consumer</td>
+</tr>
+</tbody></table>
+
+<h4 id="response-data">Response Data</h4>
+
+<p>Same response format as adding a card.</p>
 
 <h2 id="transactions">Transactions</h2>
 
-<h2 id="vouchers">Vouchers</h2>
+<p>When a consumer makes purchases via the Yoyo Wallet platform, they will be recorded as transactions against the consumer&rsquo;s account. </p>
 
-<h2 id="passcodes">Passcodes</h2>
+<h2 id="vouchers">Vouchers</h2>
 
           <h1 id="dashboard-api">Dashboard API</h1>
 
 <p>Documentation not currently available.</p>
 
-          <h1 id="epos-api">EPOS API</h1>
+          <h1 id="transaction-api">Transaction API</h1>
 
 <p>Documentation not currently available.</p>
 
