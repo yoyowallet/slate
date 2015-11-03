@@ -203,7 +203,9 @@ curl 'https://api.test.yoyowallet.net/v1/consumers/{$consumer_id}/cards/'
 	Android SDK Code TBD
 ```
 
-
+<aside class="warning">
+Note - in our playground environment we are connected to the Stripe sandbox, so make sure you use <a href='https://stripe.com/docs/testing'>Stripe's test card numbers</a>
+</aside>
 
 > The above command returns JSON structured like this. The "id" field is your passcode "id":
 
