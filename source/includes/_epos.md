@@ -1,3 +1,3 @@
-# EPOS API
+# Transaction API
 
 Documentation not currently available.

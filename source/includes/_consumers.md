@@ -170,11 +170,11 @@ If you make a request without a valid access token your request will be rejected
 }
 ```
 
-## Managing your wallet
+## Wallet
 
-### Add a card
+### Adding a card
 
-> You POST a request to the API containing the consumers phone number and email address.
+> You POST a request to the API containing the consumers card details.
 
 ```json
 {
@@ -207,7 +207,7 @@ curl 'https://api.test.yoyowallet.net/v1/consumers/{$consumer_id}/cards/'
 Note - in our playground environment we are connected to the Stripe sandbox, so make sure you use <a href='https://stripe.com/docs/testing'>Stripe's test card numbers</a>
 </aside>
 
-> The above command returns JSON structured like this. The "id" field is your passcode "id":
+> The above command returns JSON structured like this. The "id" field is your card "id":
 
 ```json
 {
@@ -253,11 +253,97 @@ is_default | card is default one to use in wallet
 last4 | last 4 digits of card number
 postcode | post code that card is registered at
 
+### Removing a card
 
-### View your wallet
+To delete a card from your wallet, simply send a DELETE request identifying your card, using the consumer's session token.
+
+> You DELETE a request to the API to remove a card
+
+```shell
+curl 'https://api.test.yoyowallet.net/v1/consumers/{$consumer_id}/cards/' 
+  -X "DELETE"
+  -u $access_key:$secret_key 
+  -H 'HTTP_YOYO_TOKEN: {$token}'
+```
+
+```objective_c
+	iOS SDK Code TBD
+```
+
+```java
+	Android SDK Code TBD
+```
+
+`DELETE https://api.test.yoyowallet.net/v1/consumers/{$consumer_id}/cards/{$card_id}`
+
+
+### Viewing cards
+
+
+> You GET a request to the API to retrieve your wallet details.
+
+
+```shell
+curl 'https://api.test.yoyowallet.net/v1/consumers/{$consumer_id}/cards/' 
+  -u $access_key:$secret_key 
+  -H 'Accept: application/json'
+  -H 'HTTP_YOYO_TOKEN: {$token}' 
+```
+
+```objective_c
+	iOS SDK Code TBD
+```
+
+```java
+	Android SDK Code TBD
+```
+
+
+> The above command returns JSON structured like this. The "id" field is your passcode "id":
+
+```json
+{
+  "data": [
+  {
+    "id": "14ab0c2f-b998-4845-815c-ee6328a73ab3",
+    "active": true,
+    "brand": "Visa",
+    "exp_month": 12,
+    "exp_year": 2018,
+    "is_default": true,
+    "last4": "5678",
+    "postcode": "N1 7ER"
+  },
+    {
+    "id": "85960a0f-0ac2-480d-9188-7d5389b5a82c",
+    "active": true,
+    "brand": "Amex",
+    "exp_month": 3,
+    "exp_year": 2017,
+    "is_default": false,
+    "last4": "1234",
+    "postcode": "N1 7ER"
+  },
+  ],
+  "metadata": {}
+}
+```
+
+`GET https://api.test.yoyowallet.net/v1/consumers/{$consumer_id}/cards/`
+
+#### Request Data
+
+Parameter | Description
+--------- |  -----------
+consumer_id | unique identifer of the consumer
+
+
+#### Response Data
+
+Same response format as adding a card.
 
 ## Transactions
 
-## Vouchers
+When a consumer makes purchases via the Yoyo Wallet platform, they will be recorded as transactions against the consumer's account. 
 
-## Passcodes
+## Vouchers
