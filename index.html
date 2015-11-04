@@ -175,12 +175,12 @@ Therefore there are quite a LOT of endpoints in here.</p>
 
 <p>To authenticate a request, send an “AUTHORIZATION” header of form:</p>
 
-<p>Basic base64($access_key:$secret_key)</p>
+<p>Basic base64({ACCESS_KEY}:{SECRET_KEY})</p>
 
-<p><code class="prettyprint">Authorization: &lt;base64 encrypted $access_key:$secret_key&gt;</code></p>
+<p><code class="prettyprint">Authorization: &lt;base64 encrypted {ACCESS_KEY}:{SECRET_KEY}&gt;</code></p>
 
 <aside class="notice">
-You must replace <code>$access_key_$secret_key</code> with your real API credentials.
+You must replace <code>{ACCESS_KEY}_{SECRET_KEY}</code> with your real API credentials.
 </aside>
 
 <blockquote>
@@ -188,8 +188,8 @@ You must replace <code>$access_key_$secret_key</code> with your real API credent
 </blockquote>
 <pre class="highlight shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
 
-curl <span class="s1">'https://api.test.yoyowallet.net/v1/accounts/$account_id'</span> 
-  -u <span class="nv">$access_key</span>:<span class="nv">$secret</span>
+curl <span class="s1">'https://api.test.yoyowallet.net/v1/accounts/{ACCOUNT_ID}'</span> <span class="se">\</span>
+  -u <span class="o">{</span>ACCESS_KEY<span class="o">}</span>:<span class="o">{</span>SECRET_KEY<span class="o">}</span>
 </code></pre>
 <pre class="highlight objective_c"><code>    <span class="n">iOS</span> <span class="n">SDK</span> <span class="n">Code</span> <span class="n">TBD</span>
 </code></pre>
@@ -197,7 +197,7 @@ curl <span class="s1">'https://api.test.yoyowallet.net/v1/accounts/$account_id'<
 </code></pre>
 
 <blockquote>
-<p>Make sure to replace <code class="prettyprint">$access_key</code> and <code class="prettyprint">$secret_key</code> with your real API credentials.</p>
+<p>Make sure to replace <code class="prettyprint">{ACCESS_KEY}</code> and <code class="prettyprint">{SECRET_KEY}</code> with your real API credentials.</p>
 </blockquote>
 
           <h1 id="consumer-api">Consumer API</h1>
@@ -220,10 +220,10 @@ curl <span class="s1">'https://api.test.yoyowallet.net/v1/accounts/$account_id'<
     </span><span class="nt">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"441234567890"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<pre class="highlight shell"><code>curl <span class="s1">'https://api.test.yoyowallet.net/v1/consumer-passcodes'</span> 
-  -u <span class="nv">$access_key</span>:<span class="nv">$secret_key</span> 
-  -H <span class="s1">'Content-Type: application/json'</span> 
-  -H <span class="s1">'Accept: application/json'</span> 
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.test.yoyowallet.net/v1/consumer-passcodes'</span> <span class="se">\</span>
+  -u <span class="o">{</span>ACCESS_KEY<span class="o">}</span>:<span class="o">{</span>SECRET_KEY<span class="o">}</span> <span class="se">\</span>
+  -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\ </span>
+  -H <span class="s1">'Accept: application/json'</span> <span class="se">\</span>
   --data-binary <span class="nv">$'</span><span class="o">{</span><span class="s2">"email"</span>: <span class="s2">"tommy.tester@example.com"</span>, <span class="s2">"phone"</span>: <span class="s2">"441234567890"</span><span class="o">}</span><span class="s1">'
 </span></code></pre>
 <pre class="highlight objective_c"><code>    <span class="n">iOS</span> <span class="n">SDK</span> <span class="n">Code</span> <span class="n">TBD</span>
@@ -316,13 +316,13 @@ curl <span class="s1">'https://api.test.yoyowallet.net/v1/accounts/$account_id'<
   </span><span class="nt">"passcode_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dc05a248-8172-11e5-aa5b-0abe262b2ce9"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<pre class="highlight shell"><code>curl <span class="s1">'https://api.test.yoyowallet.net/v1/consumer-sessions'</span> 
-  -u <span class="nv">$access_key</span>:<span class="nv">$secret_key</span> 
-  -H <span class="s1">'Content-Type: application/json'</span> 
-  -H <span class="s1">'Accept: application/json'</span> 
-  --data-binary <span class="nv">$'</span><span class="o">{</span><span class="s2">"device_id"</span>: <span class="s2">"e73e3d3b-a95d-4d3c-b9ee-de5492540582+a0b11fa0-57f9-43fc-a541-f868994cf7bb"</span>,
-  <span class="s2">"device_timestamp"</span>: 1446368400,
-  <span class="s2">"passcode_code"</span>: <span class="s2">"18442"</span>,
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.test.yoyowallet.net/v1/consumer-sessions'</span> <span class="se">\</span>
+  -u <span class="o">{</span>ACCESS_KEY<span class="o">}</span>:<span class="o">{</span>SECRET_KEY<span class="o">}</span> <span class="se">\</span>
+  -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+  -H <span class="s1">'Accept: application/json'</span> <span class="se">\</span>
+  --data-binary <span class="nv">$'</span><span class="o">{</span><span class="s2">"device_id"</span>: <span class="s2">"e73e3d3b-a95d-4d3c-b9ee-de5492540582+a0b11fa0-57f9-43fc-a541-f868994cf7bb"</span>, <span class="se">\</span>
+  <span class="s2">"device_timestamp"</span>: 1446368400, <span class="se">\</span>
+  <span class="s2">"passcode_code"</span>: <span class="s2">"18442"</span>, <span class="se">\</span>
   <span class="s2">"passcode_id"</span>: <span class="s2">"dc05a248-8172-11e5-aa5b-0abe262b2ce9"</span><span class="o">}</span><span class="s1">'
 </span></code></pre>
 <pre class="highlight objective_c"><code>    <span class="n">iOS</span> <span class="n">SDK</span> <span class="n">Code</span> <span class="n">TBD</span>
@@ -427,10 +427,10 @@ Sessions tokens are passed to the API in an HTTP header called &lsquo;HTTP_YOYO_
     </span><span class="nt">"postcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"N1 7ER"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<pre class="highlight shell"><code>curl <span class="s1">'https://api.test.yoyowallet.net/v1/consumers/{$consumer_id}/cards/'</span> 
-  -u <span class="nv">$access_key</span>:<span class="nv">$secret_key</span> 
-  -H <span class="s1">'Content-Type: application/json'</span> 
-  -H <span class="s1">'Accept: application/json'</span> 
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.test.yoyowallet.net/v1/consumers/{CONSUMER_ID}/cards/'</span> <span class="se">\</span>
+  -u <span class="o">{</span>ACCESS_KEY<span class="o">}</span>:<span class="o">{</span>SECRET_KEY<span class="o">}</span> <span class="se">\</span>
+  -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+  -H <span class="s1">'Accept: application/json'</span> <span class="se">\</span>
   --data-binary <span class="nv">$'</span><span class="o">{</span> <span class="s2">"bin"</span>: <span class="s2">"123456"</span>, <span class="s2">"number"</span>: <span class="s2">"123456789012345678"</span>, <span class="s2">"exp_month"</span>: 12, <span class="s2">"exp_year"</span>: 2018, <span class="s2">"cvv"</span>: 999, <span class="s2">"postcode"</span>: <span class="s2">"N1 7ER"</span> <span class="o">}</span><span class="s1">'
 </span></code></pre>
 <pre class="highlight objective_c"><code>    <span class="n">iOS</span> <span class="n">SDK</span> <span class="n">Code</span> <span class="n">TBD</span>
@@ -460,7 +460,7 @@ Note - in our playground environment we are connected to the Stripe sandbox, so 
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p><code class="prettyprint">POST https://api.test.yoyowallet.net/v1/consumers/{$consumer_id}/cards/</code></p>
+<p><code class="prettyprint">POST https://api.test.yoyowallet.net/v1/consumers/{CONSUMER_ID}/cards/</code></p>
 
 <h4 id="request-data">Request Data</h4>
 
@@ -547,27 +547,27 @@ Note - in our playground environment we are connected to the Stripe sandbox, so 
 <blockquote>
 <p>You DELETE a request to the API to remove a card</p>
 </blockquote>
-<pre class="highlight shell"><code>curl <span class="s1">'https://api.test.yoyowallet.net/v1/consumers/{$consumer_id}/cards/'</span> 
-  -X <span class="s2">"DELETE"</span>
-  -u <span class="nv">$access_key</span>:<span class="nv">$secret_key</span> 
-  -H <span class="s1">'HTTP_YOYO_TOKEN: {$token}'</span>
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.test.yoyowallet.net/v1/consumers/{CONSUMER_ID}/cards/'</span> <span class="se">\</span>
+  -X <span class="s2">"DELETE"</span> <span class="se">\</span>
+  -u <span class="o">{</span>ACCESS_KEY<span class="o">}</span>:<span class="o">{</span>SECRET_KEY<span class="o">}</span>  <span class="se">\</span>
+  -H <span class="s1">'HTTP_YOYO_TOKEN: {TOKEN}'</span>
 </code></pre>
 <pre class="highlight objective_c"><code>    <span class="n">iOS</span> <span class="n">SDK</span> <span class="n">Code</span> <span class="n">TBD</span>
 </code></pre>
 <pre class="highlight java"><code>    <span class="n">Android</span> <span class="n">SDK</span> <span class="n">Code</span> <span class="n">TBD</span>
 </code></pre>
 
-<p><code class="prettyprint">DELETE https://api.test.yoyowallet.net/v1/consumers/{$consumer_id}/cards/{$card_id}</code></p>
+<p><code class="prettyprint">DELETE https://api.test.yoyowallet.net/v1/consumers/{CONSUMER_ID}/cards/{CARD_ID}</code></p>
 
 <h3 id="viewing-cards">Viewing cards</h3>
 
 <blockquote>
 <p>You GET a request to the API to retrieve your wallet details.</p>
 </blockquote>
-<pre class="highlight shell"><code>curl <span class="s1">'https://api.test.yoyowallet.net/v1/consumers/{$consumer_id}/cards/'</span> 
-  -u <span class="nv">$access_key</span>:<span class="nv">$secret_key</span> 
-  -H <span class="s1">'Accept: application/json'</span>
-  -H <span class="s1">'HTTP_YOYO_TOKEN: {$token}'</span> 
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.test.yoyowallet.net/v1/consumers/{CONSUMER_ID}/cards'</span> <span class="se">\</span>
+  -u <span class="o">{</span>ACCESS_KEY<span class="o">}</span>:<span class="o">{</span>SECRET_KEY<span class="o">}</span> <span class="se">\</span>
+  -H <span class="s1">'Accept: application/json'</span> <span class="se">\</span>
+  -H <span class="s1">'HTTP_YOYO_TOKEN: {TOKEN}'</span> 
 </code></pre>
 <pre class="highlight objective_c"><code>    <span class="n">iOS</span> <span class="n">SDK</span> <span class="n">Code</span> <span class="n">TBD</span>
 </code></pre>
@@ -604,7 +604,7 @@ Note - in our playground environment we are connected to the Stripe sandbox, so 
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p><code class="prettyprint">GET https://api.test.yoyowallet.net/v1/consumers/{$consumer_id}/cards/</code></p>
+<p><code class="prettyprint">GET https://api.test.yoyowallet.net/v1/consumers/{CONSUMER_ID}/cards</code></p>
 
 <h4 id="request-data">Request Data</h4>
 
@@ -626,7 +626,86 @@ Note - in our playground environment we are connected to the Stripe sandbox, so 
 
 <h2 id="transactions">Transactions</h2>
 
-<p>When a consumer makes purchases via the Yoyo Wallet platform, they will be recorded as transactions against the consumer&rsquo;s account. </p>
+<p>When a consumer makes purchases via the Yoyo Wallet platform, they will be recorded as transactions against the consumer&rsquo;s account.</p>
+
+<blockquote>
+<p>You GET a request to the API to retrieve your wallet details.</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.test.yoyowallet.net/v1/consumers/{CONSUMER_ID}/transactions'</span> <span class="se">\</span>
+  -u <span class="o">{</span>ACCESS_KEY<span class="o">}</span>:<span class="o">{</span>SECRET_KEY<span class="o">}</span> <span class="se">\</span>
+  -H <span class="s1">'Accept: application/json'</span> <span class="se">\</span>
+  -H <span class="s1">'HTTP_YOYO_TOKEN: {TOKEN}'</span> 
+</code></pre>
+<pre class="highlight objective_c"><code>    <span class="n">iOS</span> <span class="n">SDK</span> <span class="n">Code</span> <span class="n">TBD</span>
+</code></pre>
+<pre class="highlight java"><code>    <span class="n">Android</span> <span class="n">SDK</span> <span class="n">Code</span> <span class="n">TBD</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this. The &ldquo;id&rdquo; field is your passcode &ldquo;id&rdquo;:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+</span><span class="err">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"account_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"account_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"barcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"basket"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"discount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"product_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"product_description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nt">"consumer_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"consumer_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-11-03T13:15:28.078Z"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"discount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"refunds"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"barcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-11-03T13:15:28.078Z"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"transaction_key_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nt">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="err">}</span><span class="w">
+</span></code></pre>
+
+<p><code class="prettyprint">GET https://api.test.yoyowallet.net/v1/consumers/{CONSUMER_ID}/transactions</code></p>
+
+<h4 id="request-data">Request Data</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>consumer_id</td>
+<td>unique identifer of the consumer</td>
+</tr>
+</tbody></table>
+
+<h4 id="response-data">Response Data</h4>
+
+<p>Same response format as adding a card. </p>
 
 <h2 id="vouchers">Vouchers</h2>
 
@@ -683,6 +762,36 @@ Note - in our playground environment we are connected to the Stripe sandbox, so 
 <tr>
 <td>503</td>
 <td>Service unavailable - If the service is down for maintenance</td>
+</tr>
+</tbody></table>
+
+          <h1 id="pagination">Pagination</h1>
+
+<p>Many of the Yoyo Wallet API endpoints support the concept of pagination.</p>
+
+<p>This is where the result set would be too large to return in a single request, so the API caller can control which subset of the results is returned.</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>limit</td>
+<td>integer</td>
+<td>is the maximum number of results returned in a single request</td>
+</tr>
+<tr>
+<td>starting_after</td>
+<td>timestamp</td>
+<td>selects entities with a creation timestamp starting after this time</td>
+</tr>
+<tr>
+<td>ending_before</td>
+<td>timestamp</td>
+<td>selects entities with a creation timestamp ending before this time</td>
 </tr>
 </tbody></table>
 
