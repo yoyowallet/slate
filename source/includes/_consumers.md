@@ -61,10 +61,10 @@ This request will either create a new consumer account on the Yoyo Wallet platfo
 
 #### Request Data
 
-Parameter | Description
---------- |  -----------
-email | Consumer's email address (optional)
-phone | Consumer's mobile phone number
+Parameter | Type |Description
+--------- |  ---- |-----------
+email | string |Consumer's email address (optional)
+phone | string | Consumer's mobile phone number
 
 
 If the request contains a valid email address and phone number an SMS message will be sent the the user to help authenticate them.
@@ -73,13 +73,13 @@ The response returned contains a "id" field.  This is the identifier of your "pa
 
 #### Response Data
 
-Parameter | Description
---------- |  -----------
-id | passcode id
-phone | Consumer's mobile phone number
-account_id | This is your Yoyo Wallet account Id
-email | Consumer's email address
-expires_at | This is the time the passcode will expire. Normally passcodes are valid for 30 minutes.
+Parameter | Type |Description
+--------- | ---- | -----------
+id | string | passcode id
+phone | string | Consumer's mobile phone number
+account_id | string | This is your Yoyo Wallet account Id
+email | string | Consumer's email address
+expires_at | string | This is the time the passcode will expire. Normally passcodes are valid for 30 minutes.
 
 
 
@@ -137,22 +137,22 @@ curl 'https://api.test.yoyowallet.net/v1/consumer-sessions' \
 
 #### Request Data
 
-Parameter | Description
---------- |  -----------
-device_id | unique identfier for your mobile device
-device_timestamp | current time on your device as a unix timestamp
-passcode_code | the value from the SMS message sent to your device
-passcode_id | the id of the passcode response in the previous request
+Parameter | Type |Description
+--------- | ---- | -----------
+device_id | string |unique identfier for your mobile device
+device_timestamp | int64 | current time on your device as a unix timestamp
+passcode_code | string | the value from the SMS message sent to your device
+passcode_id | string | the id of the passcode response in the previous request
 
 
 #### Response Data
 
-Parameter | Description
---------- |  -----------
-consumer_id | unique identfier for the consumer
-otp_seed | seed value needed to calculate the one-time-password
-token | the session token to represent the consumer
-barcode_token | embedded in a barcode to identify a session.
+Parameter | Type | Description
+--------- | ---- | -----------
+consumer_id | string | unique identfier for the consumer
+otp_seed | string | seed value needed to calculate the one-time-password
+token | string | the session token to represent the consumer
+barcode_token | string | embedded in a barcode to identify a session.
 
 
 ### 3. Using the consumer's session token
@@ -229,29 +229,29 @@ Note - in our playground environment we are connected to the Stripe sandbox, so 
 
 #### Request Data
 
-Parameter | Description
---------- |  -----------
-bin | Bank identification number (first 6 digits of card number)
-number | credit card number
-exp_month | expiry month MM
-exp_year | expiry year CCYY
-cvv | 3 digit card verification value
-postcode | post code that card is registered at
+Parameter | Type | Description
+--------- | ----|  -----------
+bin | string | Bank identification number (first 6 digits of card number)
+number | string | credit card number
+exp_month | integer | expiry month MM
+exp_year | integer | expiry year CCYY
+cvv | integer | 3 digit card verification value
+postcode | string | post code that card is registered at
 
 If the card is successfully added to the consumers wallet you will receive a response like below.
 
 #### Response Data
 
-Parameter | Description
---------- |  -----------
-id | unique identifier for card
-active | card is active
-brand | type of card eg. Visa, Mastercard, Amex etc.
-exp_month | expiry month MM
-exp_year | expiry year CCYY
-is_default | card is default one to use in wallet
-last4 | last 4 digits of card number
-postcode | post code that card is registered at
+Parameter | Type | Description
+--------- | ---- | -----------
+id | string | unique identifier for card
+active | boolean | card is active
+brand | string | type of card eg. Visa, Mastercard, Amex etc.
+exp_month | integer | expiry month MM
+exp_year | integer | expiry year CCYY
+is_default | boolean | card is default one to use in wallet
+last4 | string | last 4 digits of card number
+postcode | string | post code that card is registered at
 
 ### Removing a card
 
@@ -333,9 +333,9 @@ curl 'https://api.test.yoyowallet.net/v1/consumers/{CONSUMER_ID}/cards' \
 
 #### Request Data
 
-Parameter | Description
---------- |  -----------
-consumer_id | unique identifer of the consumer
+Parameter | Type |Description
+--------- | ---- | -----------
+consumer_id | string | unique identifer of the consumer
 
 
 #### Response Data
@@ -369,13 +369,21 @@ curl 'https://api.test.yoyowallet.net/v1/consumers/{CONSUMER_ID}/transactions' \
 
 ```json
 {
-{
   "data": [
     {
+      "id": "string",
       "account_id": "string",
       "account_name": "string",
       "amount": 0,
       "barcode": "string",
+      "consumer_id": "string",
+      "consumer_name": "string",
+      "created_at": "2015-11-03T13:15:28.078Z",
+      "currency": "string",
+      "discount": 0,
+      "reference": "string",
+      "status": "string",
+      "transaction_key_id": "string",
       "basket": [
         {
           "amount": 0,
@@ -385,29 +393,19 @@ curl 'https://api.test.yoyowallet.net/v1/consumers/{CONSUMER_ID}/transactions' \
           "quantity": 0
         }
       ],
-      "consumer_id": "string",
-      "consumer_name": "string",
-      "created_at": "2015-11-03T13:15:28.078Z",
-      "currency": "string",
-      "discount": 0,
-      "id": "string",
-      "reference": "string",
       "refunds": [
         {
+          "id": "string",
           "amount": 0,
           "barcode": "string",
           "created_at": "2015-11-03T13:15:28.078Z",
           "currency": "string",
-          "id": "string",
           "status": "string"
         }
-      ],
-      "status": "string",
-      "transaction_key_id": "string"
+      ]
     }
   ],
   "metadata": {}
-}
 }
 ```
 
@@ -415,13 +413,51 @@ curl 'https://api.test.yoyowallet.net/v1/consumers/{CONSUMER_ID}/transactions' \
 
 #### Request Data
 
-Parameter | Description
---------- |  -----------
-consumer_id | unique identifer of the consumer
-
+Parameter | Type |Description
+--------- |  ----| -----------
+consumer_id | path | unique identifer of the consumer
+pagination | query | [see details](#pagination)
 
 #### Response Data
 
-Same response format as adding a card. 
+Parameter | Type | Description
+--------- |  ---- |-----------
+id | string |unique identifier of transaction
+account_id | string |unique identifier of platform account
+account_name | string |platform account name
+amount | integer | transaction amount £1.25 = 125
+barcode | string | barcode used for transaction
+consumer_id | string | unique identfier for the consumer
+consumer_name | string | consumer name
+created_at | timestamp | transaction creation time
+currency | string | currency code
+discount | integer | discount amount £1.25 = 125
+reference | string | reference
+status | string | transaction status (COMPLETED/DENIED)
+transaction_key_id | string | unique identifier of transaction key
+
+#### Basket Data
+
+Basket data is the list of items the consumer purchased during the transaction.  Basket data is an array of Basket items.
+
+Parameter | Type | Description
+--------- |  ---- |-----------
+amount | integer | basket item amount £1.25 = 125
+discount | integer | basket item discount amount £1.25 = 125
+product_code | string | unique identifier for product
+product_name | string | product name
+
+#### Refund Data
+
+Refund data is when a previous completed transaction is refunded, partially or fully. Refund data is an array of Refund items.
+
+Parameter | Type | Description
+--------- |  ---- |-----------
+id | string |unique identifier of refund
+amount | integer | basket item amount £1.25 = 125
+barcode | string | barcode used for transaction
+created_at | timestamp | transaction creation time
+currency | string | currency code
+status | string | transaction status (COMPLETED/DENIED)
 
 ## Vouchers
