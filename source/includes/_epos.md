@@ -4,4 +4,4 @@ The Transaction API is a XML based API which uses XML formatted data for its req
 
 The API is already integrated into many EPOS providers tills.  The API remains backwards compatible with earlier versions.
 
-Documentation not currently available.
+Documentation not publically available.
