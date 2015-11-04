@@ -387,47 +387,69 @@ curl 'https://api.test.yoyowallet.net/v1/consumers/{CONSUMER_ID}/transactions' \
 ```
 
 
-> The above command returns JSON structured like this. The "id" field is your passcode "id":
+> The above command returns JSON structured like this:
 
 ```json
 {
-  "data": [
-    {
-      "id": "string",
-      "account_id": "string",
-      "account_name": "string",
-      "amount": 0,
-      "barcode": "string",
-      "consumer_id": "string",
-      "consumer_name": "string",
-      "created_at": "2015-11-03T13:15:28.078Z",
-      "currency": "string",
-      "discount": 0,
-      "reference": "string",
-      "status": "string",
-      "transaction_key_id": "string",
-      "basket": [
+    "data": [
         {
-          "amount": 0,
-          "discount": 0,
-          "product_code": "string",
-          "product_description": "string",
-          "quantity": 0
-        }
-      ],
-      "refunds": [
+            "amount": 11000,
+            "barcode": "4040144423413972679959220",
+            "basket": [
+                {
+                    "amount": 500,
+                    "discount": 0,
+                    "product_code": "b00zy",
+                    "product_description": "LagerPint",
+                    "quantity": 2
+                },
+                {
+                    "amount": 100,
+                    "discount": 0,
+                    "product_code": "w4lk3rz",
+                    "product_description": "Crisp Packet",
+                    "quantity": 1
+                }
+            ],
+            "consumer_id": "e03f426a-0d45-429f-b0d3-8af64d9b6946",
+            "consumer_name": "",
+            "created_at": "2015-10-07T16:11:55.192617Z",
+            "currency": "GBP",
+            "discount": 0,
+            "id": "f9637467-b205-4efb-87b0-ef3c68df473f",
+            "reference": "",
+            "refunds": [],
+            "status": "COMPLETED",
+            "transaction_key_id": "d3a4c60c-ceb1-4138-936b-0771b9d86f94"
+        },
         {
-          "id": "string",
-          "amount": 0,
-          "barcode": "string",
-          "created_at": "2015-11-03T13:15:28.078Z",
-          "currency": "string",
-          "status": "string"
+            "amount": 200,
+            "barcode": "4040144423289333971137546",
+            "basket": [
+                {
+                    "amount": 200,
+                    "discount": 0,
+                    "product_code": "n1ck4rn",
+                    "product_description": "JD Coke",
+                    "quantity": 1
+                }
+            ],
+            "consumer_id": "e03f426a-0d45-429f-b0d3-8af64d9b6946",
+            "consumer_name": "",
+            "created_at": "2015-10-07T15:53:56.269294Z",
+            "currency": "GBP",
+            "discount": 0,
+            "id": "7ec7762a-fc2e-4462-9914-c1d83bd2fe68",
+            "reference": "",
+            "refunds": [],
+            "status": "DENIED",
+            "transaction_key_id": "d3a4c60c-ceb1-4138-936b-0771b9d86f94"
         }
-      ]
+    ],
+    "metadata": {
+        "has_next": false,
+        "has_previous": false
     }
-  ],
-  "metadata": {}
 }
 ```
 
@@ -483,3 +505,79 @@ currency | string | currency code
 status | string | transaction status (COMPLETED/DENIED)
 
 ## Vouchers
+
+When a consumer earns vouchers on Yoyo Wallet platform, they will be appear in the consumer's account.
+
+> You GET a request to the API to retrieve your wallet details.
+
+
+```shell
+curl 'https://api.test.yoyowallet.net/v1/consumers/{CONSUMER_ID}/vouchers' \
+  -u {ACCESS_KEY}:{SECRET_KEY} \
+  -H 'Accept: application/json' \
+  -H 'HTTP_YOYO_TOKEN: {TOKEN}' 
+```
+
+```objective_c
+	iOS SDK Code TBD
+```
+
+```java
+	Android SDK Code TBD
+```
+
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "data": [
+    {
+      "id": "string",
+      "account_id": "string",
+      "campaign_id": "string",
+      "code": "string",
+      "consumer_id": "string",
+      "created_at": "string",
+      "discount_coverage": "string",
+      "discount_type": "string",
+      "discount_value": 0,
+      "start_at": "string",
+      "end_at": "string",
+      "name": "string",
+      "product_group_id": "string",
+      "redeemed_at": "string",
+      "redemption_reference": "string",
+      "updated_at": "string"
+    }
+  ],
+  "metadata": {}
+}
+```
+
+`GET https://api.test.yoyowallet.net/v1/consumers/{CONSUMER_ID}/vouchers`
+
+#### Request Data
+
+Parameter | Type |Description
+--------- |  ----| -----------
+consumer_id | path | unique identifer of the consumer
+
+#### Voucher Data
+
+Parameter | Type | Description
+--------- |  ---- |-----------
+id | string |unique identifier of transaction
+account_id | string |unique identifier of platform account
+campaign_id | string |unique identifier of campaign
+code | string | voucher code
+created_at | timestamp | transaction creation time
+discount_coverage | string | discount coverage
+discount_value | integer | discount value £1.25 = 125
+start_at | timestamp | voucher start time
+end_at | timestamp | voucher end time
+name | string | voucher name
+product_group_id | string | unique identfier for the product group
+redeemed_at | timestamp | voucher redemption time
+redemption_reference | string | redemption reference
+updated_at | timestamp | voucher updated time
