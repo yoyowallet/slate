@@ -531,27 +531,43 @@ curl 'https://api.test.yoyowallet.net/v1/consumers/{CONSUMER_ID}/vouchers' \
 
 ```json
 {
-  "data": [
-    {
-      "id": "string",
-      "account_id": "string",
-      "campaign_id": "string",
-      "code": "string",
-      "consumer_id": "string",
-      "created_at": "string",
-      "discount_coverage": "string",
-      "discount_type": "string",
-      "discount_value": 0,
-      "start_at": "string",
-      "end_at": "string",
-      "name": "string",
-      "product_group_id": "string",
-      "redeemed_at": "string",
-      "redemption_reference": "string",
-      "updated_at": "string"
-    }
-  ],
-  "metadata": {}
+    "data": [
+        {
+            "account_id": "897328d2-b1fe-4e99-a8e3-0204b4ac106f",
+            "campaign_id": "d5h6fvd4-452f-47fc-c525-747g6h5ab67g",
+            "code": "1443172134260310",
+            "consumer_id": "8a66f9c4-782e-45cc-ab23-047f6f4abf83",
+            "created_at": "2015-10-07T16:11:55.192617Z",
+            "discount_coverage": "",
+            "discount_type": "value",
+            "discount_value": 100,
+            "start_at": "2015-07-01T00:00:00.0Z",
+            "end_at": "2018-12-31T00:00:00.0Z",
+            "id": "a00994fc-e105-46d9-8435-5aff536398d1",
+            "name": "£1 off JD Coke",
+            "redeemed_at": "",
+            "redemption_reference": "",
+            "updated_at": "2015-10-07T16:11:55.192617Z"
+        },
+        {
+            "account_id": "897328d2-b1fe-4e99-a8e3-0204b4ac106f",
+            "campaign_id": "cfhdsvf7-j4ud-86gh-cd56-f8d7g7e58hr6dg",
+            "code": "1443172133909833",
+            "consumer_id": "8a66f9c4-782e-45cc-ab23-047f6f4abf83",
+            "created_at": "2015-10-07T16:11:55.192617Z",
+            "discount_coverage": "",
+            "discount_type": "percentage",
+            "discount_value": 20,
+            "start_at": "2015-10-01T00:00:00.0Z",
+            "end_at": "2015-12-31T00:00:00.0Z",
+            "id": "ef3364a2-413e-4556-8c77-c724549f29bb",
+            "name": "20% Off Everything!",
+            "redeemed_at": "",
+            "redemption_reference": "",
+            "updated_at": "2015-10-07T16:11:55.192617Z"
+        }
+    ],
+    "metadata": {}
 }
 ```
 
