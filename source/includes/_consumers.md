@@ -21,10 +21,10 @@ First you must request a passcode.  The passcode is a unique 5 digit number that
 ```
 
 ```shell
-curl 'https://api.test.yoyowallet.net/v1/consumer-passcodes' 
-  -u $access_key:$secret_key 
-  -H 'Content-Type: application/json' 
-  -H 'Accept: application/json' 
+curl 'https://api.test.yoyowallet.net/v1/consumer-passcodes' \
+  -u {ACCESS_KEY}:{SECRET_KEY} \
+  -H 'Content-Type: application/json' \ 
+  -H 'Accept: application/json' \
   --data-binary $'{"email": "tommy.tester@example.com", "phone": "441234567890"}'
 ```
 
@@ -99,13 +99,13 @@ Once you have received an SMS message with your passcode you can perform the sec
 ```
 
 ```shell
-curl 'https://api.test.yoyowallet.net/v1/consumer-sessions' 
-  -u $access_key:$secret_key 
-  -H 'Content-Type: application/json' 
-  -H 'Accept: application/json' 
-  --data-binary $'{"device_id": "e73e3d3b-a95d-4d3c-b9ee-de5492540582+a0b11fa0-57f9-43fc-a541-f868994cf7bb",
-  "device_timestamp": 1446368400,
-  "passcode_code": "18442",
+curl 'https://api.test.yoyowallet.net/v1/consumer-sessions' \
+  -u {ACCESS_KEY}:{SECRET_KEY} \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  --data-binary $'{"device_id": "e73e3d3b-a95d-4d3c-b9ee-de5492540582+a0b11fa0-57f9-43fc-a541-f868994cf7bb", \
+  "device_timestamp": 1446368400, \
+  "passcode_code": "18442", \
   "passcode_id": "dc05a248-8172-11e5-aa5b-0abe262b2ce9"}'
 ```
 
@@ -188,10 +188,10 @@ If you make a request without a valid access token your request will be rejected
 ```
 
 ```shell
-curl 'https://api.test.yoyowallet.net/v1/consumers/{$consumer_id}/cards/' 
-  -u $access_key:$secret_key 
-  -H 'Content-Type: application/json' 
-  -H 'Accept: application/json' 
+curl 'https://api.test.yoyowallet.net/v1/consumers/{CONSUMER_ID}/cards/' \
+  -u {ACCESS_KEY}:{SECRET_KEY} \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
   --data-binary $'{	"bin": "123456", "number": "123456789012345678", "exp_month": 12, "exp_year": 2018, "cvv": 999, "postcode": "N1 7ER" }'
 ```
 
@@ -225,7 +225,7 @@ Note - in our playground environment we are connected to the Stripe sandbox, so 
 }
 ```
 
-`POST https://api.test.yoyowallet.net/v1/consumers/{$consumer_id}/cards/`
+`POST https://api.test.yoyowallet.net/v1/consumers/{CONSUMER_ID}/cards/`
 
 #### Request Data
 
@@ -260,10 +260,10 @@ To delete a card from your wallet, simply send a DELETE request identifying your
 > You DELETE a request to the API to remove a card
 
 ```shell
-curl 'https://api.test.yoyowallet.net/v1/consumers/{$consumer_id}/cards/' 
-  -X "DELETE"
-  -u $access_key:$secret_key 
-  -H 'HTTP_YOYO_TOKEN: {$token}'
+curl 'https://api.test.yoyowallet.net/v1/consumers/{CONSUMER_ID}/cards/' \
+  -X "DELETE" \
+  -u {ACCESS_KEY}:{SECRET_KEY}  \
+  -H 'HTTP_YOYO_TOKEN: {TOKEN}'
 ```
 
 ```objective_c
@@ -274,7 +274,7 @@ curl 'https://api.test.yoyowallet.net/v1/consumers/{$consumer_id}/cards/'
 	Android SDK Code TBD
 ```
 
-`DELETE https://api.test.yoyowallet.net/v1/consumers/{$consumer_id}/cards/{$card_id}`
+`DELETE https://api.test.yoyowallet.net/v1/consumers/{CONSUMER_ID}/cards/{CARD_ID}`
 
 
 ### Viewing cards
@@ -284,10 +284,10 @@ curl 'https://api.test.yoyowallet.net/v1/consumers/{$consumer_id}/cards/'
 
 
 ```shell
-curl 'https://api.test.yoyowallet.net/v1/consumers/{$consumer_id}/cards/' 
-  -u $access_key:$secret_key 
-  -H 'Accept: application/json'
-  -H 'HTTP_YOYO_TOKEN: {$token}' 
+curl 'https://api.test.yoyowallet.net/v1/consumers/{CONSUMER_ID}/cards' \
+  -u {ACCESS_KEY}:{SECRET_KEY} \
+  -H 'Accept: application/json' \
+  -H 'HTTP_YOYO_TOKEN: {TOKEN}' 
 ```
 
 ```objective_c
@@ -329,7 +329,7 @@ curl 'https://api.test.yoyowallet.net/v1/consumers/{$consumer_id}/cards/'
 }
 ```
 
-`GET https://api.test.yoyowallet.net/v1/consumers/{$consumer_id}/cards/`
+`GET https://api.test.yoyowallet.net/v1/consumers/{CONSUMER_ID}/cards`
 
 #### Request Data
 
@@ -344,6 +344,84 @@ Same response format as adding a card.
 
 ## Transactions
 
-When a consumer makes purchases via the Yoyo Wallet platform, they will be recorded as transactions against the consumer's account. 
+When a consumer makes purchases via the Yoyo Wallet platform, they will be recorded as transactions against the consumer's account.
+
+> You GET a request to the API to retrieve your wallet details.
+
+
+```shell
+curl 'https://api.test.yoyowallet.net/v1/consumers/{CONSUMER_ID}/transactions' \
+  -u {ACCESS_KEY}:{SECRET_KEY} \
+  -H 'Accept: application/json' \
+  -H 'HTTP_YOYO_TOKEN: {TOKEN}' 
+```
+
+```objective_c
+	iOS SDK Code TBD
+```
+
+```java
+	Android SDK Code TBD
+```
+
+
+> The above command returns JSON structured like this. The "id" field is your passcode "id":
+
+```json
+{
+{
+  "data": [
+    {
+      "account_id": "string",
+      "account_name": "string",
+      "amount": 0,
+      "barcode": "string",
+      "basket": [
+        {
+          "amount": 0,
+          "discount": 0,
+          "product_code": "string",
+          "product_description": "string",
+          "quantity": 0
+        }
+      ],
+      "consumer_id": "string",
+      "consumer_name": "string",
+      "created_at": "2015-11-03T13:15:28.078Z",
+      "currency": "string",
+      "discount": 0,
+      "id": "string",
+      "reference": "string",
+      "refunds": [
+        {
+          "amount": 0,
+          "barcode": "string",
+          "created_at": "2015-11-03T13:15:28.078Z",
+          "currency": "string",
+          "id": "string",
+          "status": "string"
+        }
+      ],
+      "status": "string",
+      "transaction_key_id": "string"
+    }
+  ],
+  "metadata": {}
+}
+}
+```
+
+`GET https://api.test.yoyowallet.net/v1/consumers/{CONSUMER_ID}/transactions`
+
+#### Request Data
+
+Parameter | Description
+--------- |  -----------
+consumer_id | unique identifer of the consumer
+
+
+#### Response Data
+
+Same response format as adding a card. 
 
 ## Vouchers

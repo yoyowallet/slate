@@ -17,6 +17,7 @@ includes:
   - dashboard
   - epos
   - errors
+  - pagination
 
 search: true
 ---

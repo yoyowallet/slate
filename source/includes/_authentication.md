@@ -6,12 +6,12 @@ Requests to the platform API are authenticated using basic auth.
 
 To authenticate a request, send an “AUTHORIZATION” header of form:
 
-Basic base64($access_key:$secret_key)
+Basic base64({ACCESS_KEY}:{SECRET_KEY})
 
-`Authorization: <base64 encrypted $access_key:$secret_key>`
+`Authorization: <base64 encrypted {ACCESS_KEY}:{SECRET_KEY}>`
 
 <aside class="notice">
-You must replace <code>$access_key_$secret_key</code> with your real API credentials.
+You must replace <code>{ACCESS_KEY}_{SECRET_KEY}</code> with your real API credentials.
 </aside>
 
 > To authorize, use this code:
@@ -19,8 +19,8 @@ You must replace <code>$access_key_$secret_key</code> with your real API credent
 ```shell
 # With shell, you can just pass the correct header with each request
 
-curl 'https://api.test.yoyowallet.net/v1/accounts/$account_id' 
-  -u $access_key:$secret
+curl 'https://api.test.yoyowallet.net/v1/accounts/{ACCOUNT_ID}' \
+  -u {ACCESS_KEY}:{SECRET_KEY}
 ```
 
 ```objective_c
@@ -32,6 +32,6 @@ curl 'https://api.test.yoyowallet.net/v1/accounts/$account_id'
 ```
 
 
-> Make sure to replace `$access_key` and `$secret_key` with your real API credentials.
+> Make sure to replace `{ACCESS_KEY}` and `{SECRET_KEY}` with your real API credentials.
 
 
