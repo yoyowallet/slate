@@ -255,15 +255,18 @@ curl <span class="s1">'https://api.test.yoyowallet.net/v1/accounts/{ACCOUNT_ID}'
 <table><thead>
 <tr>
 <th>Parameter</th>
+<th>Type</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>email</td>
+<td>string</td>
 <td>Consumer&rsquo;s email address (optional)</td>
 </tr>
 <tr>
 <td>phone</td>
+<td>string</td>
 <td>Consumer&rsquo;s mobile phone number</td>
 </tr>
 </tbody></table>
@@ -277,27 +280,33 @@ curl <span class="s1">'https://api.test.yoyowallet.net/v1/accounts/{ACCOUNT_ID}'
 <table><thead>
 <tr>
 <th>Parameter</th>
+<th>Type</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>id</td>
+<td>string</td>
 <td>passcode id</td>
 </tr>
 <tr>
 <td>phone</td>
+<td>string</td>
 <td>Consumer&rsquo;s mobile phone number</td>
 </tr>
 <tr>
 <td>account_id</td>
+<td>string</td>
 <td>This is your Yoyo Wallet account Id</td>
 </tr>
 <tr>
 <td>email</td>
+<td>string</td>
 <td>Consumer&rsquo;s email address</td>
 </tr>
 <tr>
 <td>expires_at</td>
+<td>string</td>
 <td>This is the time the passcode will expire. Normally passcodes are valid for 30 minutes.</td>
 </tr>
 </tbody></table>
@@ -351,23 +360,28 @@ curl <span class="s1">'https://api.test.yoyowallet.net/v1/accounts/{ACCOUNT_ID}'
 <table><thead>
 <tr>
 <th>Parameter</th>
+<th>Type</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>device_id</td>
+<td>string</td>
 <td>unique identfier for your mobile device</td>
 </tr>
 <tr>
 <td>device_timestamp</td>
+<td>int64</td>
 <td>current time on your device as a unix timestamp</td>
 </tr>
 <tr>
 <td>passcode_code</td>
+<td>string</td>
 <td>the value from the SMS message sent to your device</td>
 </tr>
 <tr>
 <td>passcode_id</td>
+<td>string</td>
 <td>the id of the passcode response in the previous request</td>
 </tr>
 </tbody></table>
@@ -377,23 +391,28 @@ curl <span class="s1">'https://api.test.yoyowallet.net/v1/accounts/{ACCOUNT_ID}'
 <table><thead>
 <tr>
 <th>Parameter</th>
+<th>Type</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>consumer_id</td>
+<td>string</td>
 <td>unique identfier for the consumer</td>
 </tr>
 <tr>
 <td>otp_seed</td>
+<td>string</td>
 <td>seed value needed to calculate the one-time-password</td>
 </tr>
 <tr>
 <td>token</td>
+<td>string</td>
 <td>the session token to represent the consumer</td>
 </tr>
 <tr>
 <td>barcode_token</td>
+<td>string</td>
 <td>embedded in a barcode to identify a session.</td>
 </tr>
 </tbody></table>
@@ -467,31 +486,38 @@ Note - in our playground environment we are connected to the Stripe sandbox, so 
 <table><thead>
 <tr>
 <th>Parameter</th>
+<th>Type</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>bin</td>
+<td>string</td>
 <td>Bank identification number (first 6 digits of card number)</td>
 </tr>
 <tr>
 <td>number</td>
+<td>string</td>
 <td>credit card number</td>
 </tr>
 <tr>
 <td>exp_month</td>
+<td>integer</td>
 <td>expiry month MM</td>
 </tr>
 <tr>
 <td>exp_year</td>
+<td>integer</td>
 <td>expiry year CCYY</td>
 </tr>
 <tr>
 <td>cvv</td>
+<td>integer</td>
 <td>3 digit card verification value</td>
 </tr>
 <tr>
 <td>postcode</td>
+<td>string</td>
 <td>post code that card is registered at</td>
 </tr>
 </tbody></table>
@@ -503,39 +529,48 @@ Note - in our playground environment we are connected to the Stripe sandbox, so 
 <table><thead>
 <tr>
 <th>Parameter</th>
+<th>Type</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>id</td>
+<td>string</td>
 <td>unique identifier for card</td>
 </tr>
 <tr>
 <td>active</td>
+<td>boolean</td>
 <td>card is active</td>
 </tr>
 <tr>
 <td>brand</td>
+<td>string</td>
 <td>type of card eg. Visa, Mastercard, Amex etc.</td>
 </tr>
 <tr>
 <td>exp_month</td>
+<td>integer</td>
 <td>expiry month MM</td>
 </tr>
 <tr>
 <td>exp_year</td>
+<td>integer</td>
 <td>expiry year CCYY</td>
 </tr>
 <tr>
 <td>is_default</td>
+<td>boolean</td>
 <td>card is default one to use in wallet</td>
 </tr>
 <tr>
 <td>last4</td>
+<td>string</td>
 <td>last 4 digits of card number</td>
 </tr>
 <tr>
 <td>postcode</td>
+<td>string</td>
 <td>post code that card is registered at</td>
 </tr>
 </tbody></table>
@@ -611,11 +646,13 @@ Note - in our playground environment we are connected to the Stripe sandbox, so 
 <table><thead>
 <tr>
 <th>Parameter</th>
+<th>Type</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>consumer_id</td>
+<td>string</td>
 <td>unique identifer of the consumer</td>
 </tr>
 </tbody></table>
@@ -645,13 +682,21 @@ Note - in our playground environment we are connected to the Stripe sandbox, so 
 <p>The above command returns JSON structured like this. The &ldquo;id&rdquo; field is your passcode &ldquo;id&rdquo;:</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
-</span><span class="err">{</span><span class="w">
   </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"account_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"account_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
       </span><span class="nt">"barcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"consumer_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"consumer_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-11-03T13:15:28.078Z"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"discount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"transaction_key_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"basket"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
           </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
@@ -661,30 +706,20 @@ Note - in our playground environment we are connected to the Stripe sandbox, so 
           </span><span class="nt">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
         </span><span class="p">}</span><span class="w">
       </span><span class="p">],</span><span class="w">
-      </span><span class="nt">"consumer_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"consumer_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-11-03T13:15:28.078Z"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"discount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"refunds"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
           </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
           </span><span class="nt">"barcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
           </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-11-03T13:15:28.078Z"</span><span class="p">,</span><span class="w">
           </span><span class="nt">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
           </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
         </span><span class="p">}</span><span class="w">
-      </span><span class="p">],</span><span class="w">
-      </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"transaction_key_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+      </span><span class="p">]</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">],</span><span class="w">
   </span><span class="nt">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span><span class="err">}</span><span class="w">
 </span></code></pre>
 
 <p><code class="prettyprint">GET https://api.test.yoyowallet.net/v1/consumers/{CONSUMER_ID}/transactions</code></p>
@@ -694,18 +729,173 @@ Note - in our playground environment we are connected to the Stripe sandbox, so 
 <table><thead>
 <tr>
 <th>Parameter</th>
+<th>Type</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>consumer_id</td>
+<td>path</td>
 <td>unique identifer of the consumer</td>
+</tr>
+<tr>
+<td>pagination</td>
+<td>query</td>
+<td><a href="#pagination">see details</a></td>
 </tr>
 </tbody></table>
 
 <h4 id="response-data">Response Data</h4>
 
-<p>Same response format as adding a card. </p>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>string</td>
+<td>unique identifier of transaction</td>
+</tr>
+<tr>
+<td>account_id</td>
+<td>string</td>
+<td>unique identifier of platform account</td>
+</tr>
+<tr>
+<td>account_name</td>
+<td>string</td>
+<td>platform account name</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>integer</td>
+<td>transaction amount £1.25 = 125</td>
+</tr>
+<tr>
+<td>barcode</td>
+<td>string</td>
+<td>barcode used for transaction</td>
+</tr>
+<tr>
+<td>consumer_id</td>
+<td>string</td>
+<td>unique identfier for the consumer</td>
+</tr>
+<tr>
+<td>consumer_name</td>
+<td>string</td>
+<td>consumer name</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>timestamp</td>
+<td>transaction creation time</td>
+</tr>
+<tr>
+<td>currency</td>
+<td>string</td>
+<td>currency code</td>
+</tr>
+<tr>
+<td>discount</td>
+<td>integer</td>
+<td>discount amount £1.25 = 125</td>
+</tr>
+<tr>
+<td>reference</td>
+<td>string</td>
+<td>reference</td>
+</tr>
+<tr>
+<td>status</td>
+<td>string</td>
+<td>transaction status (COMPLETED/DENIED)</td>
+</tr>
+<tr>
+<td>transaction_key_id</td>
+<td>string</td>
+<td>unique identifier of transaction key</td>
+</tr>
+</tbody></table>
+
+<h4 id="basket-data">Basket Data</h4>
+
+<p>Basket data is the list of items the consumer purchased during the transaction.  Basket data is an array of Basket items.</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>amount</td>
+<td>integer</td>
+<td>basket item amount £1.25 = 125</td>
+</tr>
+<tr>
+<td>discount</td>
+<td>integer</td>
+<td>basket item discount amount £1.25 = 125</td>
+</tr>
+<tr>
+<td>product_code</td>
+<td>string</td>
+<td>unique identifier for product</td>
+</tr>
+<tr>
+<td>product_name</td>
+<td>string</td>
+<td>product name</td>
+</tr>
+</tbody></table>
+
+<h4 id="refund-data">Refund Data</h4>
+
+<p>Refund data is when a previous completed transaction is refunded, partially or fully. Refund data is an array of Refund items.</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>string</td>
+<td>unique identifier of refund</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>integer</td>
+<td>basket item amount £1.25 = 125</td>
+</tr>
+<tr>
+<td>barcode</td>
+<td>string</td>
+<td>barcode used for transaction</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>timestamp</td>
+<td>transaction creation time</td>
+</tr>
+<tr>
+<td>currency</td>
+<td>string</td>
+<td>currency code</td>
+</tr>
+<tr>
+<td>status</td>
+<td>string</td>
+<td>transaction status (COMPLETED/DENIED)</td>
+</tr>
+</tbody></table>
 
 <h2 id="vouchers">Vouchers</h2>
 
