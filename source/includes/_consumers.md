@@ -1,5 +1,7 @@
 # Consumer API
 
+The Consumer API is a RESTful API which uses JSON formatted data for its requests and responses. It used by mobile device applications to communicate with the Yoyo Wallet platform.
+
 ##Authentication
 
 As a mobile app developer your app users will need to have a Yoyo Wallet consumer account.  
