@@ -342,6 +342,28 @@ consumer_id | string | unique identifer of the consumer
 
 Same response format as adding a card.
 
+## OTP
+
+```shell
+OTP generation is not available via an API call
+```
+
+```objective_c
+	iOS SDK Code TBD
+```
+
+```java
+	Android SDK Code TBD
+```
+
+An OTP is a One Time Password is a automatically generated code which refreshes every 30 seconds.
+
+<img src="images/otp.png" alt="One time password" style="width: 200px;"/>
+
+Your mobile application will need to generate an OTP to display to the retailer for scanning.  To generate an OTP you need to use the functionality in the SDK code. 
+
+
+
 ## Transactions
 
 When a consumer makes purchases via the Yoyo Wallet platform, they will be recorded as transactions against the consumer's account.
