@@ -17,7 +17,7 @@ First you must request a passcode.  The passcode is a unique 5 digit number that
 
 ```json
 {
-	"email": "tommy.tester@example.com", 
+	"email": "tommy.tester@example.com",
 	"phone": "441234567890"
 }
 ```
@@ -25,13 +25,37 @@ First you must request a passcode.  The passcode is a unique 5 digit number that
 ```shell
 curl 'https://api.test.yoyowallet.net/v1/consumer-passcodes' \
   -u {ACCESS_KEY}:{SECRET_KEY} \
-  -H 'Content-Type: application/json' \ 
+  -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   --data-binary $'{"email": "tommy.tester@example.com", "phone": "441234567890"}'
 ```
 
-```objective_c
-	iOS SDK Code TBD
+```swift
+import UIKit
+import Yoyo
+
+class ViewController: UIViewController, LoginViewControllerDelegate {
+
+	func login() {
+		let loginViewController = Yoyo.loginViewController
+		loginViewController.loginDelegate = self
+		presentViewController(loginViewController, animated: true, completion: nil)
+	}
+
+	// MARK: LoginViewControllerDelegate
+	func loginViewController(loginViewController: LoginViewController, didFinishWithResult result: LoginResult) {
+		dismissViewControllerAnimated(true, completion: nil)
+
+		switch result {
+		case .Success:
+			print("Logged in successfully")
+		case .Failed:
+			print("Something went wrong")
+		case .Cancelled:
+			print("User cancelled Login")
+		}
+	}
+}
 ```
 
 ```java
@@ -111,7 +135,7 @@ curl 'https://api.test.yoyowallet.net/v1/consumer-sessions' \
   "passcode_id": "dc05a248-8172-11e5-aa5b-0abe262b2ce9"}'
 ```
 
-```objective_c
+```swift
 	iOS SDK Code TBD
 ```
 
@@ -197,7 +221,7 @@ curl 'https://api.test.yoyowallet.net/v1/consumers/{CONSUMER_ID}/cards/' \
   --data-binary $'{	"bin": "123456", "number": "123456789012345678", "exp_month": 12, "exp_year": 2018, "cvv": 999, "postcode": "N1 7ER" }'
 ```
 
-```objective_c
+```swift
 	iOS SDK Code TBD
 ```
 
@@ -268,7 +292,7 @@ curl 'https://api.test.yoyowallet.net/v1/consumers/{CONSUMER_ID}/cards/' \
   -H 'HTTP_YOYO_TOKEN: {TOKEN}'
 ```
 
-```objective_c
+```swift
 	iOS SDK Code TBD
 ```
 
@@ -289,10 +313,10 @@ curl 'https://api.test.yoyowallet.net/v1/consumers/{CONSUMER_ID}/cards/' \
 curl 'https://api.test.yoyowallet.net/v1/consumers/{CONSUMER_ID}/cards' \
   -u {ACCESS_KEY}:{SECRET_KEY} \
   -H 'Accept: application/json' \
-  -H 'HTTP_YOYO_TOKEN: {TOKEN}' 
+  -H 'HTTP_YOYO_TOKEN: {TOKEN}'
 ```
 
-```objective_c
+```swift
 	iOS SDK Code TBD
 ```
 
@@ -350,8 +374,13 @@ Same response format as adding a card.
 OTP generation is not available via an API call
 ```
 
-```objective_c
-	iOS SDK Code TBD
+```swift
+
+@IBOutlet var barcodeView: BarcodeView! {
+	didSet {
+		barcodeView.session = Yoyo.session
+	}
+}
 ```
 
 ```java
@@ -362,7 +391,7 @@ An OTP is a One Time Password is a automatically generated code which refreshes 
 
 <img src="images/otp.png" alt="One time password" style="width: 200px;"/>
 
-Your mobile application will need to generate an OTP to display to the retailer for scanning.  To generate an OTP you need to use the functionality in the SDK code. 
+Your mobile application will need to generate an OTP to display to the retailer for scanning.  To generate an OTP you need to use the functionality in the SDK code.
 
 
 
@@ -377,11 +406,116 @@ When a consumer makes purchases via the Yoyo Wallet platform, they will be recor
 curl 'https://api.test.yoyowallet.net/v1/consumers/{CONSUMER_ID}/transactions' \
   -u {ACCESS_KEY}:{SECRET_KEY} \
   -H 'Accept: application/json' \
-  -H 'HTTP_YOYO_TOKEN: {TOKEN}' 
+  -H 'HTTP_YOYO_TOKEN: {TOKEN}'
 ```
 
-```objective_c
-	iOS SDK Code TBD
+```swift
+import UIKit
+import CoreData
+import Yoyo
+
+class TransactionsViewController: UITableViewController {
+
+	//MARK: Properties
+	var fetchedResultsController: NSFetchedResultsController? {
+		didSet {
+			_ = try? fetchedResultsController?.performFetch()
+			fetchedResultsController?.delegate = self
+			tableView.reloadData()
+		}
+	}
+
+	let dateFormatter: NSDateFormatter = {
+		let dateFormatter = NSDateFormatter()
+		dateFormatter.timeStyle = NSDateFormatterStyle.MediumStyle
+		dateFormatter.dateStyle = NSDateFormatterStyle.LongStyle
+		return dateFormatter
+	}()
+
+	// MARK: UIViewController Lifecycle
+	override func viewDidLoad() {
+		super.viewDidLoad()
+
+		guard
+			let session = Yoyo.session,
+			let dataController = Yoyo.dataController
+		else {
+			return
+		}
+
+		fetchedResultsController = dataController.transactionsFetchedResultsController(session: session)
+	}
+}
+
+// MARK: UITableViewDataSource
+extension TransactionsViewController {
+
+	override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+
+		guard
+			let sectionInfo = fetchedResultsController?.sections?[section]
+			else {
+				return 0
+		}
+
+		return sectionInfo.numberOfObjects
+	}
+
+	override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+
+		let object = fetchedResultsController?.objectAtIndexPath(indexPath)
+
+		guard
+			let cell = tableView.dequeueReusableCellWithIdentifier("cell"),
+			let transaction = object as? Transaction
+			else {
+				return UITableViewCell()
+		}
+
+		cell.textLabel?.text = dateFormatter.stringFromOptionalDate(transaction.creationDate)
+		cell.detailTextLabel?.text = transaction.identifier
+
+		return cell
+	}
+}
+
+// MARK: NSFetchedResultsControllerDelegate
+extension TransactionsViewController: NSFetchedResultsControllerDelegate {
+
+	func controllerWillChangeContent(controller: NSFetchedResultsController) {
+		tableView?.beginUpdates()
+	}
+
+	func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
+
+		switch type {
+
+		case .Insert:
+			if let newIndexPath = newIndexPath {
+				tableView?.insertRowsAtIndexPaths([newIndexPath], withRowAnimation: .Fade)
+			}
+
+		case .Update:
+			if let indexPath = indexPath {
+				tableView?.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+			}
+
+		case .Move:
+			if let indexPath = indexPath, newIndexPath = newIndexPath {
+				tableView?.moveRowAtIndexPath(indexPath, toIndexPath: newIndexPath)
+			}
+
+		case .Delete:
+			if let indexPath = indexPath {
+				tableView?.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+			}
+		}
+	}
+
+	func controllerDidChangeContent(controller: NSFetchedResultsController) {
+		tableView?.endUpdates()
+	}
+}
 ```
 
 ```java
@@ -517,11 +651,117 @@ When a consumer earns vouchers on Yoyo Wallet platform, they will be appear in t
 curl 'https://api.test.yoyowallet.net/v1/consumers/{CONSUMER_ID}/vouchers' \
   -u {ACCESS_KEY}:{SECRET_KEY} \
   -H 'Accept: application/json' \
-  -H 'HTTP_YOYO_TOKEN: {TOKEN}' 
+  -H 'HTTP_YOYO_TOKEN: {TOKEN}'
 ```
 
-```objective_c
-	iOS SDK Code TBD
+```swift
+import UIKit
+import CoreData
+import Yoyo
+
+class VouchersViewController: UITableViewController {
+
+	//MARK: Properties
+	var fetchedResultsController: NSFetchedResultsController? {
+		didSet {
+			_ = try? fetchedResultsController?.performFetch()
+			fetchedResultsController?.delegate = self
+			tableView.reloadData()
+		}
+	}
+
+	let dateFormatter: NSDateFormatter = {
+		let dateFormatter = NSDateFormatter()
+		dateFormatter.timeStyle = NSDateFormatterStyle.MediumStyle
+		dateFormatter.dateStyle = NSDateFormatterStyle.LongStyle
+		return dateFormatter
+	}()
+
+	//MARK: UIViewController Lifecycle
+	override func viewDidLoad() {
+
+		super.viewDidLoad()
+
+		guard
+			let session = Yoyo.session,
+			let dataController = Yoyo.dataController
+			else {
+				return
+		}
+
+		fetchedResultsController = dataController.vouchersFetchedResultsController(session: session)
+	}
+}
+
+// MARK: UITableViewDataSource
+extension VouchersViewController {
+
+	override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+
+		guard
+			let sectionInfo = fetchedResultsController?.sections?[section]
+			else {
+				return 0
+		}
+
+		return sectionInfo.numberOfObjects
+	}
+
+	override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+
+		let object = fetchedResultsController?.objectAtIndexPath(indexPath)
+
+		guard
+			let cell = tableView.dequeueReusableCellWithIdentifier("cell"),
+			let voucher = object as? Voucher
+			else {
+				return UITableViewCell()
+		}
+
+		cell.textLabel?.text = dateFormatter.stringFromOptionalDate(voucher.creationDate)
+		cell.detailTextLabel?.text = voucher.identifier
+
+		return cell
+	}
+}
+
+// MARK: NSFetchedResultsControllerDelegate
+extension VouchersViewController: NSFetchedResultsControllerDelegate {
+
+	func controllerWillChangeContent(controller: NSFetchedResultsController) {
+		tableView?.beginUpdates()
+	}
+
+	func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
+
+		switch type {
+
+		case .Insert:
+			if let newIndexPath = newIndexPath {
+				tableView?.insertRowsAtIndexPaths([newIndexPath], withRowAnimation: .Fade)
+			}
+
+		case .Update:
+			if let indexPath = indexPath {
+				tableView?.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+			}
+
+		case .Move:
+			if let indexPath = indexPath, newIndexPath = newIndexPath {
+				tableView?.moveRowAtIndexPath(indexPath, toIndexPath: newIndexPath)
+			}
+
+		case .Delete:
+			if let indexPath = indexPath {
+				tableView?.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+			}
+		}
+	}
+
+	func controllerDidChangeContent(controller: NSFetchedResultsController) {
+		tableView?.endUpdates()
+	}
+}
 ```
 
 ```java
