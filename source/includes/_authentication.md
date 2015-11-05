@@ -23,8 +23,15 @@ curl 'https://api.test.yoyowallet.net/v1/accounts/{ACCOUNT_ID}' \
   -u {ACCESS_KEY}:{SECRET_KEY}
 ```
 
-```objective_c
-	iOS SDK Code TBD
+```swift
+func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject : AnyObject]?) -> Bool {
+
+  Yoyo.APIKey = "YOUR_API_KEY"
+  Yoyo.APISecret = "YOUR_API_SECRET"
+  Yoyo.accountID = "YOUR_ACCOUNT_ID"
+
+  return true
+}
 ```
 
 ```java
@@ -33,5 +40,3 @@ curl 'https://api.test.yoyowallet.net/v1/accounts/{ACCOUNT_ID}' \
 
 
 > Make sure to replace `{ACCESS_KEY}` and `{SECRET_KEY}` with your real API credentials.
-
-

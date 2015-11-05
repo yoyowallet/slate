@@ -3,7 +3,7 @@ title: Yoyo Wallet API Reference
 
 language_tabs:
   - shell
-  - objective_c
+  - swift
   - java
 
 toc_footers:
@@ -21,6 +21,3 @@ includes:
 
 search: true
 ---
-
-
-

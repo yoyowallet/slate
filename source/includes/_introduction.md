@@ -1,6 +1,6 @@
 # Introduction
 
-Welcome to the Yoyo Wallet platform. 
+Welcome to the Yoyo Wallet platform.
 
 The platform opens up the functionality of Yoyo Wallet to application developers.
 
@@ -30,7 +30,7 @@ Once you're registered with a Yoyo Wallet account you'll get the following infor
 Parameter | Description
 --------- | -----------
 account_id | This is your unique account identifer
-access_key | This is your access key 
+access_key | This is your access key
 secret_key | This is your secret key (keep it somewhere safe...)
 
 We'll also create an administrative user so you can login to our [dashboard](https://dashboard.test.yoyowallet.net) and manage your account.
@@ -39,7 +39,7 @@ We'll also create an administrative user so you can login to our [dashboard](htt
 
 We have developed iOS and Android SDKs that make it easy to interact with the most useful endpoints on our platform.  These SDKs are focused on making it easy to build an application on top of the Yoyo Wallet platform.
 
-In fact we're using the SDK ourselves to build the next version of Yoyo Wallet as we speak. 
+In fact we're using the SDK ourselves to build the next version of Yoyo Wallet as we speak.
 
 ### iOS SDK
 
