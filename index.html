@@ -13,7 +13,7 @@
 
       <script>
         $(function() {
-          setupLanguages(["shell","objective_c","java"]);
+          setupLanguages(["shell","swift","java"]);
         });
       </script>
   </head>
@@ -29,7 +29,7 @@
       <img src="images/logo.png" />
         <div class="lang-selector">
               <a href="#" data-language-name="shell">shell</a>
-              <a href="#" data-language-name="objective_c">objective_c</a>
+              <a href="#" data-language-name="swift">swift</a>
               <a href="#" data-language-name="java">java</a>
         </div>
         <div class="search">
@@ -48,7 +48,7 @@
         
           <h1 id="introduction">Introduction</h1>
 
-<p>Welcome to the Yoyo Wallet platform. </p>
+<p>Welcome to the Yoyo Wallet platform.</p>
 
 <p>The platform opens up the functionality of Yoyo Wallet to application developers.</p>
 
@@ -105,7 +105,7 @@
 
 <p>We have developed iOS and Android SDKs that make it easy to interact with the most useful endpoints on our platform.  These SDKs are focused on making it easy to build an application on top of the Yoyo Wallet platform.</p>
 
-<p>In fact we&rsquo;re using the SDK ourselves to build the next version of Yoyo Wallet as we speak. </p>
+<p>In fact we&rsquo;re using the SDK ourselves to build the next version of Yoyo Wallet as we speak.</p>
 
 <h3 id="ios-sdk">iOS SDK</h3>
 
@@ -191,7 +191,14 @@ You must replace <code>{ACCESS_KEY}_{SECRET_KEY}</code> with your real API crede
 curl <span class="s1">'https://api.test.yoyowallet.net/v1/accounts/{ACCOUNT_ID}'</span> <span class="se">\</span>
   -u <span class="o">{</span>ACCESS_KEY<span class="o">}</span>:<span class="o">{</span>SECRET_KEY<span class="o">}</span>
 </code></pre>
-<pre class="highlight objective_c"><code>    <span class="n">iOS</span> <span class="n">SDK</span> <span class="n">Code</span> <span class="n">TBD</span>
+<pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">application</span><span class="p">(</span><span class="nv">application</span><span class="p">:</span> <span class="kt">UIApplication</span><span class="p">,</span> <span class="n">didFinishLaunchingWithOptions</span> <span class="nv">launchOptions</span><span class="p">:</span> <span class="p">[</span><span class="kt">NSObject</span> <span class="p">:</span> <span class="kt">AnyObject</span><span class="p">]?)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span> <span class="p">{</span>
+
+  <span class="kt">Yoyo</span><span class="o">.</span><span class="kt">APIKey</span> <span class="o">=</span> <span class="s">"YOUR_API_KEY"</span>
+  <span class="kt">Yoyo</span><span class="o">.</span><span class="kt">APISecret</span> <span class="o">=</span> <span class="s">"YOUR_API_SECRET"</span>
+  <span class="kt">Yoyo</span><span class="o">.</span><span class="n">accountID</span> <span class="o">=</span> <span class="s">"YOUR_ACCOUNT_ID"</span>
+
+  <span class="k">return</span> <span class="kc">true</span>
+<span class="p">}</span>
 </code></pre>
 <pre class="highlight java"><code>    <span class="n">Android</span> <span class="n">SDK</span> <span class="n">Code</span> <span class="n">TBD</span>
 </code></pre>
@@ -218,17 +225,41 @@ curl <span class="s1">'https://api.test.yoyowallet.net/v1/accounts/{ACCOUNT_ID}'
 <p>You POST a request to the API containing the consumers phone number and email address.</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
-    </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tommy.tester@example.com"</span><span class="p">,</span><span class="w"> 
+    </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tommy.tester@example.com"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"441234567890"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <pre class="highlight shell"><code>curl <span class="s1">'https://api.test.yoyowallet.net/v1/consumer-passcodes'</span> <span class="se">\</span>
   -u <span class="o">{</span>ACCESS_KEY<span class="o">}</span>:<span class="o">{</span>SECRET_KEY<span class="o">}</span> <span class="se">\</span>
-  -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\ </span>
+  -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
   -H <span class="s1">'Accept: application/json'</span> <span class="se">\</span>
   --data-binary <span class="nv">$'</span><span class="o">{</span><span class="s2">"email"</span>: <span class="s2">"tommy.tester@example.com"</span>, <span class="s2">"phone"</span>: <span class="s2">"441234567890"</span><span class="o">}</span><span class="s1">'
 </span></code></pre>
-<pre class="highlight objective_c"><code>    <span class="n">iOS</span> <span class="n">SDK</span> <span class="n">Code</span> <span class="n">TBD</span>
+<pre class="highlight swift"><code><span class="kd">import</span> <span class="kt">UIKit</span>
+<span class="kd">import</span> <span class="kt">Yoyo</span>
+
+<span class="kd">class</span> <span class="kt">ViewController</span><span class="p">:</span> <span class="kt">UIViewController</span><span class="p">,</span> <span class="kt">LoginViewControllerDelegate</span> <span class="p">{</span>
+
+    <span class="kd">func</span> <span class="nf">login</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">let</span> <span class="nv">loginViewController</span> <span class="o">=</span> <span class="kt">Yoyo</span><span class="o">.</span><span class="n">loginViewController</span>
+        <span class="n">loginViewController</span><span class="o">.</span><span class="n">loginDelegate</span> <span class="o">=</span> <span class="k">self</span>
+        <span class="nf">presentViewController</span><span class="p">(</span><span class="n">loginViewController</span><span class="p">,</span> <span class="nv">animated</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="kc">nil</span><span class="p">)</span>
+    <span class="p">}</span>
+
+    <span class="c1">// MARK: LoginViewControllerDelegate</span>
+    <span class="kd">func</span> <span class="nf">loginViewController</span><span class="p">(</span><span class="nv">loginViewController</span><span class="p">:</span> <span class="kt">LoginViewController</span><span class="p">,</span> <span class="n">didFinishWithResult</span> <span class="nv">result</span><span class="p">:</span> <span class="kt">LoginResult</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nf">dismissViewControllerAnimated</span><span class="p">(</span><span class="kc">true</span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="kc">nil</span><span class="p">)</span>
+
+        <span class="k">switch</span> <span class="n">result</span> <span class="p">{</span>
+        <span class="k">case</span> <span class="o">.</span><span class="kt">Success</span><span class="p">:</span>
+            <span class="nf">print</span><span class="p">(</span><span class="s">"Logged in successfully"</span><span class="p">)</span>
+        <span class="k">case</span> <span class="o">.</span><span class="kt">Failed</span><span class="p">:</span>
+            <span class="nf">print</span><span class="p">(</span><span class="s">"Something went wrong"</span><span class="p">)</span>
+        <span class="k">case</span> <span class="o">.</span><span class="kt">Cancelled</span><span class="p">:</span>
+            <span class="nf">print</span><span class="p">(</span><span class="s">"User cancelled Login"</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 </code></pre>
 <pre class="highlight java"><code>    <span class="n">Android</span> <span class="n">SDK</span> <span class="n">Code</span> <span class="n">TBD</span>
 </code></pre>
@@ -336,7 +367,7 @@ curl <span class="s1">'https://api.test.yoyowallet.net/v1/accounts/{ACCOUNT_ID}'
   <span class="s2">"passcode_code"</span>: <span class="s2">"18442"</span>, <span class="se">\</span>
   <span class="s2">"passcode_id"</span>: <span class="s2">"dc05a248-8172-11e5-aa5b-0abe262b2ce9"</span><span class="o">}</span><span class="s1">'
 </span></code></pre>
-<pre class="highlight objective_c"><code>    <span class="n">iOS</span> <span class="n">SDK</span> <span class="n">Code</span> <span class="n">TBD</span>
+<pre class="highlight swift"><code>    <span class="n">iOS</span> <span class="kt">SDK</span> <span class="kt">Code</span> <span class="kt">TBD</span>
 </code></pre>
 <pre class="highlight java"><code>    <span class="n">Android</span> <span class="n">SDK</span> <span class="n">Code</span> <span class="n">TBD</span>
 </code></pre>
@@ -454,7 +485,7 @@ Sessions tokens are passed to the API in an HTTP header called &lsquo;HTTP_YOYO_
   -H <span class="s1">'Accept: application/json'</span> <span class="se">\</span>
   --data-binary <span class="nv">$'</span><span class="o">{</span> <span class="s2">"bin"</span>: <span class="s2">"123456"</span>, <span class="s2">"number"</span>: <span class="s2">"123456789012345678"</span>, <span class="s2">"exp_month"</span>: 12, <span class="s2">"exp_year"</span>: 2018, <span class="s2">"cvv"</span>: 999, <span class="s2">"postcode"</span>: <span class="s2">"N1 7ER"</span> <span class="o">}</span><span class="s1">'
 </span></code></pre>
-<pre class="highlight objective_c"><code>    <span class="n">iOS</span> <span class="n">SDK</span> <span class="n">Code</span> <span class="n">TBD</span>
+<pre class="highlight swift"><code>    <span class="n">iOS</span> <span class="kt">SDK</span> <span class="kt">Code</span> <span class="kt">TBD</span>
 </code></pre>
 <pre class="highlight java"><code>    <span class="n">Android</span> <span class="n">SDK</span> <span class="n">Code</span> <span class="n">TBD</span>
 </code></pre>
@@ -589,7 +620,7 @@ Note - in our playground environment we are connected to the Stripe sandbox, so 
   -u <span class="o">{</span>ACCESS_KEY<span class="o">}</span>:<span class="o">{</span>SECRET_KEY<span class="o">}</span>  <span class="se">\</span>
   -H <span class="s1">'HTTP_YOYO_TOKEN: {TOKEN}'</span>
 </code></pre>
-<pre class="highlight objective_c"><code>    <span class="n">iOS</span> <span class="n">SDK</span> <span class="n">Code</span> <span class="n">TBD</span>
+<pre class="highlight swift"><code>    <span class="n">iOS</span> <span class="kt">SDK</span> <span class="kt">Code</span> <span class="kt">TBD</span>
 </code></pre>
 <pre class="highlight java"><code>    <span class="n">Android</span> <span class="n">SDK</span> <span class="n">Code</span> <span class="n">TBD</span>
 </code></pre>
@@ -604,9 +635,9 @@ Note - in our playground environment we are connected to the Stripe sandbox, so 
 <pre class="highlight shell"><code>curl <span class="s1">'https://api.test.yoyowallet.net/v1/consumers/{CONSUMER_ID}/cards'</span> <span class="se">\</span>
   -u <span class="o">{</span>ACCESS_KEY<span class="o">}</span>:<span class="o">{</span>SECRET_KEY<span class="o">}</span> <span class="se">\</span>
   -H <span class="s1">'Accept: application/json'</span> <span class="se">\</span>
-  -H <span class="s1">'HTTP_YOYO_TOKEN: {TOKEN}'</span> 
+  -H <span class="s1">'HTTP_YOYO_TOKEN: {TOKEN}'</span>
 </code></pre>
-<pre class="highlight objective_c"><code>    <span class="n">iOS</span> <span class="n">SDK</span> <span class="n">Code</span> <span class="n">TBD</span>
+<pre class="highlight swift"><code>    <span class="n">iOS</span> <span class="kt">SDK</span> <span class="kt">Code</span> <span class="kt">TBD</span>
 </code></pre>
 <pre class="highlight java"><code>    <span class="n">Android</span> <span class="n">SDK</span> <span class="n">Code</span> <span class="n">TBD</span>
 </code></pre>
@@ -666,7 +697,12 @@ Note - in our playground environment we are connected to the Stripe sandbox, so 
 <h2 id="otp">OTP</h2>
 <pre class="highlight shell"><code>OTP generation is not available via an API call
 </code></pre>
-<pre class="highlight objective_c"><code>    <span class="n">iOS</span> <span class="n">SDK</span> <span class="n">Code</span> <span class="n">TBD</span>
+<pre class="highlight swift"><code>
+<span class="k">@IBOutlet</span> <span class="k">var</span> <span class="nv">barcodeView</span><span class="p">:</span> <span class="kt">BarcodeView</span><span class="o">!</span> <span class="p">{</span>
+    <span class="k">didSet</span> <span class="p">{</span>
+        <span class="n">barcodeView</span><span class="o">.</span><span class="n">session</span> <span class="o">=</span> <span class="kt">Yoyo</span><span class="o">.</span><span class="n">session</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 </code></pre>
 <pre class="highlight java"><code>    <span class="n">Android</span> <span class="n">SDK</span> <span class="n">Code</span> <span class="n">TBD</span>
 </code></pre>
@@ -675,7 +711,7 @@ Note - in our playground environment we are connected to the Stripe sandbox, so 
 
 <p><img src="images/otp.png" alt="One time password" style="width: 200px;"/></p>
 
-<p>Your mobile application will need to generate an OTP to display to the retailer for scanning.  To generate an OTP you need to use the functionality in the SDK code. </p>
+<p>Your mobile application will need to generate an OTP to display to the retailer for scanning.  To generate an OTP you need to use the functionality in the SDK code.</p>
 
 <h2 id="transactions">Transactions</h2>
 
@@ -687,9 +723,114 @@ Note - in our playground environment we are connected to the Stripe sandbox, so 
 <pre class="highlight shell"><code>curl <span class="s1">'https://api.test.yoyowallet.net/v1/consumers/{CONSUMER_ID}/transactions'</span> <span class="se">\</span>
   -u <span class="o">{</span>ACCESS_KEY<span class="o">}</span>:<span class="o">{</span>SECRET_KEY<span class="o">}</span> <span class="se">\</span>
   -H <span class="s1">'Accept: application/json'</span> <span class="se">\</span>
-  -H <span class="s1">'HTTP_YOYO_TOKEN: {TOKEN}'</span> 
+  -H <span class="s1">'HTTP_YOYO_TOKEN: {TOKEN}'</span>
 </code></pre>
-<pre class="highlight objective_c"><code>    <span class="n">iOS</span> <span class="n">SDK</span> <span class="n">Code</span> <span class="n">TBD</span>
+<pre class="highlight swift"><code><span class="kd">import</span> <span class="kt">UIKit</span>
+<span class="kd">import</span> <span class="kt">CoreData</span>
+<span class="kd">import</span> <span class="kt">Yoyo</span>
+
+<span class="kd">class</span> <span class="kt">TransactionsViewController</span><span class="p">:</span> <span class="kt">UITableViewController</span> <span class="p">{</span>
+
+    <span class="c1">//MARK: Properties</span>
+    <span class="k">var</span> <span class="nv">fetchedResultsController</span><span class="p">:</span> <span class="kt">NSFetchedResultsController</span><span class="p">?</span> <span class="p">{</span>
+        <span class="k">didSet</span> <span class="p">{</span>
+            <span class="n">_</span> <span class="o">=</span> <span class="n">try</span><span class="p">?</span> <span class="n">fetchedResultsController</span><span class="p">?</span><span class="o">.</span><span class="nf">performFetch</span><span class="p">()</span>
+            <span class="n">fetchedResultsController</span><span class="p">?</span><span class="o">.</span><span class="n">delegate</span> <span class="o">=</span> <span class="k">self</span>
+            <span class="n">tableView</span><span class="o">.</span><span class="nf">reloadData</span><span class="p">()</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="k">let</span> <span class="nv">dateFormatter</span><span class="p">:</span> <span class="kt">NSDateFormatter</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="k">let</span> <span class="nv">dateFormatter</span> <span class="o">=</span> <span class="kt">NSDateFormatter</span><span class="p">()</span>
+        <span class="n">dateFormatter</span><span class="o">.</span><span class="n">timeStyle</span> <span class="o">=</span> <span class="kt">NSDateFormatterStyle</span><span class="o">.</span><span class="kt">MediumStyle</span>
+        <span class="n">dateFormatter</span><span class="o">.</span><span class="n">dateStyle</span> <span class="o">=</span> <span class="kt">NSDateFormatterStyle</span><span class="o">.</span><span class="kt">LongStyle</span>
+        <span class="k">return</span> <span class="n">dateFormatter</span>
+    <span class="p">}()</span>
+
+    <span class="c1">// MARK: UIViewController Lifecycle</span>
+    <span class="k">override</span> <span class="kd">func</span> <span class="nf">viewDidLoad</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">super</span><span class="o">.</span><span class="nf">viewDidLoad</span><span class="p">()</span>
+
+        <span class="n">guard</span>
+            <span class="k">let</span> <span class="nv">session</span> <span class="o">=</span> <span class="kt">Yoyo</span><span class="o">.</span><span class="n">session</span><span class="p">,</span>
+            <span class="k">let</span> <span class="nv">dataController</span> <span class="o">=</span> <span class="kt">Yoyo</span><span class="o">.</span><span class="n">dataController</span>
+        <span class="k">else</span> <span class="p">{</span>
+            <span class="k">return</span>
+        <span class="p">}</span>
+
+        <span class="n">fetchedResultsController</span> <span class="o">=</span> <span class="n">dataController</span><span class="o">.</span><span class="nf">transactionsFetchedResultsController</span><span class="p">(</span><span class="nv">session</span><span class="p">:</span> <span class="n">session</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// MARK: UITableViewDataSource</span>
+<span class="kd">extension</span> <span class="kt">TransactionsViewController</span> <span class="p">{</span>
+
+    <span class="k">override</span> <span class="kd">func</span> <span class="nf">tableView</span><span class="p">(</span><span class="nv">tableView</span><span class="p">:</span> <span class="kt">UITableView</span><span class="p">,</span> <span class="n">numberOfRowsInSection</span> <span class="nv">section</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Int</span> <span class="p">{</span>
+
+        <span class="n">guard</span>
+            <span class="k">let</span> <span class="nv">sectionInfo</span> <span class="o">=</span> <span class="n">fetchedResultsController</span><span class="p">?</span><span class="o">.</span><span class="n">sections</span><span class="p">?[</span><span class="n">section</span><span class="p">]</span>
+            <span class="k">else</span> <span class="p">{</span>
+                <span class="k">return</span> <span class="mi">0</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="n">sectionInfo</span><span class="o">.</span><span class="n">numberOfObjects</span>
+    <span class="p">}</span>
+
+    <span class="k">override</span> <span class="kd">func</span> <span class="nf">tableView</span><span class="p">(</span><span class="nv">tableView</span><span class="p">:</span> <span class="kt">UITableView</span><span class="p">,</span> <span class="n">cellForRowAtIndexPath</span> <span class="nv">indexPath</span><span class="p">:</span> <span class="kt">NSIndexPath</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">UITableViewCell</span> <span class="p">{</span>
+
+        <span class="k">let</span> <span class="nv">object</span> <span class="o">=</span> <span class="n">fetchedResultsController</span><span class="p">?</span><span class="o">.</span><span class="nf">objectAtIndexPath</span><span class="p">(</span><span class="n">indexPath</span><span class="p">)</span>
+
+        <span class="n">guard</span>
+            <span class="k">let</span> <span class="nv">cell</span> <span class="o">=</span> <span class="n">tableView</span><span class="o">.</span><span class="nf">dequeueReusableCellWithIdentifier</span><span class="p">(</span><span class="s">"cell"</span><span class="p">),</span>
+            <span class="k">let</span> <span class="nv">transaction</span> <span class="o">=</span> <span class="n">object</span> <span class="k">as?</span> <span class="kt">Transaction</span>
+            <span class="k">else</span> <span class="p">{</span>
+                <span class="k">return</span> <span class="kt">UITableViewCell</span><span class="p">()</span>
+        <span class="p">}</span>
+
+        <span class="n">cell</span><span class="o">.</span><span class="n">textLabel</span><span class="p">?</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="n">dateFormatter</span><span class="o">.</span><span class="nf">stringFromOptionalDate</span><span class="p">(</span><span class="n">transaction</span><span class="o">.</span><span class="n">creationDate</span><span class="p">)</span>
+        <span class="n">cell</span><span class="o">.</span><span class="n">detailTextLabel</span><span class="p">?</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="n">transaction</span><span class="o">.</span><span class="n">identifier</span>
+
+        <span class="k">return</span> <span class="n">cell</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// MARK: NSFetchedResultsControllerDelegate</span>
+<span class="kd">extension</span> <span class="kt">TransactionsViewController</span><span class="p">:</span> <span class="kt">NSFetchedResultsControllerDelegate</span> <span class="p">{</span>
+
+    <span class="kd">func</span> <span class="nf">controllerWillChangeContent</span><span class="p">(</span><span class="nv">controller</span><span class="p">:</span> <span class="kt">NSFetchedResultsController</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">tableView</span><span class="p">?</span><span class="o">.</span><span class="nf">beginUpdates</span><span class="p">()</span>
+    <span class="p">}</span>
+
+    <span class="kd">func</span> <span class="nf">controller</span><span class="p">(</span><span class="nv">controller</span><span class="p">:</span> <span class="kt">NSFetchedResultsController</span><span class="p">,</span> <span class="n">didChangeObject</span> <span class="nv">anObject</span><span class="p">:</span> <span class="kt">AnyObject</span><span class="p">,</span> <span class="n">atIndexPath</span> <span class="nv">indexPath</span><span class="p">:</span> <span class="kt">NSIndexPath</span><span class="p">?,</span> <span class="n">forChangeType</span> <span class="nv">type</span><span class="p">:</span> <span class="kt">NSFetchedResultsChangeType</span><span class="p">,</span> <span class="nv">newIndexPath</span><span class="p">:</span> <span class="kt">NSIndexPath</span><span class="p">?)</span> <span class="p">{</span>
+
+        <span class="k">switch</span> <span class="n">type</span> <span class="p">{</span>
+
+        <span class="k">case</span> <span class="o">.</span><span class="kt">Insert</span><span class="p">:</span>
+            <span class="k">if</span> <span class="k">let</span> <span class="nv">newIndexPath</span> <span class="o">=</span> <span class="n">newIndexPath</span> <span class="p">{</span>
+                <span class="n">tableView</span><span class="p">?</span><span class="o">.</span><span class="nf">insertRowsAtIndexPaths</span><span class="p">([</span><span class="n">newIndexPath</span><span class="p">],</span> <span class="nv">withRowAnimation</span><span class="p">:</span> <span class="o">.</span><span class="kt">Fade</span><span class="p">)</span>
+            <span class="p">}</span>
+
+        <span class="k">case</span> <span class="o">.</span><span class="kt">Update</span><span class="p">:</span>
+            <span class="k">if</span> <span class="k">let</span> <span class="nv">indexPath</span> <span class="o">=</span> <span class="n">indexPath</span> <span class="p">{</span>
+                <span class="n">tableView</span><span class="p">?</span><span class="o">.</span><span class="nf">reloadRowsAtIndexPaths</span><span class="p">([</span><span class="n">indexPath</span><span class="p">],</span> <span class="nv">withRowAnimation</span><span class="p">:</span> <span class="o">.</span><span class="kt">Fade</span><span class="p">)</span>
+            <span class="p">}</span>
+
+        <span class="k">case</span> <span class="o">.</span><span class="kt">Move</span><span class="p">:</span>
+            <span class="k">if</span> <span class="k">let</span> <span class="nv">indexPath</span> <span class="o">=</span> <span class="n">indexPath</span><span class="p">,</span> <span class="n">newIndexPath</span> <span class="o">=</span> <span class="n">newIndexPath</span> <span class="p">{</span>
+                <span class="n">tableView</span><span class="p">?</span><span class="o">.</span><span class="nf">moveRowAtIndexPath</span><span class="p">(</span><span class="n">indexPath</span><span class="p">,</span> <span class="nv">toIndexPath</span><span class="p">:</span> <span class="n">newIndexPath</span><span class="p">)</span>
+            <span class="p">}</span>
+
+        <span class="k">case</span> <span class="o">.</span><span class="kt">Delete</span><span class="p">:</span>
+            <span class="k">if</span> <span class="k">let</span> <span class="nv">indexPath</span> <span class="o">=</span> <span class="n">indexPath</span> <span class="p">{</span>
+                <span class="n">tableView</span><span class="p">?</span><span class="o">.</span><span class="nf">deleteRowsAtIndexPaths</span><span class="p">([</span><span class="n">indexPath</span><span class="p">],</span> <span class="nv">withRowAnimation</span><span class="p">:</span> <span class="o">.</span><span class="kt">Fade</span><span class="p">)</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="kd">func</span> <span class="nf">controllerDidChangeContent</span><span class="p">(</span><span class="nv">controller</span><span class="p">:</span> <span class="kt">NSFetchedResultsController</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">tableView</span><span class="p">?</span><span class="o">.</span><span class="nf">endUpdates</span><span class="p">()</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 </code></pre>
 <pre class="highlight java"><code>    <span class="n">Android</span> <span class="n">SDK</span> <span class="n">Code</span> <span class="n">TBD</span>
 </code></pre>
@@ -945,9 +1086,115 @@ Note - in our playground environment we are connected to the Stripe sandbox, so 
 <pre class="highlight shell"><code>curl <span class="s1">'https://api.test.yoyowallet.net/v1/consumers/{CONSUMER_ID}/vouchers'</span> <span class="se">\</span>
   -u <span class="o">{</span>ACCESS_KEY<span class="o">}</span>:<span class="o">{</span>SECRET_KEY<span class="o">}</span> <span class="se">\</span>
   -H <span class="s1">'Accept: application/json'</span> <span class="se">\</span>
-  -H <span class="s1">'HTTP_YOYO_TOKEN: {TOKEN}'</span> 
+  -H <span class="s1">'HTTP_YOYO_TOKEN: {TOKEN}'</span>
 </code></pre>
-<pre class="highlight objective_c"><code>    <span class="n">iOS</span> <span class="n">SDK</span> <span class="n">Code</span> <span class="n">TBD</span>
+<pre class="highlight swift"><code><span class="kd">import</span> <span class="kt">UIKit</span>
+<span class="kd">import</span> <span class="kt">CoreData</span>
+<span class="kd">import</span> <span class="kt">Yoyo</span>
+
+<span class="kd">class</span> <span class="kt">VouchersViewController</span><span class="p">:</span> <span class="kt">UITableViewController</span> <span class="p">{</span>
+
+    <span class="c1">//MARK: Properties</span>
+    <span class="k">var</span> <span class="nv">fetchedResultsController</span><span class="p">:</span> <span class="kt">NSFetchedResultsController</span><span class="p">?</span> <span class="p">{</span>
+        <span class="k">didSet</span> <span class="p">{</span>
+            <span class="n">_</span> <span class="o">=</span> <span class="n">try</span><span class="p">?</span> <span class="n">fetchedResultsController</span><span class="p">?</span><span class="o">.</span><span class="nf">performFetch</span><span class="p">()</span>
+            <span class="n">fetchedResultsController</span><span class="p">?</span><span class="o">.</span><span class="n">delegate</span> <span class="o">=</span> <span class="k">self</span>
+            <span class="n">tableView</span><span class="o">.</span><span class="nf">reloadData</span><span class="p">()</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="k">let</span> <span class="nv">dateFormatter</span><span class="p">:</span> <span class="kt">NSDateFormatter</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="k">let</span> <span class="nv">dateFormatter</span> <span class="o">=</span> <span class="kt">NSDateFormatter</span><span class="p">()</span>
+        <span class="n">dateFormatter</span><span class="o">.</span><span class="n">timeStyle</span> <span class="o">=</span> <span class="kt">NSDateFormatterStyle</span><span class="o">.</span><span class="kt">MediumStyle</span>
+        <span class="n">dateFormatter</span><span class="o">.</span><span class="n">dateStyle</span> <span class="o">=</span> <span class="kt">NSDateFormatterStyle</span><span class="o">.</span><span class="kt">LongStyle</span>
+        <span class="k">return</span> <span class="n">dateFormatter</span>
+    <span class="p">}()</span>
+
+    <span class="c1">//MARK: UIViewController Lifecycle</span>
+    <span class="k">override</span> <span class="kd">func</span> <span class="nf">viewDidLoad</span><span class="p">()</span> <span class="p">{</span>
+
+        <span class="k">super</span><span class="o">.</span><span class="nf">viewDidLoad</span><span class="p">()</span>
+
+        <span class="n">guard</span>
+            <span class="k">let</span> <span class="nv">session</span> <span class="o">=</span> <span class="kt">Yoyo</span><span class="o">.</span><span class="n">session</span><span class="p">,</span>
+            <span class="k">let</span> <span class="nv">dataController</span> <span class="o">=</span> <span class="kt">Yoyo</span><span class="o">.</span><span class="n">dataController</span>
+            <span class="k">else</span> <span class="p">{</span>
+                <span class="k">return</span>
+        <span class="p">}</span>
+
+        <span class="n">fetchedResultsController</span> <span class="o">=</span> <span class="n">dataController</span><span class="o">.</span><span class="nf">vouchersFetchedResultsController</span><span class="p">(</span><span class="nv">session</span><span class="p">:</span> <span class="n">session</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// MARK: UITableViewDataSource</span>
+<span class="kd">extension</span> <span class="kt">VouchersViewController</span> <span class="p">{</span>
+
+    <span class="k">override</span> <span class="kd">func</span> <span class="nf">tableView</span><span class="p">(</span><span class="nv">tableView</span><span class="p">:</span> <span class="kt">UITableView</span><span class="p">,</span> <span class="n">numberOfRowsInSection</span> <span class="nv">section</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Int</span> <span class="p">{</span>
+
+        <span class="n">guard</span>
+            <span class="k">let</span> <span class="nv">sectionInfo</span> <span class="o">=</span> <span class="n">fetchedResultsController</span><span class="p">?</span><span class="o">.</span><span class="n">sections</span><span class="p">?[</span><span class="n">section</span><span class="p">]</span>
+            <span class="k">else</span> <span class="p">{</span>
+                <span class="k">return</span> <span class="mi">0</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="n">sectionInfo</span><span class="o">.</span><span class="n">numberOfObjects</span>
+    <span class="p">}</span>
+
+    <span class="k">override</span> <span class="kd">func</span> <span class="nf">tableView</span><span class="p">(</span><span class="nv">tableView</span><span class="p">:</span> <span class="kt">UITableView</span><span class="p">,</span> <span class="n">cellForRowAtIndexPath</span> <span class="nv">indexPath</span><span class="p">:</span> <span class="kt">NSIndexPath</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">UITableViewCell</span> <span class="p">{</span>
+
+        <span class="k">let</span> <span class="nv">object</span> <span class="o">=</span> <span class="n">fetchedResultsController</span><span class="p">?</span><span class="o">.</span><span class="nf">objectAtIndexPath</span><span class="p">(</span><span class="n">indexPath</span><span class="p">)</span>
+
+        <span class="n">guard</span>
+            <span class="k">let</span> <span class="nv">cell</span> <span class="o">=</span> <span class="n">tableView</span><span class="o">.</span><span class="nf">dequeueReusableCellWithIdentifier</span><span class="p">(</span><span class="s">"cell"</span><span class="p">),</span>
+            <span class="k">let</span> <span class="nv">voucher</span> <span class="o">=</span> <span class="n">object</span> <span class="k">as?</span> <span class="kt">Voucher</span>
+            <span class="k">else</span> <span class="p">{</span>
+                <span class="k">return</span> <span class="kt">UITableViewCell</span><span class="p">()</span>
+        <span class="p">}</span>
+
+        <span class="n">cell</span><span class="o">.</span><span class="n">textLabel</span><span class="p">?</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="n">dateFormatter</span><span class="o">.</span><span class="nf">stringFromOptionalDate</span><span class="p">(</span><span class="n">voucher</span><span class="o">.</span><span class="n">creationDate</span><span class="p">)</span>
+        <span class="n">cell</span><span class="o">.</span><span class="n">detailTextLabel</span><span class="p">?</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="n">voucher</span><span class="o">.</span><span class="n">identifier</span>
+
+        <span class="k">return</span> <span class="n">cell</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// MARK: NSFetchedResultsControllerDelegate</span>
+<span class="kd">extension</span> <span class="kt">VouchersViewController</span><span class="p">:</span> <span class="kt">NSFetchedResultsControllerDelegate</span> <span class="p">{</span>
+
+    <span class="kd">func</span> <span class="nf">controllerWillChangeContent</span><span class="p">(</span><span class="nv">controller</span><span class="p">:</span> <span class="kt">NSFetchedResultsController</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">tableView</span><span class="p">?</span><span class="o">.</span><span class="nf">beginUpdates</span><span class="p">()</span>
+    <span class="p">}</span>
+
+    <span class="kd">func</span> <span class="nf">controller</span><span class="p">(</span><span class="nv">controller</span><span class="p">:</span> <span class="kt">NSFetchedResultsController</span><span class="p">,</span> <span class="n">didChangeObject</span> <span class="nv">anObject</span><span class="p">:</span> <span class="kt">AnyObject</span><span class="p">,</span> <span class="n">atIndexPath</span> <span class="nv">indexPath</span><span class="p">:</span> <span class="kt">NSIndexPath</span><span class="p">?,</span> <span class="n">forChangeType</span> <span class="nv">type</span><span class="p">:</span> <span class="kt">NSFetchedResultsChangeType</span><span class="p">,</span> <span class="nv">newIndexPath</span><span class="p">:</span> <span class="kt">NSIndexPath</span><span class="p">?)</span> <span class="p">{</span>
+
+        <span class="k">switch</span> <span class="n">type</span> <span class="p">{</span>
+
+        <span class="k">case</span> <span class="o">.</span><span class="kt">Insert</span><span class="p">:</span>
+            <span class="k">if</span> <span class="k">let</span> <span class="nv">newIndexPath</span> <span class="o">=</span> <span class="n">newIndexPath</span> <span class="p">{</span>
+                <span class="n">tableView</span><span class="p">?</span><span class="o">.</span><span class="nf">insertRowsAtIndexPaths</span><span class="p">([</span><span class="n">newIndexPath</span><span class="p">],</span> <span class="nv">withRowAnimation</span><span class="p">:</span> <span class="o">.</span><span class="kt">Fade</span><span class="p">)</span>
+            <span class="p">}</span>
+
+        <span class="k">case</span> <span class="o">.</span><span class="kt">Update</span><span class="p">:</span>
+            <span class="k">if</span> <span class="k">let</span> <span class="nv">indexPath</span> <span class="o">=</span> <span class="n">indexPath</span> <span class="p">{</span>
+                <span class="n">tableView</span><span class="p">?</span><span class="o">.</span><span class="nf">reloadRowsAtIndexPaths</span><span class="p">([</span><span class="n">indexPath</span><span class="p">],</span> <span class="nv">withRowAnimation</span><span class="p">:</span> <span class="o">.</span><span class="kt">Fade</span><span class="p">)</span>
+            <span class="p">}</span>
+
+        <span class="k">case</span> <span class="o">.</span><span class="kt">Move</span><span class="p">:</span>
+            <span class="k">if</span> <span class="k">let</span> <span class="nv">indexPath</span> <span class="o">=</span> <span class="n">indexPath</span><span class="p">,</span> <span class="n">newIndexPath</span> <span class="o">=</span> <span class="n">newIndexPath</span> <span class="p">{</span>
+                <span class="n">tableView</span><span class="p">?</span><span class="o">.</span><span class="nf">moveRowAtIndexPath</span><span class="p">(</span><span class="n">indexPath</span><span class="p">,</span> <span class="nv">toIndexPath</span><span class="p">:</span> <span class="n">newIndexPath</span><span class="p">)</span>
+            <span class="p">}</span>
+
+        <span class="k">case</span> <span class="o">.</span><span class="kt">Delete</span><span class="p">:</span>
+            <span class="k">if</span> <span class="k">let</span> <span class="nv">indexPath</span> <span class="o">=</span> <span class="n">indexPath</span> <span class="p">{</span>
+                <span class="n">tableView</span><span class="p">?</span><span class="o">.</span><span class="nf">deleteRowsAtIndexPaths</span><span class="p">([</span><span class="n">indexPath</span><span class="p">],</span> <span class="nv">withRowAnimation</span><span class="p">:</span> <span class="o">.</span><span class="kt">Fade</span><span class="p">)</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="kd">func</span> <span class="nf">controllerDidChangeContent</span><span class="p">(</span><span class="nv">controller</span><span class="p">:</span> <span class="kt">NSFetchedResultsController</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">tableView</span><span class="p">?</span><span class="o">.</span><span class="nf">endUpdates</span><span class="p">()</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 </code></pre>
 <pre class="highlight java"><code>    <span class="n">Android</span> <span class="n">SDK</span> <span class="n">Code</span> <span class="n">TBD</span>
 </code></pre>
@@ -1189,7 +1436,7 @@ Note - in our playground environment we are connected to the Stripe sandbox, so 
       <div class="dark-box">
           <div class="lang-selector">
                 <a href="#" data-language-name="shell">shell</a>
-                <a href="#" data-language-name="objective_c">objective_c</a>
+                <a href="#" data-language-name="swift">swift</a>
                 <a href="#" data-language-name="java">java</a>
           </div>
       </div>
