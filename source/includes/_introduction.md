@@ -53,7 +53,7 @@ The Android SDK can be downloaded here: [http://](http://)
 
 If you're a web developer you may prefer to code directly against our RESTful API.  To make life easier for you web devs, we've also put a nice browser front end on the API for you to explore.
 
-The sandbox version can be found here: [http://api.test.yoyowallet.net/apidocs/](http://api.test.yoyowallet.net/apidocs/)
+The sandbox version can be found here: [https://api.yoyowalletplayground.net/apidocs/](https://api.yoyowalletplayground.net/apidocs/)
 
 The Yoyo developers like to eat their own dogfood, so the API is also used by our admin dashboards as well as the mobile SDKs.
 Therefore there are quite a LOT of endpoints in here.

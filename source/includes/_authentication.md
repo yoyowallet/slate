@@ -19,7 +19,7 @@ You must replace <code>{ACCESS_KEY}_{SECRET_KEY}</code> with your real API crede
 ```shell
 # With shell, you can just pass the correct header with each request
 
-curl 'https://api.test.yoyowallet.net/v1/accounts/{ACCOUNT_ID}' \
+curl 'https://api.yoyowalletplayground.net/v1/accounts/{ACCOUNT_ID}' \
   -u {ACCESS_KEY}:{SECRET_KEY}
 ```
 
