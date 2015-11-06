@@ -754,7 +754,7 @@ Note - in our playground environment we are connected to the Stripe sandbox, so 
 
     <span class="nd">@Override</span>
     <span class="kd">public</span> <span class="kt">void</span> <span class="n">onCancel</span><span class="o">()</span> <span class="o">{</span>
-            <span class="c1">// The user backed out of adding a card</span>
+            <span class="c1">// The user canceled the request</span>
     <span class="o">}</span>
 
     <span class="nd">@Override</span>
@@ -1544,6 +1544,23 @@ Note - in our playground environment we are connected to the Stripe sandbox, so 
   -u <span class="o">{</span>ACCESS_KEY<span class="o">}</span>:<span class="o">{</span>SECRET_KEY<span class="o">}</span> <span class="se">\</span>
   -H <span class="s1">'Accept: application/json'</span> <span class="se">\</span>
   -H <span class="s1">'HTTP_YOYO_TOKEN: {TOKEN}'</span>
+</code></pre>
+<pre class="highlight java"><code><span class="n">PointsManager</span><span class="o">.</span><span class="na">getPointsBalances</span><span class="o">(</span><span class="k">new</span> <span class="n">YoyoCallback</span><span class="o">&lt;</span><span class="n">PointBalances</span><span class="o">&gt;()</span> <span class="o">{</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="n">onError</span><span class="o">(</span><span class="n">YoyoException</span> <span class="n">exception</span><span class="o">,</span> <span class="n">PointBalances</span> <span class="n">cachedPoints</span><span class="o">)</span> <span class="o">{</span>
+            <span class="c1">// An error occurred, cached points will be returned, if any</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="n">onCancel</span><span class="o">()</span> <span class="o">{</span>
+            <span class="c1">// The user canceled the request</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="n">onSuccess</span><span class="o">(</span><span class="n">PointBalances</span> <span class="n">points</span><span class="o">)</span> <span class="o">{</span>
+            <span class="c1">// Display points balances</span>
+    <span class="o">}</span>
+<span class="o">})</span>
 </code></pre>
 
 <blockquote>
