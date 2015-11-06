@@ -47,7 +47,17 @@ The iOS SDK can be downloaded here: [http://](http://)
 
 ### Android SDK
 
-The Android SDK can be downloaded here: [http://](http://)
+The Android SDK can be downloaded via Gradle:
+
+```gradle
+repositories {
+    maven { url 'http://maven.justyoyo.net:8081/nexus/content/groups/public/' }
+}
+
+dependencies {
+    compile 'com.yoyowallet.yoyo:yoyo-sdk-android:0.1.0-SNAPSHOT'
+}
+```
 
 ## RESTful API UI
 
