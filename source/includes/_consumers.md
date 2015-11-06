@@ -59,10 +59,53 @@ class ViewController: UIViewController, LoginViewControllerDelegate {
 ```
 
 ```java
-	Android SDK Code TBD
+// Use our LoginActivity and LoginManager classes to handle registration and login
+// First add the activity to your AndroidManifest
+<activity	android:name="com.yoyowallet.yoyo.login.YoyoLoginActivity" />
+
+public class MyActivity extends Activity implements YoyoCallback<SessionData>{
+
+	// When you want to start the login process call:
+	private void login(){
+		Intent intent = YoyoLoginActivity.createLoginActivityIntent(mContext);
+		startActivityForResult(intent, LoginManager.REQUEST_CODE);
+	}
+
+	// In order to handle callbacks, you need the following
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		LoginManager.register(this);
+	}
+
+	@Override
+	protected void onDestroy() {
+		LoginManager.unregister(this);
+		super.onDestroy();
+	}
+
+	@Override
+	public void onSuccess(SessionData sessiondata) {
+		// The user has successfully logged in
+	}
+
+	@Override
+	public void onCancel() {
+		// user has closed the login activity
+	}
+
+	@Override
+	public void onError(YoyoException exception, SessionData noData) {
+ 		// an error occurred -> you may display an error
+	}
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		LoginManager.onActivityResult(requestCode, resultCode, data);
+	}
+}
 ```
-
-
 
 > The above command returns JSON structured like this. The "id" field is your passcode "id":
 
