@@ -119,7 +119,7 @@
 
 <p>If you&rsquo;re a web developer you may prefer to code directly against our RESTful API.  To make life easier for you web devs, we&rsquo;ve also put a nice browser front end on the API for you to explore.</p>
 
-<p>The sandbox version can be found here: <a href="https://api.yoyowalletplayground.net/apidocs/">https://api.yoyowalletplayground.net/apidocs/</a></p>
+<p>The sandbox version can be found here: <a href="https://api.yoyoplayground.net/apidocs/">https://api.yoyoplayground.net/apidocs/</a></p>
 
 <p>The Yoyo developers like to eat their own dogfood, so the API is also used by our admin dashboards as well as the mobile SDKs.
 Therefore there are quite a LOT of endpoints in here.</p>
@@ -188,7 +188,7 @@ You must replace <code>{ACCESS_KEY}_{SECRET_KEY}</code> with your real API crede
 </blockquote>
 <pre class="highlight shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
 
-curl <span class="s1">'https://api.yoyowalletplayground.net/v1/accounts/{ACCOUNT_ID}'</span> <span class="se">\</span>
+curl <span class="s1">'https://api.yoyoplayground.net/v1/accounts/{ACCOUNT_ID}'</span> <span class="se">\</span>
   -u <span class="o">{</span>ACCESS_KEY<span class="o">}</span>:<span class="o">{</span>SECRET_KEY<span class="o">}</span>
 </code></pre>
 <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">application</span><span class="p">(</span><span class="nv">application</span><span class="p">:</span> <span class="kt">UIApplication</span><span class="p">,</span> <span class="n">didFinishLaunchingWithOptions</span> <span class="nv">launchOptions</span><span class="p">:</span> <span class="p">[</span><span class="kt">NSObject</span> <span class="p">:</span> <span class="kt">AnyObject</span><span class="p">]?)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span> <span class="p">{</span>
@@ -229,7 +229,7 @@ curl <span class="s1">'https://api.yoyowalletplayground.net/v1/accounts/{ACCOUNT
     </span><span class="nt">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"441234567890"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<pre class="highlight shell"><code>curl <span class="s1">'https://api.yoyowalletplayground.net/v1/consumer-passcodes'</span> <span class="se">\</span>
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.yoyoplayground.net/v1/consumer-passcodes'</span> <span class="se">\</span>
   -u <span class="o">{</span>ACCESS_KEY<span class="o">}</span>:<span class="o">{</span>SECRET_KEY<span class="o">}</span> <span class="se">\</span>
   -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
   -H <span class="s1">'Accept: application/json'</span> <span class="se">\</span>
@@ -358,7 +358,7 @@ curl <span class="s1">'https://api.yoyowalletplayground.net/v1/accounts/{ACCOUNT
   </span><span class="nt">"passcode_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dc05a248-8172-11e5-aa5b-0abe262b2ce9"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<pre class="highlight shell"><code>curl <span class="s1">'https://api.yoyowalletplayground.net/v1/consumer-sessions'</span> <span class="se">\</span>
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.yoyoplayground.net/v1/consumer-sessions'</span> <span class="se">\</span>
   -u <span class="o">{</span>ACCESS_KEY<span class="o">}</span>:<span class="o">{</span>SECRET_KEY<span class="o">}</span> <span class="se">\</span>
   -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
   -H <span class="s1">'Accept: application/json'</span> <span class="se">\</span>
@@ -479,7 +479,7 @@ Sessions tokens are passed to the API in an HTTP header called &lsquo;HTTP_YOYO_
     </span><span class="nt">"postcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"N1 7ER"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<pre class="highlight shell"><code>curl <span class="s1">'https://api.yoyowalletplayground.net/v1/consumers/{CONSUMER_ID}/cards/'</span> <span class="se">\</span>
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.yoyoplayground.net/v1/consumers/{CONSUMER_ID}/cards/'</span> <span class="se">\</span>
   -u <span class="o">{</span>ACCESS_KEY<span class="o">}</span>:<span class="o">{</span>SECRET_KEY<span class="o">}</span> <span class="se">\</span>
   -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
   -H <span class="s1">'Accept: application/json'</span> <span class="se">\</span>
@@ -512,7 +512,7 @@ Note - in our playground environment we are connected to the Stripe sandbox, so 
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p><code class="prettyprint">POST https://api.yoyowalletplayground.net/v1/consumers/{CONSUMER_ID}/cards/</code></p>
+<p><code class="prettyprint">POST https://api.yoyoplayground.net/v1/consumers/{CONSUMER_ID}/cards/</code></p>
 
 <h4 id="request-data">Request Data</h4>
 
@@ -615,7 +615,7 @@ Note - in our playground environment we are connected to the Stripe sandbox, so 
 <blockquote>
 <p>You DELETE a request to the API to remove a card</p>
 </blockquote>
-<pre class="highlight shell"><code>curl <span class="s1">'https://api.yoyowalletplayground.net/v1/consumers/{CONSUMER_ID}/cards/'</span> <span class="se">\</span>
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.yoyoplayground.net/v1/consumers/{CONSUMER_ID}/cards/'</span> <span class="se">\</span>
   -X <span class="s2">"DELETE"</span> <span class="se">\</span>
   -u <span class="o">{</span>ACCESS_KEY<span class="o">}</span>:<span class="o">{</span>SECRET_KEY<span class="o">}</span>  <span class="se">\</span>
   -H <span class="s1">'HTTP_YOYO_TOKEN: {TOKEN}'</span>
@@ -625,14 +625,14 @@ Note - in our playground environment we are connected to the Stripe sandbox, so 
 <pre class="highlight java"><code>    <span class="n">Android</span> <span class="n">SDK</span> <span class="n">Code</span> <span class="n">TBD</span>
 </code></pre>
 
-<p><code class="prettyprint">DELETE https://api.yoyowalletplayground.net/v1/consumers/{CONSUMER_ID}/cards/{CARD_ID}</code></p>
+<p><code class="prettyprint">DELETE https://api.yoyoplayground.net/v1/consumers/{CONSUMER_ID}/cards/{CARD_ID}</code></p>
 
 <h3 id="viewing-cards">Viewing cards</h3>
 
 <blockquote>
 <p>You GET a request to the API to retrieve your wallet details.</p>
 </blockquote>
-<pre class="highlight shell"><code>curl <span class="s1">'https://api.yoyowalletplayground.net/v1/consumers/{CONSUMER_ID}/cards'</span> <span class="se">\</span>
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.yoyoplayground.net/v1/consumers/{CONSUMER_ID}/cards'</span> <span class="se">\</span>
   -u <span class="o">{</span>ACCESS_KEY<span class="o">}</span>:<span class="o">{</span>SECRET_KEY<span class="o">}</span> <span class="se">\</span>
   -H <span class="s1">'Accept: application/json'</span> <span class="se">\</span>
   -H <span class="s1">'HTTP_YOYO_TOKEN: {TOKEN}'</span>
@@ -672,7 +672,7 @@ Note - in our playground environment we are connected to the Stripe sandbox, so 
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p><code class="prettyprint">GET https://api.yoyowalletplayground.net/v1/consumers/{CONSUMER_ID}/cards</code></p>
+<p><code class="prettyprint">GET https://api.yoyoplayground.net/v1/consumers/{CONSUMER_ID}/cards</code></p>
 
 <h4 id="request-data">Request Data</h4>
 
@@ -720,7 +720,7 @@ Note - in our playground environment we are connected to the Stripe sandbox, so 
 <blockquote>
 <p>You GET a request to the API to retrieve your wallet details.</p>
 </blockquote>
-<pre class="highlight shell"><code>curl <span class="s1">'https://api.yoyowalletplayground.net/v1/consumers/{CONSUMER_ID}/transactions'</span> <span class="se">\</span>
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.yoyoplayground.net/v1/consumers/{CONSUMER_ID}/transactions'</span> <span class="se">\</span>
   -u <span class="o">{</span>ACCESS_KEY<span class="o">}</span>:<span class="o">{</span>SECRET_KEY<span class="o">}</span> <span class="se">\</span>
   -H <span class="s1">'Accept: application/json'</span> <span class="se">\</span>
   -H <span class="s1">'HTTP_YOYO_TOKEN: {TOKEN}'</span>
@@ -901,7 +901,7 @@ Note - in our playground environment we are connected to the Stripe sandbox, so 
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p><code class="prettyprint">GET https://api.yoyowalletplayground.net/v1/consumers/{CONSUMER_ID}/transactions</code></p>
+<p><code class="prettyprint">GET https://api.yoyoplayground.net/v1/consumers/{CONSUMER_ID}/transactions</code></p>
 
 <h4 id="request-data">Request Data</h4>
 
@@ -1083,7 +1083,7 @@ Note - in our playground environment we are connected to the Stripe sandbox, so 
 <blockquote>
 <p>You GET a request to the API to retrieve your wallet details.</p>
 </blockquote>
-<pre class="highlight shell"><code>curl <span class="s1">'https://api.yoyowalletplayground.net/v1/consumers/{CONSUMER_ID}/vouchers'</span> <span class="se">\</span>
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.yoyoplayground.net/v1/consumers/{CONSUMER_ID}/vouchers'</span> <span class="se">\</span>
   -u <span class="o">{</span>ACCESS_KEY<span class="o">}</span>:<span class="o">{</span>SECRET_KEY<span class="o">}</span> <span class="se">\</span>
   -H <span class="s1">'Accept: application/json'</span> <span class="se">\</span>
   -H <span class="s1">'HTTP_YOYO_TOKEN: {TOKEN}'</span>
@@ -1243,7 +1243,7 @@ Note - in our playground environment we are connected to the Stripe sandbox, so 
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p><code class="prettyprint">GET https://api.yoyowalletplayground.net/v1/consumers/{CONSUMER_ID}/vouchers</code></p>
+<p><code class="prettyprint">GET https://api.yoyoplayground.net/v1/consumers/{CONSUMER_ID}/vouchers</code></p>
 
 <h4 id="request-data">Request Data</h4>
 
