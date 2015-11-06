@@ -1533,6 +1533,213 @@ Note - in our playground environment we are connected to the Stripe sandbox, so 
 </tr>
 </tbody></table>
 
+<h2 id="points">Points</h2>
+
+<p>When a consumer earns points on Yoyo Wallet platform, they will be appear in the consumer&rsquo;s account.</p>
+
+<blockquote>
+<p>You GET a request to the API to retrieve your point balances details.</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.yoyoplayground.net/v1/consumers/{CONSUMER_ID}/point-balances'</span> <span class="se">\</span>
+  -u <span class="o">{</span>ACCESS_KEY<span class="o">}</span>:<span class="o">{</span>SECRET_KEY<span class="o">}</span> <span class="se">\</span>
+  -H <span class="s1">'Accept: application/json'</span> <span class="se">\</span>
+  -H <span class="s1">'HTTP_YOYO_TOKEN: {TOKEN}'</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"account_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"897328d2-b1fe-4e99-a8e3-0204b4ac106f"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"consumer_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"60252636-24a9-11e5-b345-feff819cdc9f"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"point_scheme_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"759b36f4-0c2c-41fa-a8f8-95b89f531339"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"balance"</span><span class="p">:</span><span class="w"> </span><span class="mi">20540</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-10-28T12:53:55Z"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-11-06T16:11:36Z"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"account_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"a156079c-2d18-4ada-b8ee-f3b939cdc61e"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"consumer_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"60252636-24a9-11e5-b345-feff819cdc9f"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"point_scheme_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"c864a3a1-18ca-4f31-b27f-d6e4ab917807"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"balance"</span><span class="p">:</span><span class="w"> </span><span class="mi">20540</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-10-28T12:53:55Z"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-11-06T16:11:36Z"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p><code class="prettyprint">GET https://api.yoyoplayground.net/v1/consumers/{CONSUMER_ID}/point-balances</code></p>
+
+<h4 id="request-data">Request Data</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>consumer_id</td>
+<td>path</td>
+<td>unique identifer of the consumer</td>
+</tr>
+</tbody></table>
+
+<h4 id="point-balance-data">Point Balance Data</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>account_id</td>
+<td>string</td>
+<td>unique identifier of platform account</td>
+</tr>
+<tr>
+<td>consumer_id</td>
+<td>string</td>
+<td>unique identifer of the consumer</td>
+</tr>
+<tr>
+<td>point_scheme_id</td>
+<td>string</td>
+<td>unique identifier of point scheme</td>
+</tr>
+<tr>
+<td>balance</td>
+<td>integer</td>
+<td>points balance value</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>timestamp</td>
+<td>points balance updated time</td>
+</tr>
+<tr>
+<td>updated_at</td>
+<td>timestamp</td>
+<td>points balance created time</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>You GET a request to the API to retrieve your point transactions details.</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.yoyoplayground.net/v1/consumers/{CONSUMER_ID}/point-transactions'</span> <span class="se">\</span>
+  -u <span class="o">{</span>ACCESS_KEY<span class="o">}</span>:<span class="o">{</span>SECRET_KEY<span class="o">}</span> <span class="se">\</span>
+  -H <span class="s1">'Accept: application/json'</span> <span class="se">\</span>
+  -H <span class="s1">'HTTP_YOYO_TOKEN: {TOKEN}'</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"198f40ee-760b-48a5-abec-10a8d004fbcf"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"account_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"897328d2-b1fe-4e99-a8e3-0204b4ac106f"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"consumer_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"60252636-24a9-11e5-b345-feff819cdc9f"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"point_scheme_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"759b36f4-0c2c-41fa-a8f8-95b89f531339"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fcb4fdb5-f266-4b10-8844-b3bb322091d2"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">500</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-11-06T16:08:40Z"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-11-06T16:08:40Z"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"b87c99db-223a-4e03-a3fb-d10a2adcb041"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"account_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"897328d2-b1fe-4e99-a8e3-0204b4ac106f"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"consumer_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"60252636-24a9-11e5-b345-feff819cdc9f"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"point_scheme_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"759b36f4-0c2c-41fa-a8f8-95b89f531339"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Points manually added via dashboard"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-11-06T16:08:40Z"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-11-06T16:08:40Z"</span><span class="w">
+
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p><code class="prettyprint">GET https://api.yoyoplayground.net/v1/consumers/{CONSUMER_ID}/point-transactions</code></p>
+
+<h4 id="request-data">Request Data</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>consumer_id</td>
+<td>path</td>
+<td>unique identifer of the consumer</td>
+</tr>
+</tbody></table>
+
+<h4 id="point-transaction-data">Point Transaction Data</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>string</td>
+<td>unique identifier of point transaction</td>
+</tr>
+<tr>
+<td>account_id</td>
+<td>string</td>
+<td>unique identifier of platform account</td>
+</tr>
+<tr>
+<td>consumer_id</td>
+<td>string</td>
+<td>unique identifer of the consumer</td>
+</tr>
+<tr>
+<td>point_scheme_id</td>
+<td>string</td>
+<td>unique identifier of point scheme</td>
+</tr>
+<tr>
+<td>reference</td>
+<td>string</td>
+<td>reference to purchase / refund that resulted in the point transaction or value manually set via dashboard</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>integer</td>
+<td>points transaction value</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>timestamp</td>
+<td>points transaction updated time</td>
+</tr>
+<tr>
+<td>updated_at</td>
+<td>timestamp</td>
+<td>points transaction created time</td>
+</tr>
+</tbody></table>
+
           <h1 id="dashboard-api">Dashboard API</h1>
 
 <p>The Dashboard API is a RESTful API which uses JSON formatted data for its requests and responses. It used by administrative dashboards to communicate with the Yoyo Wallet platform.</p>
