@@ -23,7 +23,7 @@ First you must request a passcode.  The passcode is a unique 5 digit number that
 ```
 
 ```shell
-curl 'https://api.yoyowalletplayground.net/v1/consumer-passcodes' \
+curl 'https://api.yoyoplayground.net/v1/consumer-passcodes' \
   -u {ACCESS_KEY}:{SECRET_KEY} \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
@@ -125,7 +125,7 @@ Once you have received an SMS message with your passcode you can perform the sec
 ```
 
 ```shell
-curl 'https://api.yoyowalletplayground.net/v1/consumer-sessions' \
+curl 'https://api.yoyoplayground.net/v1/consumer-sessions' \
   -u {ACCESS_KEY}:{SECRET_KEY} \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
@@ -214,7 +214,7 @@ If you make a request without a valid access token your request will be rejected
 ```
 
 ```shell
-curl 'https://api.yoyowalletplayground.net/v1/consumers/{CONSUMER_ID}/cards/' \
+curl 'https://api.yoyoplayground.net/v1/consumers/{CONSUMER_ID}/cards/' \
   -u {ACCESS_KEY}:{SECRET_KEY} \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
@@ -251,7 +251,7 @@ Note - in our playground environment we are connected to the Stripe sandbox, so 
 }
 ```
 
-`POST https://api.yoyowalletplayground.net/v1/consumers/{CONSUMER_ID}/cards/`
+`POST https://api.yoyoplayground.net/v1/consumers/{CONSUMER_ID}/cards/`
 
 #### Request Data
 
@@ -286,7 +286,7 @@ To delete a card from your wallet, simply send a DELETE request identifying your
 > You DELETE a request to the API to remove a card
 
 ```shell
-curl 'https://api.yoyowalletplayground.net/v1/consumers/{CONSUMER_ID}/cards/' \
+curl 'https://api.yoyoplayground.net/v1/consumers/{CONSUMER_ID}/cards/' \
   -X "DELETE" \
   -u {ACCESS_KEY}:{SECRET_KEY}  \
   -H 'HTTP_YOYO_TOKEN: {TOKEN}'
@@ -300,7 +300,7 @@ curl 'https://api.yoyowalletplayground.net/v1/consumers/{CONSUMER_ID}/cards/' \
 	Android SDK Code TBD
 ```
 
-`DELETE https://api.yoyowalletplayground.net/v1/consumers/{CONSUMER_ID}/cards/{CARD_ID}`
+`DELETE https://api.yoyoplayground.net/v1/consumers/{CONSUMER_ID}/cards/{CARD_ID}`
 
 
 ### Viewing cards
@@ -310,7 +310,7 @@ curl 'https://api.yoyowalletplayground.net/v1/consumers/{CONSUMER_ID}/cards/' \
 
 
 ```shell
-curl 'https://api.yoyowalletplayground.net/v1/consumers/{CONSUMER_ID}/cards' \
+curl 'https://api.yoyoplayground.net/v1/consumers/{CONSUMER_ID}/cards' \
   -u {ACCESS_KEY}:{SECRET_KEY} \
   -H 'Accept: application/json' \
   -H 'HTTP_YOYO_TOKEN: {TOKEN}'
@@ -355,7 +355,7 @@ curl 'https://api.yoyowalletplayground.net/v1/consumers/{CONSUMER_ID}/cards' \
 }
 ```
 
-`GET https://api.yoyowalletplayground.net/v1/consumers/{CONSUMER_ID}/cards`
+`GET https://api.yoyoplayground.net/v1/consumers/{CONSUMER_ID}/cards`
 
 #### Request Data
 
@@ -403,7 +403,7 @@ When a consumer makes purchases via the Yoyo Wallet platform, they will be recor
 
 
 ```shell
-curl 'https://api.yoyowalletplayground.net/v1/consumers/{CONSUMER_ID}/transactions' \
+curl 'https://api.yoyoplayground.net/v1/consumers/{CONSUMER_ID}/transactions' \
   -u {ACCESS_KEY}:{SECRET_KEY} \
   -H 'Accept: application/json' \
   -H 'HTTP_YOYO_TOKEN: {TOKEN}'
@@ -589,7 +589,7 @@ extension TransactionsViewController: NSFetchedResultsControllerDelegate {
 }
 ```
 
-`GET https://api.yoyowalletplayground.net/v1/consumers/{CONSUMER_ID}/transactions`
+`GET https://api.yoyoplayground.net/v1/consumers/{CONSUMER_ID}/transactions`
 
 #### Request Data
 
@@ -648,7 +648,7 @@ When a consumer earns vouchers on Yoyo Wallet platform, they will be appear in t
 
 
 ```shell
-curl 'https://api.yoyowalletplayground.net/v1/consumers/{CONSUMER_ID}/vouchers' \
+curl 'https://api.yoyoplayground.net/v1/consumers/{CONSUMER_ID}/vouchers' \
   -u {ACCESS_KEY}:{SECRET_KEY} \
   -H 'Accept: application/json' \
   -H 'HTTP_YOYO_TOKEN: {TOKEN}'
@@ -813,7 +813,7 @@ extension VouchersViewController: NSFetchedResultsControllerDelegate {
 }
 ```
 
-`GET https://api.yoyowalletplayground.net/v1/consumers/{CONSUMER_ID}/vouchers`
+`GET https://api.yoyoplayground.net/v1/consumers/{CONSUMER_ID}/vouchers`
 
 #### Request Data
 
