@@ -43,7 +43,7 @@ In fact we're using the SDK ourselves to build the next version of Yoyo Wallet a
 
 ### iOS SDK
 
-The iOS SDK can be downloaded here: [http://](http://)
+Talk you our engineers at the hackathon about getting a copy of the SDK.
 
 ### Android SDK
 
