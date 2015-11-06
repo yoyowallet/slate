@@ -34,9 +34,19 @@ func application(application: UIApplication, didFinishLaunchingWithOptions launc
 }
 ```
 
-```java
-	Android SDK Code TBD
-```
 
+```java
+  // Initialise the SDK in your Application#onCreate()
+  @Override
+	public void onCreate() {
+		super.onCreate();
+		Yoyo.with(this,  new YoyoAuthConfig(getString(R.string.yoyo_key), getString(R.string.yoyo_secret)));
+  }
+
+  // In your AndroidManifest
+  <meta-data
+    	android:name="com.yoyowallet.yoyo.AccountId"
+    	android:value="@string/yoyo_account_id" />
+```
 
 > Make sure to replace `{ACCESS_KEY}` and `{SECRET_KEY}` with your real API credentials.

@@ -47,9 +47,10 @@ The iOS SDK can be downloaded here: [http://](http://)
 
 ### Android SDK
 
-The Android SDK can be downloaded via Gradle:
+The Android SDK can be downloaded via Gradle
 
-```gradle
+```java
+// Put this in your app module's build.gradle
 repositories {
     maven { url 'http://maven.justyoyo.net:8081/nexus/content/groups/public/' }
 }
