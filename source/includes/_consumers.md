@@ -626,7 +626,36 @@ extension TransactionsViewController: NSFetchedResultsControllerDelegate {
 ```
 
 ```java
-	Android SDK Code TBD
+public class MyTransactionsActivity extends Activity {
+
+	// TransactionsView extends RecyclerView and wraps in scroll/cache functionality
+	// Use this to fetch a user's transaction history
+	TransactionsView mTransactionsView;
+
+	// MyTransactionsAdapter should extend `TransactionsBaseAdapter`, which extends RecyclerView.Adapter
+	MyTransactionsAdapter mAdapter;
+
+	@Override
+	public void onCreate(Bundle savedInstanceState){
+		...
+		mTransactionsView = (TransactionsView) v.findViewById(R.id.transactions_list);
+		mTransactionsView.layoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
+
+		mAdapter = new MyTransactionsAdapter();
+		mTransactionsView.setTransactionsAdapter(mAdapter)
+		mTransactionsView.setEmptyView(v.findViewById(android.R.id.empty))
+
+		// This begins fetching transactions
+		mTransactionsView.loadTransactions()
+	}
+
+	@Override
+	public void onDestroy(){
+		// Call this to clean up memory
+		mTransactionsView.onDestroy()
+		super.onDestroy()
+	}
+}
 ```
 
 
@@ -872,7 +901,37 @@ extension VouchersViewController: NSFetchedResultsControllerDelegate {
 ```
 
 ```java
-	Android SDK Code TBD
+public class MyVouchersActivity extends Activity {
+
+	// VouchersView extends RecyclerView and wraps in scroll/cache functionality
+	// Use this to fetch a user's transaction history
+	VouchersView mVouchersView;
+
+	// MyVouchersAdapter should extend `VouchersBaseAdapter`, which extends RecyclerView.Adapter
+	MyVouchersAdapter mAdapter;
+
+	@Override
+	public void onCreate(Bundle savedInstanceState){
+		...
+		mVouchersView = (VouchersView) v.findViewById(R.id.vouchers_list);
+		mVouchersView.layoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
+
+		mAdapter = new MyVouchersAdapter();
+		mVouchersView.setVouchersAdapter(mAdapter)
+		mVouchersView.setEmptyView(v.findViewById(android.R.id.empty))
+
+		// This begins fetching vouchers
+		mVouchersView.loadVouchers()
+	}
+
+	@Override
+	public void onDestroy(){
+		// Call this to clean up memory
+		mVouchersView.onDestroy()
+		super.onDestroy()
+	}
+}
+
 ```
 
 
