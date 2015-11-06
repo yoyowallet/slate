@@ -80,7 +80,7 @@ class ViewController: UIViewController, LoginViewControllerDelegate {
 ```
 
 
-`POST https://api.test.yoyowallet/v1/consumer-passcodes`
+`POST https://api.yoyoplayground/v1/consumer-passcodes`
 
 
 This request will either create a new consumer account on the Yoyo Wallet platform, or allow an existing consumer to authenticate.
@@ -159,7 +159,7 @@ curl 'https://api.yoyoplayground.net/v1/consumer-sessions' \
 ```
 
 
-`POST https://api.test.yoyowallet/v1/consumer-sessions`
+`POST https://api.yoyoplayground/v1/consumer-sessions`
 
 #### Request Data
 

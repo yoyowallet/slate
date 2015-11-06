@@ -33,7 +33,7 @@ account_id | This is your unique account identifer
 access_key | This is your access key
 secret_key | This is your secret key (keep it somewhere safe...)
 
-We'll also create an administrative user so you can login to our [dashboard](https://dashboard.test.yoyowallet.net) and manage your account.
+We'll also create an administrative user so you can login to our [dashboard](https://dashboard.yoyoplayground.net) and manage your account.
 
 ## SDKs
 
