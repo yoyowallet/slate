@@ -1005,3 +1005,125 @@ product_group_id | string | unique identfier for the product group
 redeemed_at | timestamp | voucher redemption time
 redemption_reference | string | redemption reference
 updated_at | timestamp | voucher updated time
+
+## Points
+
+When a consumer earns points on Yoyo Wallet platform, they will be appear in the consumer's account.
+
+> You GET a request to the API to retrieve your point balances details.
+
+
+```shell
+curl 'https://api.yoyoplayground.net/v1/consumers/{CONSUMER_ID}/point-balances' \
+  -u {ACCESS_KEY}:{SECRET_KEY} \
+  -H 'Accept: application/json' \
+  -H 'HTTP_YOYO_TOKEN: {TOKEN}'
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "data": [
+        {
+            "account_id": "897328d2-b1fe-4e99-a8e3-0204b4ac106f",
+            "consumer_id": "60252636-24a9-11e5-b345-feff819cdc9f",
+            "point_scheme_id": "759b36f4-0c2c-41fa-a8f8-95b89f531339",
+            "balance": 20540,
+            "created_at": "2015-10-28T12:53:55Z",
+            "updated_at": "2015-11-06T16:11:36Z"
+        },
+        {
+            "account_id": "a156079c-2d18-4ada-b8ee-f3b939cdc61e",
+            "consumer_id": "60252636-24a9-11e5-b345-feff819cdc9f",
+            "point_scheme_id": "c864a3a1-18ca-4f31-b27f-d6e4ab917807",
+            "balance": 20540,
+            "created_at": "2015-10-28T12:53:55Z",
+            "updated_at": "2015-11-06T16:11:36Z"
+        }
+    ],
+    "metadata": {}
+}
+```
+
+`GET https://api.yoyoplayground.net/v1/consumers/{CONSUMER_ID}/point-balances`
+
+#### Request Data
+
+Parameter | Type |Description
+--------- |  ----| -----------
+consumer_id | path | unique identifer of the consumer
+
+#### Point Balance Data
+
+Parameter | Type | Description
+--------- |  ---- |-----------
+account_id | string |unique identifier of platform account
+consumer_id | string | unique identifer of the consumer
+point_scheme_id | string |unique identifier of point scheme
+balance | integer | points balance value
+created_at | timestamp | points balance updated time
+updated_at | timestamp | points balance created time
+
+
+> You GET a request to the API to retrieve your point transactions details.
+
+
+```shell
+curl 'https://api.yoyoplayground.net/v1/consumers/{CONSUMER_ID}/point-transactions' \
+  -u {ACCESS_KEY}:{SECRET_KEY} \
+  -H 'Accept: application/json' \
+  -H 'HTTP_YOYO_TOKEN: {TOKEN}'
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "data": [
+        {
+            "id": "198f40ee-760b-48a5-abec-10a8d004fbcf",
+            "account_id": "897328d2-b1fe-4e99-a8e3-0204b4ac106f",
+            "consumer_id": "60252636-24a9-11e5-b345-feff819cdc9f",
+            "point_scheme_id": "759b36f4-0c2c-41fa-a8f8-95b89f531339",
+            "reference": "fcb4fdb5-f266-4b10-8844-b3bb322091d2",
+            "amount": 500,
+            "created_at": "2015-11-06T16:08:40Z",
+            "updated_at": "2015-11-06T16:08:40Z"
+        },
+        {
+            "id": "b87c99db-223a-4e03-a3fb-d10a2adcb041",
+            "account_id": "897328d2-b1fe-4e99-a8e3-0204b4ac106f",
+            "consumer_id": "60252636-24a9-11e5-b345-feff819cdc9f",
+            "point_scheme_id": "759b36f4-0c2c-41fa-a8f8-95b89f531339",
+            "reference": "Points manually added via dashboard",
+            "amount": 200,
+            "created_at": "2015-11-06T16:08:40Z",
+            "updated_at": "2015-11-06T16:08:40Z"
+            
+        }
+    ],
+    "metadata": {}
+}
+```
+
+`GET https://api.yoyoplayground.net/v1/consumers/{CONSUMER_ID}/point-transactions`
+
+#### Request Data
+
+Parameter | Type |Description
+--------- |  ----| -----------
+consumer_id | path | unique identifer of the consumer
+
+#### Point Transaction Data
+
+Parameter | Type | Description
+--------- |  ---- |-----------
+id | string |unique identifier of point transaction
+account_id | string |unique identifier of platform account
+consumer_id | string | unique identifer of the consumer
+point_scheme_id | string | unique identifier of point scheme
+reference | string | reference to purchase / refund that resulted in the point transaction or value manually set via dashboard
+amount | integer | points transaction value
+created_at | timestamp | points transaction updated time
+updated_at | timestamp | points transaction created time
