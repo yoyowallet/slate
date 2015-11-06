@@ -412,7 +412,7 @@ CardManager.getCards(new YoyoCallback<Cards>() {
 
 	@Override
 	public void onCancel() {
-			// The user backed out of adding a card
+			// The user canceled the request
 	}
 
 	@Override
@@ -1020,6 +1020,25 @@ curl 'https://api.yoyoplayground.net/v1/consumers/{CONSUMER_ID}/point-balances' 
   -H 'HTTP_YOYO_TOKEN: {TOKEN}'
 ```
 
+```java
+PointsManager.getPointsBalances(new YoyoCallback<PointBalances>() {
+	@Override
+	public void onError(YoyoException exception, PointBalances cachedPoints) {
+			// An error occurred, cached points will be returned, if any
+	}
+
+	@Override
+	public void onCancel() {
+			// The user canceled the request
+	}
+
+	@Override
+	public void onSuccess(PointBalances points) {
+			// Display points balances
+	}
+})
+```
+
 > The above command returns JSON structured like this:
 
 ```json
@@ -1100,7 +1119,7 @@ curl 'https://api.yoyoplayground.net/v1/consumers/{CONSUMER_ID}/point-transactio
             "amount": 200,
             "created_at": "2015-11-06T16:08:40Z",
             "updated_at": "2015-11-06T16:08:40Z"
-            
+
         }
     ],
     "metadata": {}
