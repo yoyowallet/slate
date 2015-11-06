@@ -59,10 +59,53 @@ class ViewController: UIViewController, LoginViewControllerDelegate {
 ```
 
 ```java
-	Android SDK Code TBD
+// Use our YoyoLoginActivity and LoginManager classes to handle registration and login
+// First add the activity to your AndroidManifest
+<activity	android:name="com.yoyowallet.yoyo.login.YoyoLoginActivity" />
+
+public class MyActivity extends Activity implements YoyoCallback<SessionData>{
+
+	// When you want to start the login process call:
+	private void login(){
+		Intent intent = YoyoLoginActivity.createLoginActivityIntent(mContext);
+		startActivityForResult(intent, LoginManager.REQUEST_CODE);
+	}
+
+	// In order to handle callbacks, you need the following
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		LoginManager.register(this);
+	}
+
+	@Override
+	protected void onDestroy() {
+		LoginManager.unregister(this);
+		super.onDestroy();
+	}
+
+	@Override
+	public void onSuccess(SessionData sessiondata) {
+		// The user has successfully logged in
+	}
+
+	@Override
+	public void onCancel() {
+		// user has closed the login activity
+	}
+
+	@Override
+	public void onError(YoyoException exception, SessionData noData) {
+ 		// an error occurred -> you may display an error
+	}
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		LoginManager.onActivityResult(requestCode, resultCode, data);
+	}
+}
 ```
-
-
 
 > The above command returns JSON structured like this. The "id" field is your passcode "id":
 
@@ -138,11 +181,6 @@ curl 'https://api.yoyoplayground.net/v1/consumer-sessions' \
 ```swift
 	iOS SDK Code TBD
 ```
-
-```java
-	Android SDK Code TBD
-```
-
 
 > The above command returns JSON structured like this. The "id" field is your passcode "id":
 
@@ -226,7 +264,52 @@ curl 'https://api.yoyoplayground.net/v1/consumers/{CONSUMER_ID}/cards/' \
 ```
 
 ```java
-	Android SDK Code TBD
+// Use our YoyoAddCardActivity and CardManager classes to handle registration and login
+// First add the activity to your AndroidManifest
+<activity	android:name="com.yoyowallet.yoyo.login.YoyoAddCardActivity" />
+
+public class MyActivity extends Activity implements YoyoCallback<SessionData>{
+
+	// When you want to start the add card process call:
+	private void addCard(){
+		Intent intent = YoyoAddCardActivity.createAddCardActivityIntent(MainActivity.this);
+		startActivityForResult(intent, CardManager.REQUEST_CODE);
+	}
+
+	// In order to handle callbacks, you need the following
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		CardManager.register(this);
+	}
+
+	@Override
+	protected void onDestroy() {
+		CardManager.unregister(this);
+		super.onDestroy();
+	}
+
+	@Override
+	public void onSuccess(Card card) {
+		// The user has successfully added the provided card to their account
+	}
+
+	@Override
+	public void onCancel() {
+		// user has closed the addCard activity
+	}
+
+	@Override
+	public void onError(YoyoException exception, Card noData) {
+ 		// an error occurred -> you may display an error
+	}
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		CardManager.onActivityResult(requestCode, resultCode, data);
+	}
+}
 ```
 
 <aside class="warning">
@@ -321,9 +404,23 @@ curl 'https://api.yoyoplayground.net/v1/consumers/{CONSUMER_ID}/cards' \
 ```
 
 ```java
-	Android SDK Code TBD
-```
+CardManager.getCards(new YoyoCallback<Cards>() {
+	@Override
+	public void onError(YoyoException exception, Cards cachedCards) {
+			// An error occurred, cached cards will be returned, if any
+	}
 
+	@Override
+	public void onCancel() {
+			// The user backed out of adding a card
+	}
+
+	@Override
+	public void onSuccess(Cards cards) {
+			// Display cards
+	}
+})
+```
 
 > The above command returns JSON structured like this. The "id" field is your passcode "id":
 
@@ -384,7 +481,17 @@ OTP generation is not available via an API call
 ```
 
 ```java
-	Android SDK Code TBD
+// Add a BarcodeView to your layout
+<com.yoyowallet.yoyo.views.BarcodeView
+	android:id="@+id/barcode_view"
+	android:layout_width="300dp"
+	android:layout_height="300dp"/>
+
+BarcodeView  barcodeView = (BarcodeView) findViewById(R.id.barcode_view);
+barcodeView.showBarcodePayment();
+
+// If your barcode view is used to display vouchers
+barcodeView.showBarcodeVoucher(voucher);
 ```
 
 An OTP is a One Time Password is a automatically generated code which refreshes every 30 seconds.
@@ -519,7 +626,36 @@ extension TransactionsViewController: NSFetchedResultsControllerDelegate {
 ```
 
 ```java
-	Android SDK Code TBD
+public class MyTransactionsActivity extends Activity {
+
+	// TransactionsView extends RecyclerView and wraps in scroll/cache functionality
+	// Use this to fetch a user's transaction history
+	TransactionsView mTransactionsView;
+
+	// MyTransactionsAdapter should extend `TransactionsBaseAdapter`, which extends RecyclerView.Adapter
+	MyTransactionsAdapter mAdapter;
+
+	@Override
+	public void onCreate(Bundle savedInstanceState){
+		...
+		mTransactionsView = (TransactionsView) v.findViewById(R.id.transactions_list);
+		mTransactionsView.layoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
+
+		mAdapter = new MyTransactionsAdapter();
+		mTransactionsView.setTransactionsAdapter(mAdapter)
+		mTransactionsView.setEmptyView(v.findViewById(android.R.id.empty))
+
+		// This begins fetching transactions
+		mTransactionsView.loadTransactions()
+	}
+
+	@Override
+	public void onDestroy(){
+		// Call this to clean up memory
+		mTransactionsView.onDestroy()
+		super.onDestroy()
+	}
+}
 ```
 
 
@@ -765,7 +901,37 @@ extension VouchersViewController: NSFetchedResultsControllerDelegate {
 ```
 
 ```java
-	Android SDK Code TBD
+public class MyVouchersActivity extends Activity {
+
+	// VouchersView extends RecyclerView and wraps in scroll/cache functionality
+	// Use this to fetch a user's transaction history
+	VouchersView mVouchersView;
+
+	// MyVouchersAdapter should extend `VouchersBaseAdapter`, which extends RecyclerView.Adapter
+	MyVouchersAdapter mAdapter;
+
+	@Override
+	public void onCreate(Bundle savedInstanceState){
+		...
+		mVouchersView = (VouchersView) v.findViewById(R.id.vouchers_list);
+		mVouchersView.layoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
+
+		mAdapter = new MyVouchersAdapter();
+		mVouchersView.setVouchersAdapter(mAdapter)
+		mVouchersView.setEmptyView(v.findViewById(android.R.id.empty))
+
+		// This begins fetching vouchers
+		mVouchersView.loadVouchers()
+	}
+
+	@Override
+	public void onDestroy(){
+		// Call this to clean up memory
+		mVouchersView.onDestroy()
+		super.onDestroy()
+	}
+}
+
 ```
 
 
