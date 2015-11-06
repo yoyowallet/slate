@@ -8,7 +8,7 @@ To authenticate a request, send an “AUTHORIZATION” header of form:
 
 Basic base64({ACCESS_KEY}:{SECRET_KEY})
 
-`Authorization: <base64 encrypted {ACCESS_KEY}:{SECRET_KEY}>`
+`Authorization: <base64 encoded {ACCESS_KEY}:{SECRET_KEY}>`
 
 <aside class="notice">
 You must replace <code>{ACCESS_KEY}_{SECRET_KEY}</code> with your real API credentials.
