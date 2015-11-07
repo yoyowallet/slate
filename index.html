@@ -282,7 +282,7 @@ curl <span class="s1">'https://api.yoyoplayground.net/v1/accounts/{ACCOUNT_ID}'<
 </code></pre>
 <pre class="highlight java"><code><span class="c1">// Use our YoyoLoginActivity and LoginManager classes to handle registration and login</span>
 <span class="c1">// First add the activity to your AndroidManifest</span>
-<span class="o">&lt;</span><span class="n">activity</span>   <span class="nl">android:</span><span class="n">name</span><span class="o">=</span><span class="s">"com.yoyowallet.yoyo.login.YoyoLoginActivity"</span> <span class="o">/&gt;</span>
+<span class="o">&lt;</span><span class="n">activity</span> <span class="nl">android:</span><span class="n">name</span><span class="o">=</span><span class="s">"com.yoyowallet.yoyo.login.YoyoLoginActivity"</span> <span class="nl">android:</span><span class="n">theme</span><span class="o">=</span><span class="s">"@style/Theme.Yoyo"</span> <span class="o">/&gt;</span>
 
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyActivity</span> <span class="kd">extends</span> <span class="n">Activity</span> <span class="kd">implements</span> <span class="n">YoyoCallback</span><span class="o">&lt;</span><span class="n">SessionData</span><span class="o">&gt;{</span>
 
@@ -551,7 +551,7 @@ Sessions tokens are passed to the API in an HTTP header called &lsquo;HTTP_YOYO_
 </code></pre>
 <pre class="highlight java"><code><span class="c1">// Use our YoyoAddCardActivity and CardManager classes to handle registration and login</span>
 <span class="c1">// First add the activity to your AndroidManifest</span>
-<span class="o">&lt;</span><span class="n">activity</span>   <span class="nl">android:</span><span class="n">name</span><span class="o">=</span><span class="s">"com.yoyowallet.yoyo.login.YoyoAddCardActivity"</span> <span class="o">/&gt;</span>
+<span class="o">&lt;</span><span class="n">activity</span> <span class="nl">android:</span><span class="n">name</span><span class="o">=</span><span class="s">"com.yoyowallet.yoyo.login.YoyoAddCardActivity"</span> <span class="nl">android:</span><span class="n">theme</span><span class="o">=</span><span class="s">"@style/Theme.Yoyo"</span> <span class="o">/&gt;</span>
 
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyActivity</span> <span class="kd">extends</span> <span class="n">Activity</span> <span class="kd">implements</span> <span class="n">YoyoCallback</span><span class="o">&lt;</span><span class="n">SessionData</span><span class="o">&gt;{</span>
 
