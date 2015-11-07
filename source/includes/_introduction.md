@@ -49,6 +49,8 @@ Talk you our engineers at the hackathon about getting a copy of the SDK.
 
 The Android SDK can be downloaded via Gradle
 
+(Click the java tab to see Gradle instructions)
+
 ```java
 // Put this in your app module's build.gradle
 repositories {
