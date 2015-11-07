@@ -61,7 +61,7 @@ class ViewController: UIViewController, LoginViewControllerDelegate {
 ```java
 // Use our YoyoLoginActivity and LoginManager classes to handle registration and login
 // First add the activity to your AndroidManifest
-<activity	android:name="com.yoyowallet.yoyo.login.YoyoLoginActivity" />
+<activity android:name="com.yoyowallet.yoyo.login.YoyoLoginActivity" android:theme="@style/Theme.Yoyo" />
 
 public class MyActivity extends Activity implements YoyoCallback<SessionData>{
 
@@ -266,7 +266,7 @@ curl 'https://api.yoyoplayground.net/v1/consumers/{CONSUMER_ID}/cards/' \
 ```java
 // Use our YoyoAddCardActivity and CardManager classes to handle registration and login
 // First add the activity to your AndroidManifest
-<activity	android:name="com.yoyowallet.yoyo.login.YoyoAddCardActivity" />
+<activity android:name="com.yoyowallet.yoyo.login.YoyoAddCardActivity" android:theme="@style/Theme.Yoyo" />
 
 public class MyActivity extends Activity implements YoyoCallback<SessionData>{
 
