@@ -290,7 +290,7 @@ curl <span class="s1">'https://api.yoyoplayground.net/v1/accounts/{ACCOUNT_ID}'<
 
     <span class="c1">// When you want to start the login process call:</span>
     <span class="kd">private</span> <span class="kt">void</span> <span class="n">login</span><span class="o">(){</span>
-        <span class="n">Intent</span> <span class="n">intent</span> <span class="o">=</span> <span class="n">YoyoLoginActivity</span><span class="o">.</span><span class="na">createLoginActivityIntent</span><span class="o">(</span><span class="n">mContext</span><span class="o">);</span>
+        <span class="n">Intent</span> <span class="n">intent</span> <span class="o">=</span> <span class="n">YoyoLoginActivity</span><span class="o">.</span><span class="na">createLoginActivityIntent</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
         <span class="n">startActivityForResult</span><span class="o">(</span><span class="n">intent</span><span class="o">,</span> <span class="n">LoginManager</span><span class="o">.</span><span class="na">REQUEST_CODE</span><span class="o">);</span>
     <span class="o">}</span>
 
