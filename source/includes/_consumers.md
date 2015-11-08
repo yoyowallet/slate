@@ -67,7 +67,7 @@ public class MyActivity extends Activity implements YoyoCallback<SessionData>{
 
 	// When you want to start the login process call:
 	private void login(){
-		Intent intent = YoyoLoginActivity.createLoginActivityIntent(mContext);
+		Intent intent = YoyoLoginActivity.createLoginActivityIntent(this);
 		startActivityForResult(intent, LoginManager.REQUEST_CODE);
 	}
 
