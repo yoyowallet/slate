@@ -1764,7 +1764,47 @@ Note - in our playground environment we are connected to the Stripe sandbox, so 
 
 <p>The Dashboard API is a RESTful API which uses JSON formatted data for its requests and responses. It used by administrative dashboards to communicate with the Yoyo Wallet platform.</p>
 
-<p>Documentation not currently available.</p>
+<h2 id="authentication">Authentication</h2>
+
+<p>As a dashboard developer your dashboard users will need to have a Yoyo Wallet user account.  </p>
+
+<p>Users can be created / invited from the dashboard.</p>
+
+<h3 id="logging-in-via-the-api">Logging in via the API</h3>
+
+<blockquote>
+<p>You POST a request to the API containing the user&rsquo;s name and password.</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test@here.com"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"password"</span><span class="p">:</span><span class="w"> </span><span class="s2">"your_password"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<pre class="highlight shell"><code>curl <span class="s1">'https://api.yoyoplayground.net/v1/consumer-passcodes'</span> <span class="se">\</span>
+  -u <span class="o">{</span>ACCESS_KEY<span class="o">}</span>:<span class="o">{</span>SECRET_KEY<span class="o">}</span> <span class="se">\</span>
+  -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+  -H <span class="s1">'Accept: application/json'</span> <span class="se">\</span>
+ --data-binary <span class="nv">$'</span><span class="o">{</span><span class="se">\n</span>  <span class="s2">"email"</span>: <span class="s2">"{</span><span class="nv">$USER_EMAIL</span><span class="s2">}"</span>,<span class="se">\n</span>  <span class="s2">"password"</span>: <span class="s2">"{</span><span class="nv">$PASSWORD</span><span class="s2">}"</span><span class="se">\n</span><span class="o">}</span><span class="s1">' 
+</span></code></pre>
+<pre class="highlight swift"><code></code></pre>
+<pre class="highlight java"><code></code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this.</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"99EF65BE82564D1B92992D5394C36088"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"expires"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-11-09T21:47:56.954145Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5f237209-3bfe-45c3-9bc8-f0c4753e444"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>For your dashboard to interact with the dashboard API on behalf of a user, the user will need a session token.</p>
+
+<p>This request will then provide you with a session token which you can use for the HTTP_YOYO_TOKEN.</p>
 
           <h1 id="transaction-api">Transaction API</h1>
 
