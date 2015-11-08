@@ -40,13 +40,13 @@ func application(application: UIApplication, didFinishLaunchingWithOptions launc
   @Override
 	public void onCreate() {
 		super.onCreate();
-		Yoyo.with(this,  new YoyoAuthConfig(getString(R.string.yoyo_key), getString(R.string.yoyo_secret)));
+		Yoyo.with(this,  new YoyoAuthConfig("YOUR_API_KEY", "YOUR_API_SECRET"));
   }
 
   // In your AndroidManifest
   <meta-data
     	android:name="com.yoyowallet.yoyo.AccountId"
-    	android:value="@string/yoyo_account_id" />
+    	android:value="YOUR_ACCOUNT_ID" />
 ```
 
 > Make sure to replace `{ACCESS_KEY}` and `{SECRET_KEY}` with your real API credentials.
