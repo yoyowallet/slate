@@ -266,7 +266,7 @@ curl 'https://api.yoyoplayground.net/v1/consumers/{CONSUMER_ID}/cards/' \
 ```java
 // Use our YoyoAddCardActivity and CardManager classes to handle registration and login
 // First add the activity to your AndroidManifest
-<activity android:name="com.yoyowallet.yoyo.login.YoyoAddCardActivity" android:theme="@style/Theme.Yoyo" />
+<activity android:name="com.yoyowallet.yoyo.card.YoyoAddCardActivity" android:theme="@style/Theme.Yoyo" />
 
 public class MyActivity extends Activity implements YoyoCallback<SessionData>{
 
@@ -487,6 +487,7 @@ OTP generation is not available via an API call
 	android:layout_width="300dp"
 	android:layout_height="300dp"/>
 
+// Add this to your Activity/Fragment/ other view class
 BarcodeView  barcodeView = (BarcodeView) findViewById(R.id.barcode_view);
 barcodeView.showBarcodePayment();
 
