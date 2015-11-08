@@ -215,13 +215,13 @@ curl <span class="s1">'https://api.yoyoplayground.net/v1/accounts/{ACCOUNT_ID}'<
   <span class="nd">@Override</span>
     <span class="kd">public</span> <span class="kt">void</span> <span class="n">onCreate</span><span class="o">()</span> <span class="o">{</span>
         <span class="kd">super</span><span class="o">.</span><span class="na">onCreate</span><span class="o">();</span>
-        <span class="n">Yoyo</span><span class="o">.</span><span class="na">with</span><span class="o">(</span><span class="k">this</span><span class="o">,</span>  <span class="k">new</span> <span class="n">YoyoAuthConfig</span><span class="o">(</span><span class="n">getString</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">string</span><span class="o">.</span><span class="na">yoyo_key</span><span class="o">),</span> <span class="n">getString</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">string</span><span class="o">.</span><span class="na">yoyo_secret</span><span class="o">)));</span>
+        <span class="n">Yoyo</span><span class="o">.</span><span class="na">with</span><span class="o">(</span><span class="k">this</span><span class="o">,</span>  <span class="k">new</span> <span class="n">YoyoAuthConfig</span><span class="o">(</span><span class="s">"YOUR_API_KEY"</span><span class="o">,</span> <span class="s">"YOUR_API_SECRET"</span><span class="o">));</span>
   <span class="o">}</span>
 
   <span class="c1">// In your AndroidManifest</span>
   <span class="o">&lt;</span><span class="n">meta</span><span class="o">-</span><span class="n">data</span>
         <span class="nl">android:</span><span class="n">name</span><span class="o">=</span><span class="s">"com.yoyowallet.yoyo.AccountId"</span>
-        <span class="nl">android:</span><span class="n">value</span><span class="o">=</span><span class="s">"@string/yoyo_account_id"</span> <span class="o">/&gt;</span>
+        <span class="nl">android:</span><span class="n">value</span><span class="o">=</span><span class="s">"YOUR_ACCOUNT_ID"</span> <span class="o">/&gt;</span>
 </code></pre>
 
 <blockquote>
@@ -553,7 +553,7 @@ Sessions tokens are passed to the API in an HTTP header called &lsquo;HTTP_YOYO_
 </code></pre>
 <pre class="highlight java"><code><span class="c1">// Use our YoyoAddCardActivity and CardManager classes to handle registration and login</span>
 <span class="c1">// First add the activity to your AndroidManifest</span>
-<span class="o">&lt;</span><span class="n">activity</span> <span class="nl">android:</span><span class="n">name</span><span class="o">=</span><span class="s">"com.yoyowallet.yoyo.login.YoyoAddCardActivity"</span> <span class="nl">android:</span><span class="n">theme</span><span class="o">=</span><span class="s">"@style/Theme.Yoyo"</span> <span class="o">/&gt;</span>
+<span class="o">&lt;</span><span class="n">activity</span> <span class="nl">android:</span><span class="n">name</span><span class="o">=</span><span class="s">"com.yoyowallet.yoyo.card.YoyoAddCardActivity"</span> <span class="nl">android:</span><span class="n">theme</span><span class="o">=</span><span class="s">"@style/Theme.Yoyo"</span> <span class="o">/&gt;</span>
 
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyActivity</span> <span class="kd">extends</span> <span class="n">Activity</span> <span class="kd">implements</span> <span class="n">YoyoCallback</span><span class="o">&lt;</span><span class="n">SessionData</span><span class="o">&gt;{</span>
 
@@ -834,6 +834,7 @@ Note - in our playground environment we are connected to the Stripe sandbox, so 
     <span class="nl">android:</span><span class="n">layout_width</span><span class="o">=</span><span class="s">"300dp"</span>
     <span class="nl">android:</span><span class="n">layout_height</span><span class="o">=</span><span class="s">"300dp"</span><span class="o">/&gt;</span>
 
+<span class="c1">// Add this to your Activity/Fragment/ other view class</span>
 <span class="n">BarcodeView</span>  <span class="n">barcodeView</span> <span class="o">=</span> <span class="o">(</span><span class="n">BarcodeView</span><span class="o">)</span> <span class="n">findViewById</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">barcode_view</span><span class="o">);</span>
 <span class="n">barcodeView</span><span class="o">.</span><span class="na">showBarcodePayment</span><span class="o">();</span>
 
